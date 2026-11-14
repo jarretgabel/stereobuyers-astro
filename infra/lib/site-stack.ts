@@ -158,7 +158,11 @@ export class SiteStack extends cdk.Stack {
         assumedBy: new iam.WebIdentityPrincipal(provider.openIdConnectProviderArn, {
           StringEquals: { 'token.actions.githubusercontent.com:aud': 'sts.amazonaws.com' },
           StringLike: {
-            'token.actions.githubusercontent.com:sub': `repo:${props.githubOwner}/${props.githubRepo}:ref:refs/heads/${props.githubBranch}`,
+            // GitHub may use immutable subjects (`owner@<id>/repo@<id>`), so accept both forms.
+            'token.actions.githubusercontent.com:sub': [
+              `repo:${props.githubOwner}/${props.githubRepo}:ref:refs/heads/${props.githubBranch}`,
+              `repo:${props.githubOwner}@*/${props.githubRepo}@*:ref:refs/heads/${props.githubBranch}`,
+            ],
           },
         }),
       });
