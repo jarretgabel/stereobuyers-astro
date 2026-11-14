@@ -1,0 +1,19 @@
+---
+import type { Page } from '../lib/site';
+import { pages } from '../lib/site';
+import { brandName } from '../lib/product';
+
+interface Props { page: Page }
+const { page } = Astro.props;
+const brandPages = pages
+  .filter((p) => String(p.page_class ?? '').includes('main-brand-page') && p.url !== page.url)
+  .sort((a, b) => (String(a.title ?? '') < String(b.title ?? '') ? -1 : String(a.title ?? '') > String(b.title ?? '') ? 1 : 0));
+---
+{brandPages.length > 0 && (
+  <section class="brands-row container margin-center">
+    <h2 class="text-align-center as-h4">Other brands we buy</h2>
+    <ul>
+      {brandPages.map((b) => <li><a href={b.url}>{brandName(b)}</a></li>)}
+    </ul>
+  </section>
+)}

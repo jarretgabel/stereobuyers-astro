@@ -1,0 +1,17 @@
+<section class="container margin-top-4">
+  <div class="container xxnarrow">
+    <h2 class="as-h3">What are the high-end stereo brands StereoBuyers does not buy?</h2>
+    <p>Below are brands we typically do not buy, but it’s not exhaustive. The current resale value is just not high enough for us to justify making an offer.</p>
+    <p>In general, most “all in one” “rack systems” and most “consumer” A/V gear from the ‘80s through the ‘00s - e.g. a $400 receiver from Best Buy in the ‘90s - just isn’t in demand today, even if it still works well, unfortunately.</p>
+  </div>
+  <ul class='brand-chips brand-chips-muted'>
+    {% for brand in site.data.equipment.brands_dont_buy %}
+    <li><span>{{ brand }}</span></li>
+    {% endfor %}
+  </ul>
+  <div class="container xxnarrow b2b-cta">
+    <p>Not sure whether your gear qualifies? <a class="button" href="{{ site.baseurl }}/get-a-quote/">Ask for a free quote</a></p>
+    <p><a href="{{ site.baseurl }}/stereo-equipment-and-components-we-buy/">See the brands we do buy</a></p>
+  </div>
+</section>
+{% include quick-facts.html %}

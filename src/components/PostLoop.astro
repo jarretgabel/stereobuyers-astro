@@ -1,0 +1,14 @@
+---
+// Body shared by index.html, arp.html and stereophile.html: every post with an anchor.
+import Content from './Content.astro';
+import { posts } from '../lib/site';
+import { slugify } from '../lib/liquid';
+---
+{posts.map((post) => (
+  <>
+    <a name={slugify(post.title ?? '')}></a>
+    <div class={`row ${post.class ?? ''}`} id={slugify(post.title ?? '')}>
+      <Content page={post} />
+    </div>
+  </>
+))}

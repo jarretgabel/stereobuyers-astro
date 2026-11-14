@@ -1,0 +1,41 @@
+---
+import ResponsiveImg from '../../../components/ResponsiveImg.astro';
+import ProductName from '../../../components/ProductName.astro';
+import TypeLabel from '../../../components/TypeLabel.astro';
+import { pages } from '../../../lib/site';
+---
+
+<section class='container xnarrow margin-center'>
+  <h2 class="text-align-center as-h4">We Pay Cash for Used Mark Levinson Stereo Gear in NYC and Colorado</h2>
+  <p>Since 1972, Mark Levinson has manufactured high quality stereo components enjoyed by audiophiles throughout the world. Since 1990 the Mark Levinson brand has belonged to Harman International, and it is known for amplifiers, preamplifiers and digital audio processors, often recognizable by a black anodized chassis. The products maintain excellent value over the years, due to the high level of technical craftsmanship. As music lovers upgrade or move on to other systems, we buy Mark Levinson components and find new homes for them.</p>
+
+  <h2 class="text-align-center as-h4">Mark Levinson’s Beginnings</h2>
+  <p>According to the <a href="https://www.marklevinson.com/about-mark-levinson.html" target="_blank">official Mark Levinson website</a>, Mark Levinson created the sound mixer for the famous Woodstock music festival, which helped propel his reputation. In 1972 he created “Mark Levinson Audio Systems Ltd.” in Woodbridge Connecticut, and began manufacturing high-end amplifiers. The LNP-2 Preamplifier propelled the brand to audiophile stardom, and products since have carried the flag. The original company, Mark Levinson Audio Systems Ltd., ceased operating in 1984 and its equipment and trademark rights were acquired by Madrigal Audio Laboratories.</p>
+
+  <h2 class="text-align-center as-h4">Mark Levinson Components We Typically Buy</h2>
+  <p>StereoBuyers regularly purchases used Mark Levinson amps and preamps, including LNP, JC and ML Preamps, ML Amplifiers and 300, 400, and 500 series components. Chances are if the gear is in good condition, we will make an offer.</p>
+
+  <p>StereoBuyers has paid cash to New York City and Colorado area residents for pre-owned Mark Levinson components since we were founded. Fill out a <a href="/get-a-quote/">Free Quote Form</a>s and we will get back to you. If we agree on terms, we come to meet you where you want, and pay cash.</p>
+
+  <p>StereoBuyers has purchased some of the following Mark Levinson Components.</p>
+</section>
+
+<br>
+<br>
+<br>
+
+<section class='container xnarrow margin-center'>
+    <ul class='columns double-autospacing flex-row-col flex-wrap flex-hcenter margin-top-0 text-align-center'>
+        {pages.filter((p) => p.layout === 'levinson').map((p) => (
+                <li class='column quarter-autospacing'>
+                    <a href={p.url}>
+                        <ResponsiveImg class="image" src={p.image} alt={p.title} sizes="(min-width: 800px) 33vw, 100vw" />
+                        <div class="caption">
+                            <h3 class="padding-top-0 padding-bottom-0"><ProductName title={p.title} /></h3>
+                            <p><TypeLabel type={p.type} /></p>
+                        </div>
+                    </a>
+                </li>
+        ))}
+    </ul>
+</section>

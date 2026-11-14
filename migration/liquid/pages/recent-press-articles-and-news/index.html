@@ -1,0 +1,60 @@
+<section class="container xxnarrow">
+  <p>We love a good stereo article – especially when it’s about us! Below is a sampling of our favorite StereoBuyers press stories and blog mentions. For any media inquiries, please <a href="{{ site.baseurl }}/contact/">contact us</a>.</p>
+</section>
+<br>
+<section class="container xxnarrow">
+  <h2 class="text-align-center as-h3">Where has StereoBuyers been?</h2>
+  <ul>
+    {% for article in site.data.press.articles %}
+    <li class='press-article margin-top-4'>
+      {% if article.type == "star-revue" %}
+        <img alt='star revue' class='press-logo star-revue' src='{{ site.baseurl }}/assets/media/star-revue-sb.jpg'>
+      {% endif %}
+      {% if article.type == "nyt" %}
+        <img alt='NYT' class='press-logo nyt' src='{{ site.baseurl }}/assets/media/NewYorkTimes.svg'>
+      {% endif %}
+      {% if article.type == "architectural-digest" %}
+        <img alt='Architectural Digest' class='press-logo architectural-digest' src='{{ site.baseurl }}/assets/media/architectural-digest.png'>
+      {% endif %}
+      {% if article.source == "C-NET" %}
+        <img alt='CNET' class='press-logo' src='{{ site.baseurl }}/assets/media/cnet.svg'>
+      {% endif %}
+      {% if article.type == "eagle" %}
+        <img alt='YouTube' class='press-logo eagle' src='{{ site.baseurl }}/assets/media/eagle.png'>
+      {% endif %}
+      {% if article.type == "yt" %}
+        <img alt='YouTube' class='press-logo youtube' src='{{ site.baseurl }}/assets/media/youtube.svg'>
+      {% endif %}
+      {% if article.type == "wsj" %}
+        <img alt='Wall Street Journal' class='press-logo wsj' src='{{ site.baseurl }}/assets/media/wsj.svg'>
+      {% endif %}
+      {% if article.type == "stereophile" %}
+        <img alt='Stereophile' class='press-logo stereophile' src='{{ site.baseurl }}/assets/media/stereophile.svg'>
+      {% endif %}
+      {% if article.type == "absolute-sound" %}
+        <img alt='Absolute Sound' class='press-logo absolute-sound' src='{{ site.baseurl }}/assets/media/absolute-sound.svg'>
+      {% endif %}
+      <div class='cite-text'>
+        From <a href='{{ article.url }}'>{{ article.source }}</a>, {{ article.date }}
+      </div>
+      <h3 class="as-h4">{{ article.title }}</h3>
+      <p>{{ article.body }}</p>
+      {% if article.readmore %}
+        <p>
+          <a class='text-turq text-uppercase tertiary-font' href='{{ article.url }}' target="_blank">
+            Read&nbsp;More&nbsp;<span class="arrow">{% include arrow.html %}</span>
+          </a>
+        </p>
+      {% endif %}
+      {% if article.view %}
+        <p>
+          <a class='text-turq text-uppercase tertiary-font' href='{{ article.url }}'>
+            View<span class="arrow">{% include arrow.html %}</span>
+          </a>
+        </p>
+      {% endif %}
+      <hr>
+    </li>
+    {% endfor %}
+  </ul>
+</section>

@@ -1,0 +1,19 @@
+---
+import BrandGrid from './BrandGrid.astro';
+import { pages } from '../lib/site';
+
+const items = pages.filter((p) => p.layout === 'audio-research');
+---
+<section class="container xxnarrow margin-center autospacing-next">
+  <h2 class="text-align-center as-h4">Brief History of Audio Research</h2>
+  <p>Audio Research continues its dedication to unparalleled musical expression and crafting components of the highest quality and lasting value for its customers. Our long-term dedication to service is peerless in this industry (Audio Research, with few exceptions, can repair anything ever produced during its entire history). We continue to seek out new and exciting ways to make music more real and more enjoyable. More than just a name or a marketing tool, Audio Research has come to represent exceptional performance and long-term value. Experience Audio Research – experience High Definition®.</p>
+</section>
+
+<section class="container xxnarrow margin-center autospacing-next">
+  <h2 class="text-align-center as-h4">Other Audio Research Products We Often Buy</h2>
+  <p>StereoBuyers has purchased <em>tens of thousands</em> worth Audio Research brand equipment since 2014, with individual buys ranging from $100 to well over $50,000. If you are moving, ready to upgrade, or have Audio Research equipment you do not or will not be using, why not contact us today to find out if it is worth good money?</p>
+  <p>If you are interested in selling your used Audio Research equipment to us in the greater NYC area or Colorado, please <a href="/get-a-quote/">click here to fill out a Free Quote Form</a> and we will get back to you. If we agree on terms, we come to meet you where you want, and pay cash.</p>
+  <p>The following images show actual Audio Research equipment purchased by StereoBuyers.</p>
+</section>
+
+<BrandGrid items={items} />

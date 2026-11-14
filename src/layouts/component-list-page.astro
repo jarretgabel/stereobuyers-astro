@@ -1,0 +1,28 @@
+---
+import Default from './default.astro';
+import Content from '../components/Content.astro';
+import Actions from '../components/Actions.astro';
+import BrandFaq from '../components/BrandFaq.astro';
+import BrandsRow from '../components/BrandsRow.astro';
+import type { Page } from '../lib/site';
+
+interface Props { page: Page }
+const { page } = Astro.props;
+const showActions = !['quote', 'request-thanks', 'contact'].includes(page.slug ?? '');
+const mainBrand = String(page.page_class ?? '').includes('main-brand-page');
+---
+<Default page={page}>
+  <div class={`page page-container double-autospacing-next ${page.page_class ?? ''}`}>
+    <header class="post-header container narrow margin-center padding-top-4">
+      <h1 class="post-title text-align-center">
+        {page.title}
+      </h1>
+    </header>
+    <article class="post-content margin-top-2 triple-autospacing-next component-list-page">
+      <Content page={page} />
+      {mainBrand && <BrandFaq page={page} />}
+      {mainBrand && <BrandsRow page={page} />}
+    </article>
+    {showActions && <Actions />}
+  </div>
+</Default>

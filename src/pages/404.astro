@@ -1,0 +1,29 @@
+---
+import Default from '../layouts/default.astro';
+import type { Page } from '../lib/site';
+
+const page: Page = {
+  url: '/404.html',
+  id: '404',
+  collection: 'pages',
+  source: 'src/pages/404.astro',
+  title: 'Page not found',
+  description: 'The page you were looking for could not be found at StereoBuyers.',
+  noindex: true,
+};
+---
+<Default page={page}>
+  <div class="page page-container double-autospacing">
+    <header class="post-header container narrow margin-center padding-top-8">
+      <h1 class="post-title text-align-center">Page not found</h1>
+    </header>
+    <article class="post-content margin-top-2 one-point-five-autospacing">
+      <section class="container xxnarrow text-align-center">
+        <p>Sorry, we couldn't find that page.</p>
+        <div class="actions">
+          <a class="button" href="/get-a-quote/">Get a Quote</a>
+        </div>
+      </section>
+    </article>
+  </div>
+</Default>

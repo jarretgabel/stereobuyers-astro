@@ -1,0 +1,45 @@
+---
+import Default from './default.astro';
+import Content from '../components/Content.astro';
+import Actions from '../components/Actions.astro';
+import ProductBody from '../components/ProductBody.astro';
+import ProductH1 from '../components/ProductH1.astro';
+import RelatedProducts from '../components/RelatedProducts.astro';
+import MarantzFooter from '../components/MarantzFooter.astro';
+import QuickFacts from '../components/QuickFacts.astro';
+import type { Page } from '../lib/site';
+
+interface Props { page: Page }
+const { page } = Astro.props;
+// Front matter of the Jekyll layout (`layout.*`)
+const layout = {
+  description: 'Learn more about the used Marantz equipment and systems that we buy, and about the brand’s history and place in the Audiophile community.',
+  page_class: 'brand-page',
+};
+const intro = `Marantz is one of the most dependable brand names when it comes to high-end audio systems. For years the brand has been recognized by audiophiles throughout the world as equipment that delivers clear and consistent quality in music.`;
+const showActions = !['quote', 'request-thanks', 'contact'].includes(page.slug ?? '');
+---
+<Default page={page} layoutDescription={layout.description}>
+  <div class={`page page-container double-autospacing-next product-v2 ${layout.page_class}`}>
+    <header class="post-header container narrow margin-center padding-top-4">
+      <h1 class="post-title text-align-center">
+        <ProductH1 page={page} />
+      </h1>
+    </header>
+    <article class="post-content margin-top-2 double-autospacing-next">
+      <ProductBody page={page} intro={intro} />
+      <Content page={page} />
+      {page.snippet === 'product' && (
+        <section class="container xxnarrow margin-center autospacing margin-top-4">
+          <h2 class="text-align-center">Can I sell my Marantz {page.component} to StereoBuyers?</h2>
+          <p>Yes. StereoBuyers buys used and vintage Marantz equipment, including the {page.component}. <a href="/get-a-quote/">Request a free quote</a> and we will get back to you with an offer. In the NYC Tri-State Area, Palm Beach Florida and Denver Colorado we pick up in person and pay you on the spot. Learn <a href="/how-to-sell-your-high-end-audio-equipment-and-components-with-StereoBuyers/">how selling to us works</a>.</p>
+          <p>When you request a quote for your {page.component}, tell us about its condition and anything that comes with it, so we can give you an accurate offer.</p>
+        </section>
+      )}
+      {page.snippet === 'product' && <QuickFacts />}
+      <RelatedProducts page={page} />
+      <MarantzFooter />
+    </article>
+    {showActions && <Actions />}
+  </div>
+</Default>

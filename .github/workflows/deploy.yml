@@ -1,0 +1,56 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+env:
+  # Repository variables (Settings > Secrets and variables > Actions > Variables); see infra/README.md.
+  BUCKET: ${{ vars.S3_BUCKET }}
+  DISTRIBUTION_ID: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}
+  IMMUTABLE: public, max-age=31536000, immutable
+  MEDIA: public, max-age=2592000
+  SHORT: public, max-age=300, must-revalidate
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: package.json
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION || 'us-east-1' }}
+
+      - name: Sync hashed build assets (immutable)
+        run: |
+          [ -d dist/_astro ] && aws s3 sync dist/_astro "s3://$BUCKET/_astro" --delete --cache-control "$IMMUTABLE"
+          true
+
+      - name: Sync media (30 days)
+        run: aws s3 sync dist/assets/media "s3://$BUCKET/assets/media" --delete --cache-control "$MEDIA"
+
+      - name: Sync HTML, CSS, JS, XML, TXT and everything else (short cache, deletes removed files)
+        run: |
+          aws s3 sync dist/ "s3://$BUCKET/" --delete \
+            --exclude "assets/media/*" --exclude "_astro/*" \
+            --cache-control "$SHORT"
+
+      - name: Invalidate CloudFront
+        run: aws cloudfront create-invalidation --distribution-id "$DISTRIBUTION_ID" --paths "/*"

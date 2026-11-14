@@ -1,0 +1,35 @@
+---
+import Default from './default.astro';
+import Actions from '../components/Actions.astro';
+import BrandFaq from '../components/BrandFaq.astro';
+import { isBlank } from '../lib/liquid';
+import type { Page } from '../lib/site';
+
+interface Props { page: Page }
+const { page } = Astro.props;
+---
+<Default page={page}>
+  <div class={`page page-container double-autospacing-next ${page.page_class ?? ''}`}>
+    <header class="post-header container narrow margin-center padding-top-4">
+      <h1 class="post-title text-align-center">{page.title}</h1>
+    </header>
+    <article class="post-content margin-top-2 triple-autospacing-next component-list-page">
+      <section class="container xnarrow margin-center brand-intro-card">
+        <p>StereoBuyers buys used and vintage {page.brand} equipment from sellers in the NYC Tri-State Area, Palm Beach Florida, and Denver, Boulder and the Front Range in Colorado. Tell us the model and its condition in our free quote form and we will let you know if we are interested.</p>
+        <p class="b2b-cta"><a class="button" href="/get-a-quote/">Get a free {page.brand} quote</a></p>
+      </section>
+      {!isBlank(page.history) && (
+        <section class="container xnarrow margin-center">
+          <h2 class="text-align-center as-h4">About {page.brand}</h2>
+          <p>{page.history}</p>
+          <p class="history-source">Source: <a href={page.history_source} rel="noopener nofollow">{!isBlank(page.history_source_label) ? page.history_source_label : `${page.history_source_title ?? ''} on Wikipedia`}</a></p>
+        </section>
+      )}
+      <BrandFaq page={page} />
+      <section class="container xxnarrow margin-center text-align-center">
+        <p><a href="/stereo-equipment-and-components-we-buy/">See all the brands we buy</a></p>
+      </section>
+    </article>
+    <Actions />
+  </div>
+</Default>

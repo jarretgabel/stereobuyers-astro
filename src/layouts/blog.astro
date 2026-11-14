@@ -1,0 +1,59 @@
+---
+import Default from './default.astro';
+import Actions from '../components/Actions.astro';
+import ResponsiveImg from '../components/ResponsiveImg.astro';
+import { marked } from 'marked';
+import { dateLong, dateToXmlschema } from '../lib/liquid';
+import type { Page as PageType } from '../lib/site';
+
+interface Props { page: PageType }
+const { page: rawPage } = Astro.props;
+// Jekyll's blog layout is `layout: page` with page_class: blog (page.astro has no slot, so its markup is repeated here)
+const page = { ...rawPage, page_class: 'blog' };
+
+// kramdown-style header ids
+const kramdownId = (text: string) =>
+  text.replace(/<[^>]*>/g, '').replace(/&[a-z#0-9]+;/gi, '').replace(/[^a-zA-Z0-9 -]/g, '').replace(/^[^a-zA-Z]+/, '').replace(/ /g, '-').toLowerCase() || 'section';
+
+// kramdown "smart" typography
+const smart = (s: string) =>
+  s.replace(/---/g, '—').replace(/--/g, '–').replace(/\.\.\./g, '…')
+    .replace(/(^|[\s(\[{>—–-])"/g, '$1“').replace(/"/g, '”')
+    .replace(/(^|[\s(\[{>—–-])'/g, '$1‘').replace(/'/g, '’');
+
+const renderer = new marked.Renderer();
+renderer.heading = function ({ tokens, depth }) {
+  const inner = this.parser.parseInline(tokens);
+  return `<h${depth} id="${kramdownId(inner)}">${inner}</h${depth}>\n`;
+};
+let copyHtml = marked.parse(smart(String(page.copy ?? '')), { breaks: true, gfm: false, renderer, async: false }) as string;
+for (const n of ['1', '3', '4']) {
+  copyHtml = copyHtml.replaceAll(`<h${n} `, `<h2 class="as-h${n}" `).replaceAll(`</h${n}>`, '</h2>');
+}
+---
+<Default page={page}>
+<div class="page page-container double-autospacing blog">
+  <header class="post-header container narrow margin-center padding-top-8">
+    <h1 class="post-title text-align-center">
+      {page.title}
+    </h1>
+  </header>
+  <article class="post-content margin-top-2 one-point-five-autospacing">
+  <section class="container narrow margin-center text-align-center">
+    <time class="text-align-center fz-22" datetime={dateToXmlschema(page.date)}>{dateLong(page.date)}</time>
+    <p class="byline">By Adam Wexler</p>
+  </section>
+
+  {page.image && (
+    <section class="container narrow margin-center text-align-center">
+      <ResponsiveImg class="m-width-900" src={page.image} alt={page.title} sizes="(min-width: 900px) 900px, 100vw" priority="high" />
+    </section>
+  )}
+
+  <section class="container narrow" markdown="1">
+    <Fragment set:html={copyHtml} />
+  </section>
+  </article>
+  <Actions />
+</div>
+</Default>

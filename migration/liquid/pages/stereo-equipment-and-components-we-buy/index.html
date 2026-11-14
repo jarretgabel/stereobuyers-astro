@@ -1,0 +1,97 @@
+<section class='container xxnarrow'>
+  <p>At StereoBuyers, we are always on the lookout for the best classic, high-end, and exotic audio equipment - whether new or used, working or not.</p>
+
+  <h2 class="as-h3">What types of equipment does StereoBuyers purchase?</h2>
+  <p>We buy a wide variety of audio, video, and home theater equipment, including amplifiers, preamplifiers, speakers, home theater receivers, tuners, stereo receivers, integrated amplifiers, CD players, turntables, cassette decks, vacuum tubes, records, speaker cables, audio interconnects, and more.</p>
+
+  <h2 class="as-h3">Is there any audio equipment StereoBuyers does not purchase?</h2>
+  <p>We are rather selective when it comes to the gear that we buy. StereoBuyers does not buy car stereos or car speakers, DJ equipment, televisions, movie projectors, or "mass market" stereo components. Unfortunately, a lot of gear from major retailers in 80’s and 90’s and most “all in one” systems does not have much resale value in today’s market. <a href="{{ site.baseurl }}/stereo-equipment-we-do-not-buy/">See the list of brands we generally do not buy</a>.</p>
+
+  <h2 class="as-h3">What are the brands we buy the most often?</h2>
+
+  <ul class="top-brands">
+    <li><a href="{{ site.baseurl }}/stereo-equipment-and-components-we-buy/accuphase">Accuphase</a></li>
+    <li><a href="{{ site.baseurl }}/stereo-equipment-and-components-we-buy/audio-research">Audio Research</a></li>
+    <li><a href="{{ site.baseurl }}/stereo-equipment-and-components-we-buy/bowers-and-wilkins">Bowers & Wilkins</a></li>
+    <li><a href="{{ site.baseurl }}/stereo-equipment-and-components-we-buy/classe">Classe</a></li>
+    <li><a href="{{ site.baseurl }}/stereo-equipment-and-components-we-buy/conrad-johnson">Conrad-Johnson</a></li>
+    <li><a href="{{ site.baseurl }}/stereo-equipment-and-components-we-buy/krell">Krell</a></li>
+    <li><a href="{{ site.baseurl }}/stereo-equipment-and-components-we-buy/marantz">Marantz</a></li>
+    <li><a href="{{ site.baseurl }}/stereo-equipment-and-components-we-buy/mark-levinson">Mark Levinson</a></li>
+    <li><a href="{{ site.baseurl }}/stereo-equipment-and-components-we-buy/mcintosh">McIntosh</a></li>
+    <li><a href="{{ site.baseurl }}/stereo-equipment-and-components-we-buy/pass-labs">Pass Labs</a></li>
+    <li><a href="{{ site.baseurl }}/stereo-equipment-and-components-we-buy/rogue-audio">Rogue Audio</a></li>
+    <li><a href="{{ site.baseurl }}/stereo-equipment-and-components-we-buy/bryston">Bryston</a></li>
+    <li><a href="{{ site.baseurl }}/stereo-equipment-and-components-we-buy/sonus-faber">Sonus Faber</a></li>
+    <li><a href="{{ site.baseurl }}/stereo-equipment-and-components-we-buy/devore-fidelity">DeVore Fidelity</a></li>
+    <li><a href="{{ site.baseurl }}/stereo-equipment-and-components-we-buy/vpi-turntables">VPI Turntables</a></li>
+    <!--
+    <li><a href="{{ site.baseurl }}/stereo-equipment-and-components-we-buy/cary-audio">Cary Audio</a></li>
+    <li><a href="{{ site.baseurl }}/stereo-equipment-and-components-we-buy/luxman">Luxman</a></li> -->
+  </ul>
+
+</section>
+<section class="container margin-top-4">
+  <div class="container xxnarrow">
+    <h2 class="as-h3">What are the brands StereoBuyers buys?</h2>
+    <p>These are some of the brands we love most, but it’s not exhaustive. Have some to sell? <a href="{{ site.baseurl }}/get-a-quote/">Fill out our quote form to get started.</a></p>
+  </div>
+  {% assign all_brands = site.data.equipment.brands | uniq | sort_natural %}
+  <div class="container xnarrow brand-az">
+    <input type="search" id="brand-filter" placeholder="Search brands" aria-label="Search brands">
+    <p class="az-jump">
+      {%- assign letters = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z" | split: " " -%}
+      {%- for l in letters -%}
+        {%- assign has = false -%}
+        {%- for brand in all_brands -%}{%- assign first = brand | strip | slice: 0 | upcase -%}{%- if first == l -%}{%- assign has = true -%}{%- break -%}{%- endif -%}{%- endfor -%}
+        {%- if has -%}<a href="#brands-{{ l }}">{{ l }}</a>{%- endif -%}
+      {%- endfor -%}
+    </p>
+    {% for l in letters %}
+    {%- capture group -%}
+      {%- for brand in all_brands -%}
+        {%- assign first = brand | strip | slice: 0 | upcase -%}
+        {%- if first == l -%}{%- assign burl = site.data.brand_pages[brand] -%}<li>{% if burl %}<a href="{{ burl }}">{{ brand }}</a>{% else %}{{ brand }}{% endif %}</li>{%- endif -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+    {%- assign group = group | strip -%}
+    {%- if group != "" %}
+    <div class="az-group" id="brands-{{ l }}">
+      <h3>{{ l }}</h3>
+      <ul>{{ group }}</ul>
+    </div>
+    {%- endif %}
+    {% endfor %}
+  </div>
+  <script>
+    document.getElementById('brand-filter').addEventListener('input', function (e) {
+      var q = e.target.value.toLowerCase();
+      document.querySelectorAll('.az-group').forEach(function (g) {
+        var any = false;
+        g.querySelectorAll('li').forEach(function (li) { var m = li.textContent.toLowerCase().indexOf(q) !== -1; li.hidden = !m; any = any || m; });
+        g.hidden = !any;
+      });
+    });
+  </script>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Brands StereoBuyers buys",
+  "url": "{{ site.url }}/stereo-equipment-and-components-we-buy/",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {%- assign pos = 0 -%}
+      {%- for brand in all_brands -%}
+      {%- assign burl = site.data.brand_pages[brand] -%}
+      {%- if burl -%}{%- assign pos = pos | plus: 1 -%}
+      { "@type": "ListItem", "position": {{ pos }}, "name": {{ brand | jsonify }}, "url": "{{ site.url }}{{ burl }}" }{% unless forloop.last %},{% endunless %}
+      {%- endif -%}
+      {%- endfor -%}
+    ]
+  }
+}
+</script>
+{% include quick-facts.html %}

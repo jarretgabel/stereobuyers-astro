@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="47px" height="37px" viewBox="0 0 47 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.5.2 (25235) - http://www.bohemiancoding.com/sketch -->
+    <title>Line + Triangle 1 Copy 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Quote-Long-Form" sketch:type="MSArtboardGroup" transform="translate(-652.000000, -1442.000000)">
+            <g id="Item-#1" sketch:type="MSLayerGroup" transform="translate(340.000000, 1086.200055)">
+                <g id="Form" transform="translate(40.000000, 96.000000)" sketch:type="MSShapeGroup">
+                    <g id="Original-Owner" transform="translate(0.000000, 220.000000)">
+                        <g id="Line-+-Triangle-1-Copy-2" transform="translate(271.000000, 40.000000)">
+                            <rect id="Rectangle-208" fill="#FFFFFF" x="1" y="0" width="47" height="36"></rect>
+                            <path d="M1.5,0.5 L1.5,35.9400902" id="Line" stroke="#534A46" stroke-linecap="square"></path>
+                            <polygon id="Triangle-1" fill="#534A46" transform="translate(25.000000, 18.000000) scale(-1, -1) translate(-25.000000, -18.000000) " points="25 14 31 22 19 22 "></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /stereo-equipment-we-do-not-buy/
+Disallow: /facebook-get-a-quote/
+Disallow: /bing-get-a-quote/
+Disallow: /google-get-a-quote/
+Disallow: /request-capture.php
+Disallow: /request-process.php
+Sitemap: https://www.stereobuyers.com/sitemap.xml

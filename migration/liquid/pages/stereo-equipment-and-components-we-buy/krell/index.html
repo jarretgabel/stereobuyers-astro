@@ -1,0 +1,40 @@
+
+<section class='container xnarrow margin-center'>
+    <p>At StereoBuyers, we have purchased hundreds of pieces of stereo equipment over the years since we started buying gear in the greater NYC and Denver areas. That makes us qualified as audiophile experts, and we are here to tell you that Krell is one
+        of our Top-5 brands when it comes to quality and maintaining value and fidelity.</p>
+
+    <h2 class="text-align-center as-h4">A Brief History of Krell</h2>
+
+    <p>As many audiophiles know, the term high-end audio can be considered subjective. Fortunately for Krell and its founder Dan D’Agostino, the quality of Krell equipment was immediately recognized by the community after its 1980 founding. Krell has responded
+        and has delivered excellence in sound quality over the years since its launch, even after the founder parted ways with the brand in 2009.</p>
+
+    <h2 class="text-align-center as-h4">Krell Equipment We Buy</h2>
+
+    <p>At StereoBuyers, we have purchased dozens of Krell components in the last 17 years, ranging from the KRC pre-amp to amplifiers including the FBP 300C, KAV-1500 and the KSA 200S, for example. Krell items have ranged in value depending on the gear,
+        but we have paid over $1,000 for the right amplifiers.</p>
+
+    <p>Krell is just one of the many brands we buy at Stereo Buyers, from sellers in the greater NYC and Denver areas. Please fill out our online quote form to see if we are interested in buying your used Krell equipment.</p>
+
+    <p>See below for images of Krell equipment we have purchased since 2010.</p>
+</section>
+
+<br>
+<br>
+
+<section class='container xnarrow margin-center'>
+    <ul class='columns double-autospacing flex-row-col flex-wrap flex-hcenter margin-top-0 text-align-center'>
+        {% for page in site.pages %}
+            {% if page.layout == 'krell' %}
+                <li class='column quarter-autospacing'>
+                    <a href="{{page.url}}">
+                        {% include responsive-img.html class="image" src=page.image alt=page.title sizes="(min-width: 800px) 33vw, 100vw" %}
+                        <div class="caption">
+                            <h3 class="padding-top-0 padding-bottom-0">{% include product-name.html title=page.title %}</h3>
+                            <p>{% include type-label.html type=page.type %}</p>
+                        </div>
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</section>

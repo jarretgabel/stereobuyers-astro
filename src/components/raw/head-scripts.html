@@ -1,0 +1,44 @@
+<script>
+    // Third-party trackers load on first interaction (or after 4s) so they don't compete with first paint.
+    (function(w) {
+      var q = [], started = false;
+      function run() {
+        if (started) return;
+        started = true;
+        ['scroll', 'pointerdown', 'keydown', 'touchstart', 'mousemove'].forEach(function(e) { w.removeEventListener(e, run); });
+        q.forEach(function(fn) { try { fn(); } catch (err) {} });
+        q = [];
+      }
+      var later = [], lateDone = false;
+      function runLater() {
+        if (lateDone) return;
+        lateDone = true;
+        later.forEach(function(fn) { try { fn(); } catch (err) {} });
+        later = [];
+      }
+      // Heaviest trackers (PostHog) wait for first interaction or 10s after load.
+      w.sbLater = function(fn) {
+        if (lateDone) { try { fn(); } catch (err) {} return; }
+        later.push(fn);
+      };
+      w.sbDefer = function(fn, now) {
+        if (started || now) { try { fn(); } catch (err) {} return; }
+        q.push(fn);
+      };
+      ['scroll', 'pointerdown', 'keydown', 'touchstart', 'mousemove'].forEach(function(e) { w.addEventListener(e, run, { passive: true, once: true }); });
+      w.addEventListener('load', function() { setTimeout(run, 4000); setTimeout(runLater, 10000); });
+      ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(function(e) { w.addEventListener(e, runLater, { passive: true, once: true }); });
+    })(window);
+  </script>
+  <script>
+    // Adobe Fonts serves font-display:auto (invisible text until the fonts arrive); load the kit CSS ourselves with swap.
+    (function(d) {
+      var url = 'https://use.typekit.net/mbi7opk.css';
+      function fallback() { var l = d.createElement('link'); l.rel = 'stylesheet'; l.href = url; d.head.appendChild(l); }
+      fetch(url).then(function(r) { return r.text(); }).then(function(css) {
+        var st = d.createElement('style');
+        st.textContent = css.replace(/font-display:\s*auto/g, 'font-display:swap');
+        d.head.appendChild(st);
+      }).catch(fallback);
+    })(document);
+  </script>

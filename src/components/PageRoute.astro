@@ -1,0 +1,14 @@
+---
+import type { Page } from '../lib/site';
+
+interface Props { page: Page }
+const { page } = Astro.props;
+const layouts = import.meta.glob('/src/layouts/*.astro', { eager: true }) as Record<string, { default: any }>;
+const Layout = page.layout ? layouts[`/src/layouts/${page.layout}.astro`]?.default : undefined;
+if (page.layout && !Layout) {
+  const msg = `No layout "${page.layout}" for ${page.url}`;
+  if (process.env.STRICT) throw new Error(msg);
+  console.warn(msg);
+}
+---
+{Layout && <Layout page={page} />}

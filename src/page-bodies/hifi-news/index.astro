@@ -1,0 +1,49 @@
+---
+import QuickFacts from '../../components/QuickFacts.astro';
+import ResponsiveImg from '../../components/ResponsiveImg.astro';
+import { blogPosts, site } from '../../lib/site';
+import { dateLong, dateYmd, slugify } from '../../lib/liquid';
+
+const stories = [...blogPosts].sort((a, b) => b.date.getTime() - a.date.getTime());
+const jsonLd = `{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "HiFi News",
+  "url": "${site.url}/hifi-news/",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+${stories.map((s, i) => `      { "@type": "ListItem", "position": ${i + 1}, "url": "${site.url}${s.url}", "name": ${JSON.stringify(s.title)} }`).join(',\n')}
+    ]
+  }
+}`;
+---
+<section class="container xxnarrow">
+  <p>News, tips and stories from the StereoBuyers team about selling, buying and caring for high-end audio equipment. Whether you are downsizing a stereo system, curious how pickups and payment work, or wondering what your vintage components may be worth, these articles share what we have learned buying used audio gear since 1999.</p>
+  <p>Ready to sell? <a href="/get-a-quote/">Request a free quote</a> and we will get back to you with an offer.</p>
+</section>
+<section class="container narrow">
+  <ul class="blog-cards">
+    {stories.map((story) => (
+      <li>
+        <a name={slugify(story.title ?? '')} href={story.url}>
+          <ResponsiveImg class="width-100 aspect-16-9" src={story.image} alt={story.title} sizes="(min-width: 800px) 33vw, 100vw" />
+          <div class="blog-card-body">
+            <time datetime={dateYmd(story.date)}>{dateLong(story.date)}</time>
+            <h2 class="as-h3">{story.title}</h2>
+            {story.seo_description && <p>{story.seo_description}</p>}
+            <span class="read-more">Read more</span>
+          </div>
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<script type="application/ld+json" set:html={jsonLd} />
+
+<section class="container xxnarrow margin-top-4">
+  <p>Related: <a href="/get-a-quote/">get a free quote</a>, <a href="/how-to-sell-your-high-end-audio-equipment-and-components-with-StereoBuyers/">how selling to us works</a>, <a href="/stereo-equipment-and-components-we-buy/">brands we buy</a>, or <a href="/contact/">contact us</a>.</p>
+</section>
+
+<QuickFacts />

@@ -1,0 +1,36 @@
+---
+import Default from './default.astro';
+import Content from '../components/Content.astro';
+import Actions from '../components/Actions.astro';
+import ProductBody from '../components/ProductBody.astro';
+import ProductH1 from '../components/ProductH1.astro';
+import RelatedProducts from '../components/RelatedProducts.astro';
+import McintoshFooter from '../components/McintoshFooter.astro';
+import type { Page } from '../lib/site';
+
+interface Props { page: Page }
+const { page } = Astro.props;
+// Front matter of the Jekyll layout (`layout.*`)
+const layout = {
+  description: 'Learn more about the used McIntosh equipment and systems that we buy, and about the brand’s history and place in the Audiophile community.',
+  page_class: 'brand-page',
+};
+const intro = `Luxman is one of the most dependable brand names when it comes to high-end audio systems. For years the brand has been recognized by audiophiles throughout the world as equipment that delivers clear and consistent quality in music. McIntosh is probably best known for its amplifiers and preamps, but the company produces many other components and parts for stereo and home theatre.`;
+const showActions = !['quote', 'request-thanks', 'contact'].includes(page.slug ?? '');
+---
+<Default page={page} layoutDescription={layout.description}>
+  <div class={`page page-container double-autospacing-next product-v2 ${layout.page_class}`}>
+    <header class="post-header container narrow margin-center padding-top-4">
+      <h1 class="post-title text-align-center">
+        <ProductH1 page={page} />
+      </h1>
+    </header>
+    <article class="post-content margin-top-2 double-autospacing-next">
+      <ProductBody page={page} intro={intro} />
+      <Content page={page} />
+      <RelatedProducts page={page} />
+      <McintoshFooter />
+    </article>
+    {showActions && <Actions />}
+  </div>
+</Default>

@@ -1,0 +1,50 @@
+---
+import Arrow from '../../components/Arrow.astro';
+import { data } from '../../lib/site';
+
+const logos: Record<string, { alt: string; cls: string; src: string }> = {
+  'star-revue': { alt: 'star revue', cls: 'press-logo star-revue', src: '/assets/media/star-revue-sb.jpg' },
+  nyt: { alt: 'NYT', cls: 'press-logo nyt', src: '/assets/media/NewYorkTimes.svg' },
+  'architectural-digest': { alt: 'Architectural Digest', cls: 'press-logo architectural-digest', src: '/assets/media/architectural-digest.png' },
+  eagle: { alt: 'YouTube', cls: 'press-logo eagle', src: '/assets/media/eagle.png' },
+  yt: { alt: 'YouTube', cls: 'press-logo youtube', src: '/assets/media/youtube.svg' },
+  wsj: { alt: 'Wall Street Journal', cls: 'press-logo wsj', src: '/assets/media/wsj.svg' },
+  stereophile: { alt: 'Stereophile', cls: 'press-logo stereophile', src: '/assets/media/stereophile.svg' },
+  'absolute-sound': { alt: 'Absolute Sound', cls: 'press-logo absolute-sound', src: '/assets/media/absolute-sound.svg' },
+};
+---
+<section class="container xxnarrow">
+  <p>We love a good stereo article – especially when it’s about us! Below is a sampling of our favorite StereoBuyers press stories and blog mentions. For any media inquiries, please <a href="/contact/">contact us</a>.</p>
+</section>
+<br>
+<section class="container xxnarrow">
+  <h2 class="text-align-center as-h3">Where has StereoBuyers been?</h2>
+  <ul>
+    {data.press.articles.map((article: any) => (
+    <li class="press-article margin-top-4">
+      {logos[article.type] && <img alt={logos[article.type].alt} class={logos[article.type].cls} src={logos[article.type].src}>}
+      {article.source === 'C-NET' && <img alt="CNET" class="press-logo" src="/assets/media/cnet.svg">}
+      <div class="cite-text">
+        From <a href={article.url} set:html={article.source}></a>, <Fragment set:html={article.date} />
+      </div>
+      <h3 class="as-h4" set:html={article.title}></h3>
+      <p set:html={article.body}></p>
+      {article.readmore && (
+        <p>
+          <a class="text-turq text-uppercase tertiary-font" href={article.url} target="_blank">
+            Read&nbsp;More&nbsp;<span class="arrow"><Arrow /></span>
+          </a>
+        </p>
+      )}
+      {article.view && (
+        <p>
+          <a class="text-turq text-uppercase tertiary-font" href={article.url}>
+            View<span class="arrow"><Arrow /></span>
+          </a>
+        </p>
+      )}
+      <hr>
+    </li>
+    ))}
+  </ul>
+</section>

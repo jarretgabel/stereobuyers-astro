@@ -1,0 +1,80 @@
+[
+  {
+    "title": "Selling and pricing",
+    "id": "selling",
+    "items": [
+      {
+        "q": "How do I sell my stereo to StereoBuyers?",
+        "a": "Fill out our free quote form and tell us what you have. We will get back to you with an offer within 24 to 48 hours. If we agree on terms, we pick it up and pay you on the spot."
+      },
+      {
+        "q": "How much is my old stereo worth?",
+        "a": "It depends on the brand, model, condition and what is included. Use our quote form and we will give you an idea. Quotes are free and come with no obligation."
+      },
+      {
+        "q": "Is there a market for old stereo equipment?",
+        "a": "There sure is. Some hi-fi has little to no value, but much of it is worth a decent amount. Send us a quote request to see what yours is worth."
+      },
+      {
+        "q": "Are old speakers worth anything?",
+        "a": "Often, yes. Old speakers can have value, and some can be very valuable. Contact us for an appraisal."
+      },
+      {
+        "q": "Is vacuum tube or solid state equipment worth more?",
+        "a": "Often, vacuum tube equipment is worth more, but it depends on the brand, model and condition."
+      },
+      {
+        "q": "Can I trade my stereo toward a different one?",
+        "a": "Yes. We can buy, sell or trade towards new or used stereo equipment."
+      }
+    ]
+  },
+  {
+    "title": "Pickup, shipping and payment",
+    "id": "pickup",
+    "items": [
+      {
+        "q": "Will you pick up and disconnect my stereo from my home?",
+        "a": "Yes, if you are in one of our service areas. We pick up in the NYC Tri-State Area (New York, New Jersey and Connecticut), Palm Beach Florida, and select locations in Colorado including Denver, Boulder and the Front Range."
+      },
+      {
+        "q": "What if I am outside your pickup area?",
+        "a": "We can send you pre-paid shipping labels so you can ship your equipment to the StereoBuyers headquarters."
+      },
+      {
+        "q": "When and how do I get paid?",
+        "a": "We pay for your stereo when we pick it up."
+      },
+      {
+        "q": "Does StereoBuyers pawn stereo equipment?",
+        "a": "No. StereoBuyers is not a pawn shop. We pay for your stereo when we pick it up."
+      }
+    ]
+  },
+  {
+    "title": "Where to sell and who to trust",
+    "id": "trust",
+    "items": [
+      {
+        "q": "Where can I sell high-end audio equipment near me?",
+        "a": "StereoBuyers buys used and vintage high-end audio in the NYC Tri-State Area, Palm Beach Florida, and Denver, Boulder and the Front Range in Colorado. Outside those areas we can send pre-paid shipping labels."
+      },
+      {
+        "q": "Are there vintage stereo equipment buyers near me?",
+        "a": "Yes. Whether you are inside our pickup area or not, StereoBuyers can help."
+      },
+      {
+        "q": "Is eBay, Craigslist, Audiogon or Reverb a good place to sell my audiophile system?",
+        "a": "These are good marketplaces, but selling online comes with hassle. If you would like to avoid it, a service like StereoBuyers may be your best option."
+      },
+      {
+        "q": "How do I sell used stereos online?",
+        "a": "Contact us for an estimate through our online quote form. We make it quick and easy."
+      },
+      {
+        "q": "Can StereoBuyers be trusted?",
+        "a": "StereoBuyers has been buying high-end audio since 1999. You can read our Google Business and Yelp reviews, and see the articles that have featured us on our press page."
+      }
+    ]
+  }
+]

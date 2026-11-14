@@ -1,0 +1,7 @@
+
+{% for post in site.posts %}
+  <a name='{{ post.title | slugify }}'></a>
+  <div class='row {{ post.class }}' id='{{ post.title | slugify }}'>
+    {{ post.content }}
+  </div>
+{% endfor %}

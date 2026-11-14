@@ -1,0 +1,23 @@
+---
+import ResponsiveImg from './ResponsiveImg.astro';
+import { typeLabel } from '../lib/product';
+import type { Page } from '../lib/site';
+
+interface Props { items: Page[] }
+const { items } = Astro.props;
+---
+<section class="container xnarrow margin-center">
+  <ul class="columns double-autospacing flex-row-col flex-wrap flex-hcenter margin-top-0 text-align-center">
+    {items.map((p) => (
+      <li class="column quarter-autospacing">
+        <a href={p.url}>
+          <ResponsiveImg class="image" src={p.image} alt="" sizes="(min-width: 800px) 25vw, 50vw" />
+          <div class="caption">
+            <h3 class="padding-top-0 padding-bottom-0">{p.brand} {p.component}</h3>
+            <div>{typeLabel(p.type)}</div>
+          </div>
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>

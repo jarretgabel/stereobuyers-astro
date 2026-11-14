@@ -1,0 +1,23 @@
+---
+import footerScripts from './raw/footer-scripts.html?raw';
+---
+<footer class="footer text-align-center padding-top-2 padding-bottom-2">
+  <div class="container half-autospacing">
+    <div class="legal margin-top-1">
+      <a class="tertiary-font text-white" href="mailto:info@stereobuyers.com">
+        info@stereobuyers.com
+      </a>
+      <a class="tertiary-font text-white phone-number-for-google-disable" href="tel:+17182608948">
+        (718) 260-8948
+      </a>
+    </div>
+    <div class="copyright">
+      <a href="/terms-and-conditions">Terms and Conditions</a> <a href="/privacy-policy">Privacy Policy</a> ©<span id="copyright-year"></span> StereoBuyers LLC, All Rights Reserved
+    </div>
+    <script is:inline>
+      const year = document.querySelector('#copyright-year')
+      year.innerHTML = new Date().getFullYear()
+    </script>
+  </div>
+</footer>
+<Fragment set:html={footerScripts} />

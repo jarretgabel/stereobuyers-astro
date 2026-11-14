@@ -1,0 +1,10 @@
+---
+// Renders the ported body of a page (Jekyll's `{{ content }}`), if it has one.
+import type { Page } from '../lib/site';
+
+interface Props { page: Page }
+const { page } = Astro.props;
+const bodies = import.meta.glob('/src/page-bodies/**/*.astro', { eager: true }) as Record<string, { default: any }>;
+const Body = bodies[`/src/page-bodies/${page.id}.astro`]?.default;
+---
+{Body && <Body page={page} />}

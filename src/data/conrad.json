@@ -1,0 +1,148 @@
+{
+  "amplifiers": [
+    {
+      "model": "MF2250",
+      "url": "mf-2250",
+      "image": "mf-2250.jpg"
+    },
+    {
+      "model": "MF80",
+      "url": "mf-80",
+      "image": "mf-80.jpg"
+    },
+    {
+      "model": "Premier 8A",
+      "url": "premier-8A",
+      "image": "premier-8A.jpg"
+    },
+    {
+      "model": "Premier 140",
+      "url": "premier-140",
+      "image": "premier-140.jpg"
+    },
+    {
+      "model": "Premier 12",
+      "url": "premier-12",
+      "image": "premier-12.jpg"
+    },
+    {
+      "model": "MV-55",
+      "url": "mv-55",
+      "image": "mv-55.jpg"
+    },
+    {
+      "model": "MV60",
+      "url": "mv-60",
+      "image": "mv-60.jpg"
+    },
+    {
+      "model": "CAV-45 S2",
+      "url": "cav-45s2",
+      "image": "cav-45s2.jpg"
+    },
+    {
+      "model": "Premier 11",
+      "url": "premier-11",
+      "image": "premier-11.jpg"
+    },
+    {
+      "model": "MF200",
+      "url": "mf-200",
+      "image": "mf-200.jpg"
+    },
+    {
+      "model": "MF2500",
+      "url": "mf-2500",
+      "image": "mf-2500.jpg"
+    }
+  ],
+  "dac": [
+    {
+      "model": "D/A 3",
+      "url": "da-3",
+      "image": "da-3.jpg"
+    }
+  ],
+  "preamplifiers": [
+    {
+      "model": "Art 2",
+      "url": "art-2",
+      "image": "art-2.jpg"
+    },
+    {
+      "model": "Premier 18LS",
+      "url": "premier-18ls",
+      "image": "premier-18ls.jpg"
+    },
+    {
+      "model": "PV-1",
+      "url": "pv-1t",
+      "image": "pv-1.jpg"
+    },
+    {
+      "model": "PV10A",
+      "url": "pv-10a",
+      "image": "pv-10a.jpg"
+    },
+    {
+      "model": "PV14L",
+      "url": "pv-14l",
+      "image": "pv-14l.jpg"
+    },
+    {
+      "model": "ACT 2",
+      "url": "act-2",
+      "image": "act-2.jpg"
+    },
+    {
+      "model": "Premier 16LS",
+      "url": "premier-16ls",
+      "image": "premier-16ls.jpg"
+    },
+    {
+      "model": "Premier 15",
+      "url": "premier-15",
+      "image": "premier-15.jpg"
+    },
+    {
+      "model": "Premier 17LS2",
+      "url": "premier-17ls2",
+      "image": "premier-17ls2.jpg"
+    },
+    {
+      "model": "Premier 3",
+      "url": "premier-3",
+      "image": "premier-3.jpg"
+    },
+    {
+      "model": "Premier 17LS",
+      "url": "premier-17ls",
+      "image": "premier-17ls.jpg"
+    },
+    {
+      "model": "PV12",
+      "url": "pv-12",
+      "image": "pv-12.jpg"
+    },
+    {
+      "model": "Premier 14",
+      "url": "premier-14",
+      "image": "premier-14.jpg"
+    },
+    {
+      "model": "PV15",
+      "url": "pv-15",
+      "image": "pv-15.jpg"
+    },
+    {
+      "model": "PF-2",
+      "url": "pf-2",
+      "image": "pf-2.jpg"
+    },
+    {
+      "model": "ET3",
+      "url": "et-3",
+      "image": "et-3.jpg"
+    }
+  ]
+}

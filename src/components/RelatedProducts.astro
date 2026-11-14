@@ -1,0 +1,34 @@
+---
+import ResponsiveImg from './ResponsiveImg.astro';
+import { pages } from '../lib/site';
+import type { Page } from '../lib/site';
+import { typeLabel } from '../lib/product';
+import { capitalize, isBlank } from '../lib/liquid';
+
+interface Props { page: Page }
+const { page } = Astro.props;
+const related = pages.filter((p) => p.layout === page.layout && p.url !== page.url && !isBlank(p.image));
+const names: Record<string, string> = {
+  mcintosh: 'McIntosh', levinson: 'Mark Levinson', conrad: 'Conrad Johnson', 'pass-labs': 'Pass Labs',
+  'audio-research': 'Audio Research', 'cary-audio': 'Cary Audio', 'rogue-audio': 'Rogue Audio',
+  'bowers-wilkins': 'Bowers & Wilkins', 'sonus-faber': 'Sonus Faber', 'devore-fidelity': 'DeVore Fidelity',
+  'sme-turntables': 'SME Turntables', 'vpi-turntables': 'VPI Turntables', vtl: 'VTL',
+};
+const brandLabel = names[page.layout ?? ''] ?? capitalize(page.layout ?? '');
+---
+{related.length > 0 && (
+  <section class="related-products container margin-center autospacing-next">
+    <h2 class="text-align-center as-h4">More {brandLabel} we buy</h2>
+    <ul class="related-grid">
+      {related.slice(0, 4).map((rel) => (
+        <li>
+          <a href={rel.url}>
+            <ResponsiveImg class="image" src={rel.image} alt="" sizes="(min-width: 800px) 25vw, 50vw" />
+            <span class="related-name">{isBlank(rel.component) ? rel.title : rel.component}</span>
+            {!isBlank(rel.type) && <span class="related-type">{typeLabel(rel.type)}</span>}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}

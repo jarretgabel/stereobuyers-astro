@@ -1,0 +1,8 @@
+---
+import { marked } from 'marked';
+import md from '../../../../migration/liquid/pages/stereo-equipment-and-components-we-buy/krell/fbp-200.md?raw';
+
+// kramdown (hard_wrap + smart quotes) equivalent
+const html = marked.parse(md.replace(/(\w)'(\w)/g, '$1’$2'), { breaks: true, async: false }) as string;
+---
+<Fragment set:html={html} />

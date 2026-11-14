@@ -1,0 +1,48 @@
+---
+import Default from './default.astro';
+import Actions from '../components/Actions.astro';
+import Content from '../components/Content.astro';
+import Marquee from '../components/Marquee.astro';
+import { posts, type Page } from '../lib/site';
+import { slugify } from '../lib/liquid';
+
+interface Props { page: Page }
+const { page: rawPage } = Astro.props;
+// Jekyll's service-area layout is `layout: page` (page.astro has no slot, so its markup is repeated here)
+const page = rawPage;
+const marqueeTitles = ['Service Area - Denver, Colorado', 'Service Area - NYC Tri-state Area', 'Service Area - Palm Beach, Florida'];
+---
+<Default page={page}>
+<div class={`page page-container double-autospacing ${page.page_class ?? ''}`}>
+  <header class="post-header container narrow margin-center padding-top-8">
+    <h1 class="post-title text-align-center">
+      {page.title}
+    </h1>
+  </header>
+  <article class="post-content margin-top-2 one-point-five-autospacing">
+    {posts.map((post) => (
+      <>
+        <a name={slugify(post.title ?? '')}></a>
+        <div class={`row ${post.class ?? ''}`} id={slugify(post.title ?? '')}>
+          {post.title === 'Home' && marqueeTitles.includes(page.title ?? '')
+            ? <Marquee tag="h2" page={page} />
+            : <Content page={post} />}
+        </div>
+      </>
+    ))}
+
+    <section class="container xxnarrow margin-top-4 overflow-hidden pickup-areas">
+      <h2 class="text-align-center">Pickup Areas</h2>
+      <ul class="text-align-center">
+        <li>
+          <a href="/service-area/nyc-tri-state-area">NYC Tri-State Area</a></li>
+        <li>
+          <a href="/service-area/denver-colorado">Denver, Colorado</a></li>
+        <li>
+          <a href="/service-area/palm-beach-florida">Palm Beach, Florida</a></li>
+      </ul>
+    </section>
+  </article>
+  <Actions />
+</div>
+</Default>

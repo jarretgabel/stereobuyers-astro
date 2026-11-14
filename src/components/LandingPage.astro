@@ -1,0 +1,39 @@
+---
+// Port of _includes/landing-page.html
+import Content from './Content.astro';
+import Actions from './Actions.astro';
+import { posts, type Page } from '../lib/site';
+import { slugify } from '../lib/liquid';
+
+interface Props { page: Page }
+const { page } = Astro.props;
+---
+<div class={`home landing-page ${slugify(page.title ?? '')}`}>
+  <ul class='post-list'>
+    <li class='home-post leadspace homepage'>
+      <div class="container text-align-center half-autospacing flex-vcenter">
+        <h1 class="title" set:html={page.subtitle} />
+        <p class="copy xnarrow margin-center" set:html={page.body} />
+
+        <div class='actions margin-top-4'>
+          <a class='button' href='/get-a-quote/'>
+            Get a Quote
+          </a>
+        </div>
+      </div>
+    </li>
+    {posts.map((post, i) => (
+      <>
+        {i > 0 && (
+          <li class={`row home-post ${post.class ?? ''}`} id={slugify(post.title ?? '')}>
+            <div class='content-container'>
+              <Content page={post} />
+            </div>
+          </li>
+        )}
+        {i === 8 && <li class='home-post'><Actions /></li>}
+      </>
+    ))}
+  </ul>
+</div>
+{'}'}

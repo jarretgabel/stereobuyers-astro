@@ -1,0 +1,26 @@
+---
+import { site } from '../lib/site';
+import { isBlank } from '../lib/liquid';
+
+interface Props {
+  src?: string;
+  alt?: string;
+  sizes?: string;
+  class?: string;
+  priority?: string;
+}
+const { src, alt, sizes, class: cls, priority } = Astro.props;
+const meta = src ? site.data.image_sizes[src] : undefined;
+const widths: number[] = meta?.widths ?? [];
+const mid = widths[1] ?? widths[widths.length - 1];
+const srcset = widths.map((w) => `/assets/media/optimized/${meta.base}-${w}.webp ${w}w`).join(', ');
+const high = priority === 'high';
+const klass = isBlank(cls) ? undefined : cls;
+---
+{meta
+  ? (high
+    ? <img class={klass} src={`/assets/media/optimized/${meta.base}-${mid}.webp`} srcset={srcset} sizes={sizes ?? '100vw'} width={meta.width} height={meta.height} alt={alt ?? ''} fetchpriority="high" />
+    : <img class={klass} src={`/assets/media/optimized/${meta.base}-${mid}.webp`} srcset={srcset} sizes={sizes ?? '100vw'} width={meta.width} height={meta.height} alt={alt ?? ''} loading="lazy" decoding="async" />)
+  : (high
+    ? <img class={klass} src={src ?? ''} alt={alt ?? ''} />
+    : <img class={klass} src={src ?? ''} alt={alt ?? ''} loading="lazy" decoding="async" />)}

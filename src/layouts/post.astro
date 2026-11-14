@@ -1,0 +1,16 @@
+---
+import Default from './default.astro';
+import Content from '../components/Content.astro';
+import type { Page } from '../lib/site';
+
+interface Props { page: Page }
+const { page } = Astro.props;
+---
+<Default page={page}>
+  <div class="post">
+    <header class="post-header"></header>
+    <article class="post-content">
+      <Content page={page} />
+    </article>
+  </div>
+</Default>

@@ -1,0 +1,86 @@
+---
+import { site, data } from '../../lib/site';
+import QuickFacts from '../../components/QuickFacts.astro';
+
+const ascii = (s: string) => s.replace(/[A-Z]/g, (c) => c.toLowerCase());
+const brands: string[] = [...new Set<string>(data.equipment.brands)].sort((a, b) => {
+  const x = ascii(a), y = ascii(b);
+  return x < y ? -1 : x > y ? 1 : 0;
+});
+const brandPages: Record<string, string> = data.brand_pages;
+const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const first = (b: string) => [...b.trim()][0]?.toUpperCase();
+const groups = letters.map((l) => ({ l, items: brands.filter((b) => first(b) === l) })).filter((g) => g.items.length > 0);
+let pos = 0;
+const listItems = brands.filter((b) => brandPages[b]).map((b) => ({
+  '@type': 'ListItem', position: ++pos, name: b, url: `${site.url}${brandPages[b]}`,
+}));
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Brands StereoBuyers buys',
+  url: `${site.url}/stereo-equipment-and-components-we-buy/`,
+  mainEntity: { '@type': 'ItemList', itemListElement: listItems },
+});
+---
+<section class='container xxnarrow'>
+  <p>At StereoBuyers, we are always on the lookout for the best classic, high-end, and exotic audio equipment - whether new or used, working or not.</p>
+
+  <h2 class="as-h3">What types of equipment does StereoBuyers purchase?</h2>
+  <p>We buy a wide variety of audio, video, and home theater equipment, including amplifiers, preamplifiers, speakers, home theater receivers, tuners, stereo receivers, integrated amplifiers, CD players, turntables, cassette decks, vacuum tubes, records, speaker cables, audio interconnects, and more.</p>
+
+  <h2 class="as-h3">Is there any audio equipment StereoBuyers does not purchase?</h2>
+  <p>We are rather selective when it comes to the gear that we buy. StereoBuyers does not buy car stereos or car speakers, DJ equipment, televisions, movie projectors, or "mass market" stereo components. Unfortunately, a lot of gear from major retailers in 80’s and 90’s and most “all in one” systems does not have much resale value in today’s market. <a href="/stereo-equipment-we-do-not-buy/">See the list of brands we generally do not buy</a>.</p>
+
+  <h2 class="as-h3">What are the brands we buy the most often?</h2>
+
+  <ul class="top-brands">
+    <li><a href="/stereo-equipment-and-components-we-buy/accuphase">Accuphase</a></li>
+    <li><a href="/stereo-equipment-and-components-we-buy/audio-research">Audio Research</a></li>
+    <li><a href="/stereo-equipment-and-components-we-buy/bowers-and-wilkins">Bowers & Wilkins</a></li>
+    <li><a href="/stereo-equipment-and-components-we-buy/classe">Classe</a></li>
+    <li><a href="/stereo-equipment-and-components-we-buy/conrad-johnson">Conrad-Johnson</a></li>
+    <li><a href="/stereo-equipment-and-components-we-buy/krell">Krell</a></li>
+    <li><a href="/stereo-equipment-and-components-we-buy/marantz">Marantz</a></li>
+    <li><a href="/stereo-equipment-and-components-we-buy/mark-levinson">Mark Levinson</a></li>
+    <li><a href="/stereo-equipment-and-components-we-buy/mcintosh">McIntosh</a></li>
+    <li><a href="/stereo-equipment-and-components-we-buy/pass-labs">Pass Labs</a></li>
+    <li><a href="/stereo-equipment-and-components-we-buy/rogue-audio">Rogue Audio</a></li>
+    <li><a href="/stereo-equipment-and-components-we-buy/bryston">Bryston</a></li>
+    <li><a href="/stereo-equipment-and-components-we-buy/sonus-faber">Sonus Faber</a></li>
+    <li><a href="/stereo-equipment-and-components-we-buy/devore-fidelity">DeVore Fidelity</a></li>
+    <li><a href="/stereo-equipment-and-components-we-buy/vpi-turntables">VPI Turntables</a></li>
+    <!--
+    <li><a href="/stereo-equipment-and-components-we-buy/cary-audio">Cary Audio</a></li>
+    <li><a href="/stereo-equipment-and-components-we-buy/luxman">Luxman</a></li> -->
+  </ul>
+
+</section>
+<section class="container margin-top-4">
+  <div class="container xxnarrow">
+    <h2 class="as-h3">What are the brands StereoBuyers buys?</h2>
+    <p>These are some of the brands we love most, but it’s not exhaustive. Have some to sell? <a href="/get-a-quote/">Fill out our quote form to get started.</a></p>
+  </div>
+  <div class="container xnarrow brand-az">
+    <input type="search" id="brand-filter" placeholder="Search brands" aria-label="Search brands">
+    <p class="az-jump">{groups.map((g) => <a href={`#brands-${g.l}`}>{g.l}</a>)}</p>
+    {groups.map((g) => (
+      <div class="az-group" id={`brands-${g.l}`}>
+        <h3>{g.l}</h3>
+        <ul>{g.items.map((b) => <li>{brandPages[b] ? <a href={brandPages[b]}>{b}</a> : b}</li>)}</ul>
+      </div>
+    ))}
+  </div>
+  <script is:inline>
+    document.getElementById('brand-filter').addEventListener('input', function (e) {
+      var q = e.target.value.toLowerCase();
+      document.querySelectorAll('.az-group').forEach(function (g) {
+        var any = false;
+        g.querySelectorAll('li').forEach(function (li) { var m = li.textContent.toLowerCase().indexOf(q) !== -1; li.hidden = !m; any = any || m; });
+        g.hidden = !any;
+      });
+    });
+  </script>
+</section>
+<script type="application/ld+json" set:html={jsonLd} />
+<QuickFacts />

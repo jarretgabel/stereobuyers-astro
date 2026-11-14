@@ -1,0 +1,12 @@
+---
+import PageRoute from '../components/PageRoute.astro';
+import { allPages } from '../lib/site';
+
+export function getStaticPaths() {
+  return allPages
+    .filter((p) => p.url.endsWith('.html'))
+    .map((page) => ({ params: { path: page.url.slice(1, -'.html'.length) }, props: { page } }));
+}
+const { page } = Astro.props;
+---
+<PageRoute page={page} />

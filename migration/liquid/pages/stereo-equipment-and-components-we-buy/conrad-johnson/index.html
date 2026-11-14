@@ -1,0 +1,39 @@
+
+<section class='container xnarrow margin-center'>
+    <p>Our goal is to buy high end audio and theatre equipment. Conrad-johnson is a highly respected brand in the audiophile community, and has earned its reputation through consistent commitment to high-quality sonics. Their simple goal to provide a “clean”
+        listening experience is something to be admired, as more brands continue to cut corners in audio quality.</p>
+
+    <h2 class="text-align-center as-h4">A Brief History of Conrad-Johnson</h2>
+    <p>During the 1970’s two audiophiles that had day jobs as economists, Dr. William Conrad and Dr. Lewis Johnson were not happy with the inconsistent sound quality delivered by many amplifiers on the market, according to their website. They developed and
+        refined an all-vacuum tube preamplifier to get started, winning great acclaim for the PV1 launched in 1977. They have produced dozens of tube amps and solid-state amplifiers over the years since.</p>
+
+    <h2 class="text-align-center as-h4">Some Conrad Johnson Products We Buy</h2>
+    <p>Conrad Johnson is proud of its vintage products, and has dedicated information on their website including model information and links to owners’ manuals. We purchase many models of conrad-johnson amps and preamps, and especially desire earlier model
+        tube amplifiers.</p>
+
+    <p>StereoBuyers pays cash to New York City and Colorado area residents for used conrad-johnson gear. Fill out a <a href="{{ site.baseurl }}/get-a-quote/">Free Quote Form</a> and we will get back to you. If we agree on terms, we come to meet you where
+        you want, and pay immediately.</p>
+
+    <p>To give you an example of the types of gear we buy, please see the following images of conrad-johnson amplifiers that StereoBuyers has purchased recently:</p>
+</section>
+
+<br>
+<br>
+
+<section class='container xnarrow margin-center'>
+    <ul class='columns double-autospacing flex-row-col flex-wrap flex-hcenter margin-top-0 text-align-center'>
+        {% for page in site.pages %}
+            {% if page.layout == 'conrad' %}
+                <li class='column quarter-autospacing'>
+                    <a href="{{page.url}}">
+                        {% include responsive-img.html class="image" src=page.image alt=page.title sizes="(min-width: 800px) 33vw, 100vw" %}
+                        <div class="caption">
+                            <h3 class="padding-top-0 padding-bottom-0">{% include product-name.html title=page.title %}</h3>
+                            <p>{% include type-label.html type=page.type %}</p>
+                        </div>
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</section>

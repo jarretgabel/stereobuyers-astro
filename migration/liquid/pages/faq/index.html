@@ -1,0 +1,31 @@
+<section class="container xnarrow margin-center">
+  <p class="b2b-intro">Quick answers about selling your high-end audio equipment: what it is worth, how pickup works and when you get paid.</p>
+  <p class="b2b-cta"><a class="button" href="{{ site.baseurl }}/get-a-quote/">Get a free quote</a> <span>or call <a href="tel:+17182608948">(718) 260-8948</a></span></p>
+  <p class="faq-jump">
+    {%- for group in site.data.faq -%}<a href="#{{ group.id }}">{{ group.title }}</a>{%- endfor -%}
+  </p>
+</section>
+
+<section class="container xnarrow margin-center faq-groups">
+  {% for group in site.data.faq %}
+  <div class="faq-group" id="{{ group.id }}">
+    <h2 class="as-h3">{{ group.title }}</h2>
+    {% for item in group.items %}
+    <details class="faq-item" open>
+      <summary><h3>{{ item.q }}</h3></summary>
+      <p>{{ item.a }}</p>
+    </details>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</section>
+
+<section class="container xnarrow margin-center faq-cta">
+  <h2 class="as-h4">Did not find your answer?</h2>
+  <p>Ask us directly or get an offer on your equipment.</p>
+  <p><a class="button" href="{{ site.baseurl }}/get-a-quote/">Get a free quote</a> <a class="button button-outline" href="{{ site.baseurl }}/contact/">Contact us</a></p>
+</section>
+
+<section class='container xxnarrow margin-top-4'>
+  <p>Related: <a href="{{ site.baseurl }}/how-to-sell-your-high-end-audio-equipment-and-components-with-StereoBuyers/">how selling to us works</a>, <a href="{{ site.baseurl }}/stereo-equipment-and-components-we-buy/">brands we buy</a>, <a href="{{ site.baseurl }}/service-area/">service area</a>, or <a href="{{ site.baseurl }}/recent-press-articles-and-news/">press</a>.</p>
+</section>

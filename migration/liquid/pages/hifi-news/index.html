@@ -1,0 +1,46 @@
+
+<section class='container xxnarrow'>
+  <p>News, tips and stories from the StereoBuyers team about selling, buying and caring for high-end audio equipment. Whether you are downsizing a stereo system, curious how pickups and payment work, or wondering what your vintage components may be worth, these articles share what we have learned buying used audio gear since 1999.</p>
+  <p>Ready to sell? <a href="{{ site.baseurl }}/get-a-quote/">Request a free quote</a> and we will get back to you with an offer.</p>
+</section>
+<section class='container narrow'>
+  <ul class="blog-cards">
+    {% assign posts = site.blog | sort: "date" | reverse %}
+    {% for story in posts %}
+      <li>
+        <a name='{{ story.title | slugify }}' href="{{ story.url }}">
+          {% include responsive-img.html class="width-100 aspect-16-9" src=story.image alt=story.title sizes="(min-width: 800px) 33vw, 100vw" %}
+          <div class="blog-card-body">
+            <time datetime="{{ story.date | date: '%Y-%m-%d' }}">{{ story.date | date: "%B %-d, %Y" }}</time>
+            <h2 class="as-h3">{{ story.title }}</h2>
+            {% if story.seo_description %}<p>{{ story.seo_description }}</p>{% endif %}
+            <span class="read-more">Read more</span>
+          </div>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "HiFi News",
+  "url": "{{ site.url }}/hifi-news/",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {%- for story in posts %}
+      { "@type": "ListItem", "position": {{ forloop.index }}, "url": "{{ site.url }}{{ story.url }}", "name": {{ story.title | jsonify }} }{% unless forloop.last %},{% endunless %}
+      {%- endfor %}
+    ]
+  }
+}
+</script>
+
+<section class='container xxnarrow margin-top-4'>
+  <p>Related: <a href="{{ site.baseurl }}/get-a-quote/">get a free quote</a>, <a href="{{ site.baseurl }}/how-to-sell-your-high-end-audio-equipment-and-components-with-StereoBuyers/">how selling to us works</a>, <a href="{{ site.baseurl }}/stereo-equipment-and-components-we-buy/">brands we buy</a>, or <a href="{{ site.baseurl }}/contact/">contact us</a>.</p>
+</section>
+
+{% include quick-facts.html %}

@@ -1,0 +1,21 @@
+
+<div class="container text-align-center">
+  <div class='intro half-autospacing'>
+    <h2>Recent Posts</h2>
+    <!-- <p class="xxxnarrow margin-auto">Please see the images below for some examples of the types of high-end speakers, amplifiers and components we have recently purchased:</p> -->
+  </div>
+  <ul class='columns double-autospacing flex-row-col flex-wrap justify-space-between margin-top-0'>
+    {% for story in site.blog limit:3 %}
+      <li class='column quarter-autospacing margin-top-4 rel'>
+        <a name='{{ story.title | slugify }}' href="{{ story.url }}">
+          <div class="rel ov-h">
+            {% include responsive-img.html class="image aspect-16-9" src=story.image alt="" sizes="(min-width: 800px) 33vw, 100vw" %}
+          </div>
+          <div class="caption">
+            <p class="padding-top-0 padding-bottom-0">{{ story.title }}</p>
+          </div>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

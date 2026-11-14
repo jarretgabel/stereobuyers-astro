@@ -1,0 +1,60 @@
+---
+import ResponsiveImg from './ResponsiveImg.astro';
+import { typeLabel } from '../lib/product';
+import { isBlank } from '../lib/liquid';
+import type { Page } from '../lib/site';
+
+interface Props { page: Page; intro?: string }
+const { page, intro } = Astro.props;
+const desc = String(page.description ?? '').trim();
+const first = desc.slice(0, 1);
+const isQuote = first === '"' || first === '“';
+const parts = desc.split('" - ');
+const specs: any[] = page.specs ?? [];
+---
+<section class="container product-hero">
+  <div class="product-hero-image"><ResponsiveImg src={page.image} alt={`${page.brand ?? ''} ${page.component ?? ''}`} sizes="(min-width: 900px) 55vw, 100vw" priority="high" /></div>
+  <div class="product-hero-info">
+    {!isBlank(page.type) && <p class="product-type">{typeLabel(page.type)}</p>}
+    <p set:html={intro} />
+    <a href="/get-a-quote/" class="button">Get a Free Quote</a>
+    <ul class="product-assurances">
+      <li>Free quote, no obligation</li>
+      <li>We pick up in the NYC Tri-State Area, Palm Beach and Denver</li>
+      <li>Paid on the spot</li>
+    </ul>
+  </div>
+</section>
+
+<section class="container xxxnarrow margin-center autospacing-next specifications">
+
+  <h2 class="text-align-center">What are the specs for the {page.component}?</h2>
+
+  <dl class="center">
+    {specs.map((item) => (
+      <>
+        {!isBlank(item.n) ? <dt set:html={String(item.n)} /> : <dt></dt>}
+        <dd set:html={item.v == null ? '' : String(item.v)} />
+      </>
+    ))}
+  </dl>
+
+</section>
+
+{(!isBlank(page.description) || !isBlank(page.blurb)) && (
+  <section class="container xxnarrow margin-center autospacing margin-top-4">
+
+    <h2 class="text-align-center">What else to know about the {page.component}?</h2>
+
+    {isQuote ? (
+      <blockquote class="customer-quote">
+        <p set:html={parts.length === 2 ? `${parts[0]}"` : desc} />
+        {parts.length === 2 && <cite set:html={parts[1]} />}
+      </blockquote>
+    ) : (
+      <Fragment set:html={page.description ?? ''} />
+    )}
+    {!isBlank(page.blurb) && <p set:html={String(page.blurb)} />}
+
+  </section>
+)}

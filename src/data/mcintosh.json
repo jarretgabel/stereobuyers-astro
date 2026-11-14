@@ -1,0 +1,396 @@
+{
+  "tuner-preamplifier": [
+    {
+      "model": "MX 110Z",
+      "url": "mx-110z",
+      "image": "mx110z.jpg"
+    },
+    {
+      "model": "MX 113",
+      "url": "mx-113",
+      "image": "mx113.jpg"
+    }
+  ],
+  "tuners": [
+    {
+      "model": "MR 65a",
+      "url": "mr-65a",
+      "image": "mr65a.jpg"
+    },
+    {
+      "model": "MR 65b",
+      "url": "mr-65b",
+      "image": "mr65b.jpg"
+    },
+    {
+      "model": "MR 67",
+      "url": "mr-67",
+      "image": "mr67.jpg"
+    },
+    {
+      "model": "MR 71",
+      "url": "mr-71",
+      "image": "mr71.jpg"
+    },
+    {
+      "model": "MR 78",
+      "url": "mr-78",
+      "image": "mr78.jpg"
+    },
+    {
+      "model": "MR 85",
+      "url": "mr-85",
+      "image": "mr85.jpg"
+    },
+    {
+      "model": "MR 7082",
+      "url": "mr-7082",
+      "image": "mr7082.jpg"
+    },
+    {
+      "model": "MR 7083",
+      "url": "mr-7083",
+      "image": "mr7083.jpg"
+    }
+  ],
+  "headphone-amplifiers": [
+    {
+      "model": "MHA 100",
+      "url": "mha-100",
+      "image": "mha100.jpg"
+    }
+  ],
+  "amplifiers": [
+    {
+      "model": "MC 50",
+      "url": "mc-50",
+      "image": "mc50.jpg"
+    },
+    {
+      "model": "MC 60",
+      "url": "mc-60",
+      "image": "mc60.jpg"
+    },
+    {
+      "model": "MC 122",
+      "url": "mc-122",
+      "image": "mc122.jpg"
+    },
+    {
+      "model": "MC 152",
+      "url": "mc-152",
+      "image": "mc152.jpg"
+    },
+    {
+      "model": "MC 202",
+      "url": "mc-202",
+      "image": "mc202.jpg"
+    },
+    {
+      "model": "MC 275",
+      "url": "mc-275",
+      "image": "mc275.jpg"
+    },
+    {
+      "model": "MC 240",
+      "url": "mc-240",
+      "image": "mc240.jpg"
+    },
+    {
+      "model": "MC 250",
+      "url": "mc-250",
+      "image": "mc250.jpg"
+    },
+    {
+      "model": "MC 252",
+      "url": "mc-252",
+      "image": "mc252.jpg"
+    },
+    {
+      "model": "MC 302",
+      "url": "mc-302",
+      "image": "mc302.jpg"
+    },
+    {
+      "model": "MC 402",
+      "url": "mc-402",
+      "image": "mc402.jpg"
+    },
+    {
+      "model": "MC 452",
+      "url": "mc-452",
+      "image": "mc452.jpg"
+    },
+    {
+      "model": "MC 501",
+      "url": "mc-501",
+      "image": "mc501.jpg"
+    },
+    {
+      "model": "MC 502",
+      "url": "mc-502",
+      "image": "mc502.jpg"
+    },
+    {
+      "model": "MC 754",
+      "url": "mc-754",
+      "image": "mc754.jpg"
+    },
+    {
+      "model": "MC 2000",
+      "url": "mc-2000",
+      "image": "mc2000.jpg"
+    },
+    {
+      "model": "MC 2100",
+      "url": "mc-2100",
+      "image": "mc2100.jpg"
+    },
+    {
+      "model": "MC 2105",
+      "url": "mc-2105",
+      "image": "mc2105.jpg"
+    },
+    {
+      "model": "MC 2120",
+      "url": "mc-2120",
+      "image": "mc2120.jpg"
+    },
+    {
+      "model": "MC 2125",
+      "url": "mc-2125",
+      "image": "mc2125.jpg"
+    },
+    {
+      "model": "MC 2200",
+      "url": "mc-2200",
+      "image": "mc2200.jpg"
+    },
+    {
+      "model": "MC 2255",
+      "url": "mc-2255",
+      "image": "mc2255.jpg"
+    },
+    {
+      "model": "MC 2300",
+      "url": "mc-2300",
+      "image": "mc2300.jpg"
+    },
+    {
+      "model": "MC 2505",
+      "url": "mc-2505",
+      "image": "mc2505.jpg"
+    },
+    {
+      "model": "MC 2500",
+      "url": "mc-2500",
+      "image": "mc2500.jpg"
+    },
+    {
+      "model": "MC 7106",
+      "url": "mc-7106",
+      "image": "mc7106.jpg"
+    },
+    {
+      "model": "MC 7108",
+      "url": "mc-7108",
+      "image": "mc7108.jpg"
+    },
+    {
+      "model": "MC 7270",
+      "url": "mc-7270",
+      "image": "mc7270.jpg"
+    },
+    {
+      "model": "MC 7300",
+      "url": "mc-7300",
+      "image": "mc7300.jpg"
+    },
+    {
+      "model": "MC 8207",
+      "url": "mc-8207",
+      "image": "mc8207.jpg"
+    }
+  ],
+  "preamplifiers": [
+    {
+      "model": "C 11",
+      "url": "c-11",
+      "image": "c11.jpg"
+    },
+    {
+      "model": "C 20",
+      "url": "c-20",
+      "image": "c20.jpg"
+    },
+    {
+      "model": "C 22",
+      "url": "c-22",
+      "image": "c22.jpg"
+    },
+    {
+      "model": "C 26",
+      "url": "c-26",
+      "image": "c26.jpg"
+    },
+    {
+      "model": "C 28",
+      "url": "c-28",
+      "image": "c28.jpg"
+    },
+    {
+      "model": "C 32",
+      "url": "c-32",
+      "image": "c32.jpg"
+    },
+    {
+      "model": "C 33",
+      "url": "c-33",
+      "image": "c33.jpg"
+    },
+    {
+      "model": "C 38",
+      "url": "c-38",
+      "image": "c38.jpg"
+    },
+    {
+      "model": "C 45",
+      "url": "c-45",
+      "image": "c45.jpg"
+    },
+    {
+      "model": "C 46",
+      "url": "c-46",
+      "image": "c46.jpg"
+    },
+    {
+      "model": "C 47",
+      "url": "c-47",
+      "image": "c47.jpg"
+    },
+    {
+      "model": "C 48",
+      "url": "c-48",
+      "image": "c48.jpg"
+    },
+    {
+      "model": "C 500",
+      "url": "c-500",
+      "image": "c500.jpg"
+    },
+    {
+      "model": "C 1000p/1000c",
+      "url": "c-1000p-1000c",
+      "image": "c100p-c100c.jpg"
+    },
+    {
+      "model": "C 2200",
+      "url": "c-2200",
+      "image": "c2200.jpg"
+    },
+    {
+      "model": "C 2600",
+      "url": "c-2600",
+      "image": "c2600.jpg"
+    },
+    {
+      "model": "cr 12",
+      "url": "cr-12",
+      "image": "cr12.jpg"
+    },
+    {
+      "model": "D 100",
+      "url": "d-100",
+      "image": "d100.jpg"
+    }
+  ],
+  "turntables": [
+    {
+      "model": "MT5",
+      "url": "mt5",
+      "image": "mt5.jpg"
+    }
+  ],
+  "integrated-amplifiers": [
+    {
+      "model": "MA 230",
+      "url": "ma-230",
+      "image": "ma230.jpg"
+    },
+    {
+      "model": "MA 2275",
+      "url": "ma-2275",
+      "image": "ma2275.jpg"
+    },
+    {
+      "model": "MA 6200",
+      "url": "ma-6200",
+      "image": "ma6200.jpg"
+    },
+    {
+      "model": "MA 6300",
+      "url": "ma-6300",
+      "image": "ma6300.jpg"
+    },
+    {
+      "model": "MA 6500",
+      "url": "ma-6500",
+      "image": "ma6500.jpg"
+    },
+    {
+      "model": "MA 6600",
+      "url": "ma-6600",
+      "image": "ma6600.jpg"
+    },
+    {
+      "model": "MA 8000",
+      "url": "ma-8000",
+      "image": "ma8000.jpg"
+    }
+  ],
+  "receivers": [
+    {
+      "model": "MAC 6700",
+      "url": "mac-6700",
+      "image": "mac6700.jpg"
+    },
+    {
+      "model": "MAC 4300v",
+      "url": "mac-4300v",
+      "image": "mac4300v.jpg"
+    }
+  ],
+  "performance-scope": [
+    {
+      "model": "MI 3",
+      "url": "mi-3",
+      "image": "mi3.jpg"
+    }
+  ],
+  "surround-sound-processors": [
+    {
+      "model": "MHT 200",
+      "url": "mht-200",
+      "image": "mht200.jpg"
+    }
+  ],
+  "room-correction": [
+    {
+      "model": "MEN 220",
+      "url": "men-220",
+      "image": "men220.jpg"
+    }
+  ],
+  "cd-players": [
+    {
+      "model": "MCT 450",
+      "url": "mct-450",
+      "image": "mct450.jpg"
+    },
+    {
+      "model": "MCD 1100",
+      "url": "mcd-1100",
+      "image": "mcd1100.jpg"
+    }
+  ]
+}

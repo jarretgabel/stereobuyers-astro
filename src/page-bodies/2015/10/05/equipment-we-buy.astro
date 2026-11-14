@@ -1,0 +1,42 @@
+---
+const { page } = Astro.props;
+import Arrow from '../../../../components/Arrow.astro';
+---
+
+<div class="container narrow">
+  <div class="intro text-align-center half-autospacing">
+    <h2 class="margin-center">A Brief List of the High-End and Vintage Stereo Equipment We Buy</h2>
+    <p class="xxnarrow margin-center">At StereoBuyers, we are always on the lookout for classic, high-end, vintage and exotic stereo and audio equipment - whether the components are used, new, working or not.</p>
+    <p class="xxnarrow margin-center"><strong>Please Note:</strong> We do NOT buy car stereos or car speakers, DJ equipment, televisions, movie projectors, or "mass market" stereo components (e.g. originally purchased at Best Buy or Crutchfield).</p>
+  </div>
+
+  <div class='overflow-hidden text-align-center half-autospacing'>
+    <ul class="list">
+      {page.equipment1.map((item: string) => (
+      <li>
+        <h3>{item}</h3>
+      </li>
+      ))}
+    </ul>
+    <ul class="list">
+      {page.equipment2.map((item: string) => (
+      <li>
+        <h3>{item}</h3>
+      </li>
+      ))}
+    </ul>
+    <ul class="list">
+      {page.equipment3.map((item: string) => (
+      <li>
+        <h3>{item}</h3>
+      </li>
+      ))}
+    </ul>
+  </div>
+
+  <div class='actions text-align-center margin-top-4'>
+    <a class='text-turq text-uppercase tertiary-font' href='/stereo-equipment-and-components-we-buy/'>
+      View our complete list of preferred high-end stereo brands&nbsp;<span class="arrow"><Arrow /></span>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+---
+import ResponsiveImg from '../../../components/ResponsiveImg.astro';
+import QuickFacts from '../../../components/QuickFacts.astro';
+import { pages } from '../../../lib/site';
+import { productName, typeLabel } from '../../../lib/product';
+
+const items = pages.filter((p) => p.layout === 'luxman');
+---
+<section class="container xnarrow margin-center">
+  <p>Luxman is a Japanese high-end audio maker known for refined, well-built amplifiers and preamplifiers, along with turntables and digital players. Its vintage solid-state and tube amplifiers from the 1970s and 1980s are sought after by collectors, and its current models remain popular with audiophiles.</p>
+</section>
+
+<section class="container xnarrow margin-center autospacing">
+  <h2 class="text-align-center">Brief History of Luxman</h2>
+  <p>Luxman traces its roots to Osaka, Japan, in 1925. The company built its reputation on audio electronics, and the Luxman name became widely recognized among hi-fi enthusiasts in the decades that followed. Today the brand is part of Alpine Electronics and continues to design its equipment in Japan.</p>
+</section>
+
+<section class="container xnarrow margin-center autospacing">
+  <h2 class="text-align-center">Luxman Equipment We Buy</h2>
+  <p>StereoBuyers is interested in used Luxman integrated amplifiers, power amplifiers, preamplifiers, tube amplifiers, turntables, and CD and SACD players, in both vintage and current models. Working condition is helpful, but we also look at items that need service.</p>
+  <p>If you are moving, upgrading, or have Luxman equipment you no longer use, <a href="/get-a-quote/">fill out our free quote form</a> with the model and condition, and we will get back to you. If we agree on terms, we come to you in the greater NYC area, Palm Beach, or Colorado, and pay on the spot.</p>
+  <p>Not sure we pick up near you? See our <a href="/service-area/">service area</a> or learn <a href="/how-to-sell-your-high-end-audio-equipment-and-components-with-StereoBuyers/">how selling to StereoBuyers works</a>.</p>
+</section>
+
+<section class="container xnarrow margin-center autospacing">
+  <h2 class="text-align-center">Can I sell my Luxman to StereoBuyers?</h2>
+  <p>Yes. Send us the model, a few photos, and a note on condition and included accessories. We will tell you whether we are interested and make an offer.</p>
+</section>
+
+<section class="container xnarrow margin-center">
+  <ul class="columns double-autospacing flex-row-col flex-wrap flex-hcenter margin-top-0 text-align-center">
+    {items.map((p) => (
+      <li class="column quarter-autospacing">
+        <a href={p.url}>
+          <ResponsiveImg class="image" src={p.image} alt={p.title} sizes="(min-width: 800px) 33vw, 100vw" />
+          <div class="caption">
+            <h3 class="padding-top-0 padding-bottom-0">{productName(p.title)}</h3>
+            <div>{typeLabel(p.type)}</div>
+          </div>
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<QuickFacts />

@@ -1,0 +1,176 @@
+---
+import { site, data, type Page } from '../lib/site';
+import { dateToXmlschema, truncate, stripNewlines, capitalize, slugify, dflt, isBlank } from '../lib/liquid';
+import headScripts from './raw/head-scripts.html?raw';
+
+interface Props {
+  page: Page;
+  /** Front matter of the layout (Jekyll's `layout.*`), used as a description fallback. */
+  layoutDescription?: string;
+}
+const { page, layoutDescription } = Astro.props;
+const ORIGIN = site.url;
+
+let pageTitle = page.seo_title ?? (page.snippet === 'product' ? `${page.component} – High End Stereo Equipment We Buy` : page.title ?? '');
+if (pageTitle.length > 60 && page.snippet === 'product' && isBlank(page.seo_title)) {
+  pageTitle = `${page.component} – We Buy | StereoBuyers`;
+  if (pageTitle.length > 60) pageTitle = `${page.component} | StereoBuyers`;
+}
+pageTitle = pageTitle.trim();
+
+let metaDescription: string | undefined = page.component ? undefined : page.description;
+if (page.component) {
+  metaDescription = `Sell your ${page.component}${page.type ? ' ' + page.type : ''} to StereoBuyers. Free quote from a Brooklyn, NY buyer of high-end audio equipment.`;
+}
+if (page.seo_description) metaDescription = page.seo_description;
+metaDescription ??= layoutDescription;
+metaDescription ??= 'StereoBuyers buys used high-end audio equipment in Brooklyn, NY. Request a free quote today.';
+metaDescription = truncate(stripNewlines(String(metaDescription)).trim(), 157);
+
+const ogImage = `${ORIGIN}/assets/media/${dflt(page.fb_image, 'FB-OG-Image-Home.jpg')}`;
+const canonical = ORIGIN + page.url.replace('index.html', '');
+const noindexFollow = page.layout === 'post' || page.noindex;
+const noindexNofollow = ['/facebook-get-a-quote/', '/bing-get-a-quote/', '/google-get-a-quote/'].includes(page.permalink);
+
+const business = {
+  '@context': 'https://schema.org',
+  '@type': 'Store',
+  '@id': `${ORIGIN}/#business`,
+  name: 'StereoBuyers',
+  url: `${ORIGIN}/`,
+  logo: `${ORIGIN}/assets/media/logo.svg`,
+  image: `${ORIGIN}/assets/media/process.png`,
+  description: 'StereoBuyers buys used, vintage and high-end home audio equipment, including amplifiers, preamps, turntables and speakers, and pays on the spot at pickup.',
+  slogan: 'We buy high-end stereo equipment',
+  foundingDate: '1999',
+  founder: { '@type': 'Person', name: 'Adam Wexler' },
+  telephone: '+1-718-260-8948',
+  email: 'info@stereobuyers.com',
+  address: { '@type': 'PostalAddress', streetAddress: '481 Van Brunt St Suite 8A', addressLocality: 'Brooklyn', addressRegion: 'NY', postalCode: '11231', addressCountry: 'US' },
+  geo: { '@type': 'GeoCoordinates', latitude: 40.67456, longitude: -74.01609 },
+  areaServed: [
+    { '@type': 'State', name: 'New York' },
+    { '@type': 'State', name: 'New Jersey' },
+    { '@type': 'State', name: 'Connecticut' },
+    { '@type': 'City', name: 'Palm Beach, FL' },
+    { '@type': 'City', name: 'Denver, CO' },
+    { '@type': 'City', name: 'Boulder, CO' },
+  ],
+  contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', telephone: '+1-718-260-8948', email: 'info@stereobuyers.com', areaServed: 'US', availableLanguage: 'English' },
+  sameAs: ['https://twitter.com/stereobuyers'],
+};
+const website = { '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${ORIGIN}/#website`, url: `${ORIGIN}/`, name: 'StereoBuyers', publisher: { '@id': `${ORIGIN}/#business` } };
+const webpage = { '@context': 'https://schema.org', '@type': 'WebPage', url: ORIGIN + page.url, dateModified: page.lastmod };
+
+const crumbParts = page.url.replace('.html', '').split('/').filter(Boolean);
+let crumbPath = '';
+const crumbs = crumbParts.map((part, i) => {
+  crumbPath += '/' + part;
+  const last = i === crumbParts.length - 1;
+  let name = data.breadcrumb_names[part] ?? part.replace(/-/g, ' ').split(' ').map(capitalize).join(''); // Jekyll's capture swallows the separating space
+  if (last) name = dflt(page.component, dflt(page.title, name));
+  return { '@type': 'ListItem', position: i + 2, name: String(name).trim(), item: `${ORIGIN}${crumbPath}${last && page.url.includes('.html') ? '.html' : '/'}` };
+});
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: `${ORIGIN}/` }, ...crumbs],
+};
+
+const extra: Record<string, unknown>[] = [];
+if (page.snippet === 'faq') {
+  extra.push({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: data.faq.flatMap((g: any) => g.items.map((it: any) => ({ '@type': 'Question', name: it.q, acceptedAnswer: { '@type': 'Answer', text: it.a } }))),
+  });
+}
+if (page.snippet === 'product') {
+  extra.push({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: `Sell your ${page.component}`,
+    serviceType: 'Buying used high-end audio equipment',
+    description: stripNewlines(String(dflt(page.blurb, dflt(page.seo_description, page.title ?? '')))),
+    image: `${ORIGIN}${page.image}`,
+    url: ORIGIN + page.url,
+    provider: { '@id': `${ORIGIN}/#business` },
+    areaServed: [
+      { '@type': 'State', name: 'New York' },
+      { '@type': 'State', name: 'New Jersey' },
+      { '@type': 'State', name: 'Connecticut' },
+      { '@type': 'City', name: 'Palm Beach, FL' },
+      { '@type': 'City', name: 'Denver, CO' },
+    ],
+  });
+}
+if (page.layout === 'blog' && page.date) {
+  const published = dateToXmlschema(page.date as Date);
+  extra.push({
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: page.title,
+    image: `${ORIGIN}${page.image}`,
+    datePublished: published,
+    dateModified: page.lastmod ?? published,
+    author: { '@type': 'Person', name: 'Adam Wexler' },
+    publisher: { '@type': 'Organization', name: 'StereoBuyers', logo: { '@type': 'ImageObject', url: `${ORIGIN}/assets/media/mstile-310x310.png` } },
+  });
+}
+if (page.snippet === 'howto') {
+  const icon = (n: number) => ({ '@type': 'ImageObject', url: `${ORIGIN}/assets/media/process-icon${n}.svg`, height: '406', width: '305' });
+  extra.push({
+    '@context': 'http://schema.org',
+    '@type': 'HowTo',
+    name: 'How to sell your high-end audio equipment',
+    description: 'Turn your gear into cash!',
+    image: icon(1),
+    tool: ['computer', 'tablet', 'mobile device', 'email', 'phone'].map((name) => ({ '@type': 'HowToTool', name })),
+    supply: [{ '@type': 'HowToSupply', name: 'stereo equipment' }],
+    step: [
+      { '@type': 'HowToStep', url: `${ORIGIN}/get-a-quote`, name: 'Request a quote', totalTime: 'PT5M', itemListElement: [{ '@type': 'HowToDirection', text: 'Our simple form allows you to tell us about the type and condition of your equipment, and will be sent automatically to one of our pricing specialists.' }], image: icon(1) },
+      { '@type': 'HowToStep', name: 'Close The Deal', url: `${ORIGIN}/get-a-quote`, itemListElement: [{ '@type': 'HowToTip', text: 'If your used high-end audio or home theater equipment fits our requirements, we will email you an offer within 48 hours.' }], image: icon(2) },
+      { '@type': 'HowToStep', name: "We'll Pick Up", url: `${ORIGIN}/get-a-quote`, itemListElement: [{ '@type': 'HowToDirection', text: 'If you agree with the price, we will set up a convenient time to come to your location and pay you, then carefully pack the equipment and take it with us.' }], image: icon(3) },
+    ],
+    totalTime: 'PT5M',
+  });
+}
+const jsonLd = [business, website, webpage, breadcrumb, ...extra];
+---
+<head>
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>{pageTitle}</title>
+  <meta name="description" content={metaDescription} />
+  <link href="https://plus.google.com/+StereoBuyers" rel="author" />
+  <link href="https://plus.google.com/+StereoBuyers" rel="publisher" />
+  <link href={canonical} rel="canonical" />
+  {noindexFollow && <meta name="robots" content="noindex,follow" />}
+  <link href="/assets/media/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+  <meta content={pageTitle} itemprop="name" />
+  <meta content={metaDescription} itemprop="description" />
+  <meta content={ogImage} itemprop="image" />
+  <meta content={pageTitle} property="og:title" />
+  <meta content="StereoBuyers.com" property="og:site_name" />
+  <meta property="og:description" content={metaDescription} />
+  <meta content="website" property="og:type" />
+  {noindexNofollow && <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />}
+  <meta content={canonical} property="og:url" />
+  <meta content={ogImage} property="og:image" />
+  <meta content="648128040" property="fb:admins" />
+  {[57, 60, 72, 76, 114, 120, 144, 152, 180].map((s) => <link href={`/assets/media/apple-touch-icon-${s}x${s}.png`} rel="apple-touch-icon" sizes={`${s}x${s}`} />)}
+  <link href="/assets/media/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+  <link href="/assets/media/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png" />
+  <link href="/assets/media/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+  <link href="/assets/media/manifest.json" rel="manifest" />
+  <link color="#5bbad5" href="/assets/media/safari-pinned-tab.svg" rel="mask-icon" />
+  <meta content="#da532c" name="msapplication-TileColor" />
+  <meta content="/assets/media/mstile-144x144.png" name="msapplication-TileImage" />
+  <meta content="#ffffff" name="theme-color" />
+
+  <link href="/assets/css/main.css" rel="stylesheet" />
+  <Fragment set:html={headScripts} />
+  {jsonLd.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
+</head>

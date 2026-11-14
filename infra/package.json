@@ -1,0 +1,19 @@
+{
+  "name": "stereobuyers-infra",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "generate": "node scripts/generate-redirect-data.mjs",
+    "test": "node --test test/*.test.mjs",
+    "synth": "npm run generate && cdk synth",
+    "deploy": "npm run generate && cdk deploy"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "aws-cdk": "^2.1000.0",
+    "aws-cdk-lib": "^2.200.0",
+    "constructs": "^10.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.6.0"
+  }
+}

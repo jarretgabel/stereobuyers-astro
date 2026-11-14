@@ -1,0 +1,20 @@
+---
+import BrandGrid from './BrandGrid.astro';
+import { pages } from '../lib/site';
+
+const items = pages.filter((p) => p.layout === 'rogue-audio');
+---
+<section class="container xxnarrow margin-center autospacing-next">
+  <h2 class="text-align-center as-h4">Brief History of Rogue Audio</h2>
+  <p>Rogue Audio amplifier designs combine the finest in tube circuit topology with meticulously engineered circuit layout to achieve superior performance. Unflagging attention to the integrity of the audio signal path and power supplies results in truly superior designs. The most discriminating audiophile will delight in the impeccable fidelity of recordings reproduced through the amplifiers.</p><p>The matchless quality of Rogue amplifiers is obvious at first glance. However, Rogue’s quality is not just skin deep. Ultra-high tolerance components, two-ounce copper circuit boards, and silver plated switches are just a few of the many features which separate Rogue products from the competition. The amplifiers have also been designed to be extremely reliable. Electronic components are rated far beyond their intended use, and only the highest quality components are incorporated into the designs. The rugged chassis are treated to resist scratching and corrosion and the machined aluminum faceplates are anodized to protect their appearance.</p>
+</section>
+
+<section class="container xxnarrow margin-center autospacing-next">
+  <h2 class="text-align-center as-h4">Other Rogue Audio Products We Often Buy</h2>
+  <p>Typically, StereoBuyers purchases mostly used amplifiers, especially the vintage amps and high-end Rogue Audio models.</p>
+  <p>StereoBuyers has purchased <em>tens of thousands</em> worth Rogue Audio brand equipment since 2014, with individual buys ranging from $100 to well over $50,000. If you are moving, ready to upgrade, or have Rogue Audio equipment you do not or will not be using, why not contact us today to find out if it is worth good money?</p>
+  <p>If you are interested in selling your used Rogue Audio equipment to us in the greater NYC area or Colorado, please <a href="/get-a-quote/">click here to fill out a Free Quote Form</a> and we will get back to you. If we agree on terms, we come to meet you where you want, and pay cash.</p>
+  <p>The following images show actual Rogue Audio equipment purchased by StereoBuyers.</p>
+</section>
+
+<BrandGrid items={items} />

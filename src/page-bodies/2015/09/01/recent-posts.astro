@@ -1,0 +1,31 @@
+---
+import ResponsiveImg from '../../../../components/ResponsiveImg.astro';
+import { blogPosts } from '../../../../lib/site';
+import { slugify } from '../../../../lib/liquid';
+
+// Jekyll orders collection documents by date ascending, then path.
+const stories = [...blogPosts]
+  .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime() || a.id.localeCompare(b.id))
+  .slice(0, 3);
+---
+
+<div class="container text-align-center">
+  <div class='intro half-autospacing'>
+    <h2>Recent Posts</h2>
+    <!-- <p class="xxxnarrow margin-auto">Please see the images below for some examples of the types of high-end speakers, amplifiers and components we have recently purchased:</p> -->
+  </div>
+  <ul class='columns double-autospacing flex-row-col flex-wrap justify-space-between margin-top-0'>
+    {stories.map((story) => (
+      <li class='column quarter-autospacing margin-top-4 rel'>
+        <a name={slugify(story.title ?? '')} href={story.url}>
+          <div class="rel ov-h">
+            <ResponsiveImg class="image aspect-16-9" src={story.image} alt="" sizes="(min-width: 800px) 33vw, 100vw" />
+          </div>
+          <div class="caption">
+            <p class="padding-top-0 padding-bottom-0">{story.title}</p>
+          </div>
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>

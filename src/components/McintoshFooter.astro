@@ -1,0 +1,20 @@
+---
+import BrandGrid from './BrandGrid.astro';
+import { pages } from '../lib/site';
+
+const items = pages.filter((p) => p.layout === 'mcintosh');
+---
+<section class="container xxnarrow margin-center autospacing-next">
+  <h2 class="text-align-center as-h4">Brief History of McIntosh</h2>
+  <p>Long mapped-to Binghamton New York – the current headquarters and manufacturing center for McIntosh Labs – not many people know the brand was originally launched outside of the Nation’s Capital in Silver Spring Maryland, in 1949. In 1956, the brand built their original facility in New York, according to the official brand website.</p>
+</section>
+
+<section class="container xxnarrow margin-center autospacing-next">
+  <h2 class="text-align-center as-h4">Other McIntosh Products We Often Buy</h2>
+  <p>Typically, StereoBuyers purchases mostly used amplifiers, especially the vintage amps and high-end McIntosh models such as the MC202 or MC252, and the C220 preamp, for example. We have also purchased many pre-owned tuners from McIntosh over the recent years, including the MR67 and MR78 models, for example.</p>
+  <p>StereoBuyers has purchased <em>tens of thousands</em> worth McIntosh brand equipment since 2014, with individual buys ranging from $100 to well over $50,000. If you are moving, ready to upgrade, or have McIntosh equipment you do not or will not be using, why not contact us today to find out if it is worth good money?</p>
+  <p>If you are interested in selling your used McIntosh equipment to us in the greater NYC area or Colorado, please <a href="/get-a-quote/">click here to fill out a Free Quote Form</a> and we will get back to you. If we agree on terms, we come to meet you where you want, and pay cash.</p>
+  <p>The following images show actual McIntosh equipment purchased by StereoBuyers.</p>
+</section>
+
+<BrandGrid items={items} />

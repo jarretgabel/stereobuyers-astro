@@ -1,0 +1,105 @@
+{
+  "articles": [
+    {
+      "source": "Architectural Digest",
+      "date": "March 2022",
+      "url": "/assets/media/architectural-digest.pdf",
+      "title": "Why “Listening Rooms” Are the Next Big Thing in Interiors",
+      "type": "architectural-digest",
+      "readmore": true
+    },
+    {
+      "source": "The Red Hook Star Revue",
+      "date": "January 2021",
+      "url": "https://issuu.com/georgefiala/docs/red_hook_star-revue__january_2021",
+      "title": "Hi-end audio is a surprise best seller as COVID keeps people home",
+      "type": "star-revue",
+      "readmore": true
+    },
+    {
+      "source": "Stereophile",
+      "date": "May 29, 2020",
+      "url": "https://www.stereophile.com/content/listening-210-guns-n-neuroses-life-used-gear-specialist",
+      "title": "Listening 210&#58; Guns N' Neuroses, the Life of a Used-Gear Specialist",
+      "type": "stereophile",
+      "readmore": true
+    },
+    {
+      "source": "The Absolute Sound",
+      "date": "December 2019",
+      "url": "https://www.stereobuyers.com/assets/media/absolute-sound.pdf",
+      "title": "Bar Shiru&#58; The Connective Power of Music",
+      "type": "absolute-sound",
+      "readmore": true
+    },
+    {
+      "source": "New York Times",
+      "date": "February 02, 2020",
+      "url": "https://www.wsj.com/articles/these-unknown-chinese-audio-brands-might-just-be-the-best-11582229017?shareToken=st18c41fe25a74495b9a61cf6792d64106",
+      "title": "These Unknown Chinese Audio Brands Might Just Be the Best",
+      "body": "No-name audio devices from China can output better sound than big-label gear. But locating these ‘Chi-Fi’ alternatives has been a unique pain—until now",
+      "type": "nyt",
+      "readmore": true
+    },
+    {
+      "source": "Brooklyn Eagle",
+      "date": "November 19, 2019",
+      "url": "https://brooklyneagle.com/articles/2019/11/19/how-ebay-created-its-own-business-community-in-brooklyn/",
+      "title": "How eBay created its own business community in Brooklyn",
+      "body": "Company reps and e-vendors left their offices and homes to talk revenue and process — offline.",
+      "type": "eagle",
+      "readmore": true
+    },
+    {
+      "source": "Wall Street Journal",
+      "date": "October 20, 2018",
+      "url": "/assets/media/stereobuyers-the-temple-of-tunes.pdf",
+      "title": "The Temple of Tunes",
+      "type": "wsj",
+      "body": "Vintage-audio collectors are on the hunt for coveted, ancient components to make their classic stereo systems sing. Here, how to start exploring and avoid the pitfalls.",
+      "readmore": true
+    },
+    {
+      "source": "C-NET",
+      "date": "June 2, 2018",
+      "url": "https://www.cnet.com/pictures/tour-a-gorgeous-vintage-audio-treasure-trove-in-brooklyn/",
+      "title": "The Stereo Buyers listening room",
+      "body": "I visited Stereo Buyers' Brooklyn, NY headquarters to get a first-hand look at some vintage audio, and there were aisles and aisles of the most rarified gear to drool over.",
+      "readmore": true
+    },
+    {
+      "source": "Steve Guttenberg Audiophiliac",
+      "type": "yt",
+      "date": "May 25, 2018",
+      "url": "https://www.youtube.com/watch?v=vUH1DGJtUFg",
+      "title": "The Audiophiliac gets down with vintage gear",
+      "body": null,
+      "view": true
+    },
+    {
+      "source": "Steve Guttenberg Audiophiliac",
+      "type": "yt",
+      "date": "September 4, 2013",
+      "url": "https://www.youtube.com/watch?v=1ivRXrQpoqw",
+      "title": "Audiophiles, Nazis, hoarders, and music lovers",
+      "body": null,
+      "view": true
+    },
+    {
+      "source": "C-NET",
+      "date": "September 4, 2013",
+      "url": "http://www.cnet.com/news/brooklyns-treasure-trove-of-used-high-end-audio/",
+      "title": "Brooklyn's treasure trove of used high-end audio",
+      "body": "I visited Stereo Buyers' Brooklyn headquarters to get a first-hand look at their gear. Located in Red Hook, the facility was flooded by Hurricane Sandy last summer, and most of the inventory was literally underwater.",
+      "readmore": true
+    },
+    {
+      "source": "C-NET",
+      "date": "February 16, 2009",
+      "url": "http://www.cnet.com/news/swap-your-old-hi-fi-for-cash/",
+      "title": "Swap your old hi-fi for cash",
+      "body": "Adam Wexler, who was always into hi-fi equipment, started hanging around high-end audio shops when he was just a kid. By the time he was in college, he was selling a local shop's traded-in components and speakers.",
+      "readmore": false
+    }
+  ]
+}

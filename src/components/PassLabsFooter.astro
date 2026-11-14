@@ -1,0 +1,19 @@
+---
+import BrandGrid from './BrandGrid.astro';
+import { pages } from '../lib/site';
+
+const items = pages.filter((p) => p.layout === 'pass-labs');
+---
+<section class="container xxnarrow margin-center autospacing-next">
+  <h2 class="text-align-center as-h4">Brief History of Pass Labs</h2>
+  <p>Pass Laboratories, Inc. was founded in 1991 by Nelson Pass. Operating out of his shop at home, Pass developed prototypes of a single-ended Class A amplifier design. At the same time, he and Mike Burley were constructing an in-house machine shop with three home-built CNC milling machines with which to produce the amplifiers when the design was finished.</p><p>The first product, the Aleph 0, shipped in 1992. It was a mono-block design rated at 70 watts into 8 ohms, and was unique in using three gain stages of power Mosfets including a push-pull output stage biased by a big constant current source. The amplifier operated as single-ended Class A up to its 70 watt rating and in push pull Class A at higher wattage.</p><p>At this time, Nelson hired his next-door neighbor, Elena Tong, to help with producing the amplifiers, and she manages much of the company to this day. A stereo version called the Aleph 0s followed after, along with a preamp called the Aleph P. A larger version of the Aleph 0 called the Aleph 1 shipped the following year, and was a mono-block rated at 150 watts.</p>
+</section>
+
+<section class="container xxnarrow margin-center autospacing-next">
+  <h2 class="text-align-center as-h4">Other Pass Labs Products We Often Buy</h2>
+  <p>StereoBuyers has purchased <em>tens of thousands</em> worth Pass Labs brand equipment since 2014, with individual buys ranging from $100 to well over $50,000. If you are moving, ready to upgrade, or have Pass Labs equipment you do not or will not be using, why not contact us today to find out if it is worth good money?</p>
+  <p>If you are interested in selling your used Pass Labs equipment to us in the greater NYC area or Colorado, please <a href="/get-a-quote/">click here to fill out a Free Quote Form</a> and we will get back to you. If we agree on terms, we come to meet you where you want, and pay cash.</p>
+  <p>The following images show actual Pass Labs equipment purchased by StereoBuyers.</p>
+</section>
+
+<BrandGrid items={items} />

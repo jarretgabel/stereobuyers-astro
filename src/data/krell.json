@@ -1,0 +1,233 @@
+{
+  "amplifiers": [
+    {
+      "model": "Theater Amplifier Standard",
+      "url": "theater-amplifier-standard",
+      "image": "theater-amplifier-standard.jpg"
+    },
+    {
+      "model": "FBP 200C",
+      "url": "fbp-200c",
+      "image": "fbp-200c.jpg"
+    },
+    {
+      "model": "KAV 150a",
+      "url": "kav-150a",
+      "image": "kav-150a.jpg"
+    },
+    {
+      "model": "KSA 300S",
+      "url": "ksa-300s",
+      "image": "ksa-300s.jpg"
+    },
+    {
+      "model": "KAV 2250",
+      "url": "kav-2250",
+      "image": "kav-2250.jpg"
+    },
+    {
+      "model": "KAV 3250",
+      "url": "kav-3250",
+      "image": "kav-3250.jpg"
+    },
+    {
+      "model": "FBP 200",
+      "url": "fbp-200",
+      "image": "fpb-200.jpg"
+    },
+    {
+      "model": "KAV 500",
+      "url": "kav-500",
+      "image": "kav-500.jpg"
+    },
+    {
+      "model": "Showcase 7",
+      "url": "showcase-7",
+      "image": "showcase-7.jpg"
+    },
+    {
+      "model": "FBP-350Mc",
+      "url": "fbp-350mc",
+      "image": "fpb-350mc.jpg"
+    },
+    {
+      "model": "KSA-100 mkII",
+      "url": "ksa-100-mkii",
+      "image": "ksa-100-mkii.jpg"
+    },
+    {
+      "model": "KSA-50",
+      "url": "ksa-50",
+      "image": "ksa-50.jpg"
+    },
+    {
+      "model": "KAV-250A",
+      "url": "kav-250a",
+      "image": "kav-250a.jpg"
+    },
+    {
+      "model": "KSA-200S",
+      "url": "ksa-200s",
+      "image": "ksa-200s.jpg"
+    }
+  ],
+  "cd-players": [
+    {
+      "model": "CD 1",
+      "url": "cd-1",
+      "image": "cd-1.jpg"
+    },
+    {
+      "model": "KAV 280cd",
+      "url": "kav-280cd",
+      "image": "kav-280cd.jpg"
+    },
+    {
+      "model": "SACD Standard",
+      "url": "sacd-standard",
+      "image": "sacd-standard.jpg"
+    },
+    {
+      "model": "KAV 300cd",
+      "url": "kav-300cd",
+      "image": "kav-300cd.jpg"
+    },
+    {
+      "model": "DT-10",
+      "url": "dt-10",
+      "image": "dt-10.jpg"
+    },
+    {
+      "model": "KPS 30i",
+      "url": "kps-30i",
+      "image": "kps-30i.jpg"
+    },
+    {
+      "model": "KPS 25S",
+      "url": "kps-25s",
+      "image": "kps-25s.jpg"
+    }
+  ],
+  "cd-transports": [
+    {
+      "model": "MD 1",
+      "url": "md-1",
+      "image": "md-1.jpg"
+    },
+    {
+      "model": "MD 20",
+      "url": "md-20",
+      "image": "md-20.jpg"
+    },
+    {
+      "model": "CD-DSP",
+      "url": "cd-dsp",
+      "image": "cd-dsp.jpg"
+    },
+    {
+      "model": "MD-10",
+      "url": "md-10",
+      "image": "md-10.jpg"
+    }
+  ],
+  "dac": [
+    {
+      "model": "Studio 2",
+      "url": "studio-2",
+      "image": "studio-2.jpg"
+    },
+    {
+      "model": "SBP-32X",
+      "url": "sbp-32x",
+      "image": "sbp-32x.jpg"
+    }
+  ],
+  "integrated-amplifiers": [
+    {
+      "model": "S-300i",
+      "url": "s-300i",
+      "image": "s-300i.jpg"
+    },
+    {
+      "model": "KAV 300r",
+      "url": "kav-300r",
+      "image": "kav-300r.jpg"
+    },
+    {
+      "model": "KAV 300i",
+      "url": "kav-300i",
+      "image": "kav-300i.jpg"
+    },
+    {
+      "model": "KAV 300iL",
+      "url": "kav-300il",
+      "image": "kav-300il.jpg"
+    }
+  ],
+  "ipod-dock": [
+    {
+      "model": "KID",
+      "url": "kid",
+      "image": "kid.jpg"
+    }
+  ],
+  "preamplifier": [
+    {
+      "model": "KPA",
+      "url": "kpa",
+      "image": "kpa.jpg"
+    },
+    {
+      "model": "KSP 7B",
+      "url": "ksp-7b",
+      "image": "ksp-7b.jpg"
+    },
+    {
+      "model": "KRC 2",
+      "url": "krc-2",
+      "image": "krc-2.jpg"
+    },
+    {
+      "model": "KRC 3",
+      "url": "krc-3",
+      "image": "krc-3.jpg"
+    },
+    {
+      "model": "KBL + KPA",
+      "url": "kbl-kpa",
+      "image": "kbl-kpa.jpg"
+    },
+    {
+      "model": "PAM 3",
+      "url": "pam-3",
+      "image": "pam-3.jpg"
+    },
+    {
+      "model": "KRC",
+      "url": "krc",
+      "image": "krc.jpg"
+    }
+  ],
+  "surround-processors": [
+    {
+      "model": "Showcase Surround Sound Processor",
+      "url": "showcase-surround-sound-processor",
+      "image": "showcase-surround-sound-processor.jpg"
+    },
+    {
+      "model": "S-1000",
+      "url": "s-1000",
+      "image": "s-1000.jpg"
+    },
+    {
+      "model": "S-1200",
+      "url": "s-1200",
+      "image": "s-1200.jpg"
+    },
+    {
+      "model": "Home Theater Standard",
+      "url": "home-theater-standard",
+      "image": "home-theater-standard.jpg"
+    }
+  ]
+}

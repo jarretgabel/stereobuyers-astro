@@ -1,0 +1,27 @@
+---
+import type { Page } from '../lib/site';
+import { brandName } from '../lib/product';
+
+interface Props { page: Page }
+const { page } = Astro.props;
+const faqBrand = brandName({ faq_brand: page.faq_brand, brand: page.brand, title: page.title });
+const faqs = [
+  [`Do you buy used ${faqBrand} equipment?`, `Yes. StereoBuyers buys used and vintage ${faqBrand} equipment. Tell us the model and its condition in our free quote form and we will let you know if we are interested.`],
+  [`How much will you pay for my ${faqBrand} equipment?`, 'Offers depend on the model, its condition and what is included with it. Quotes are free and come with no obligation. Our individual purchases have ranged from $100 to well over $50,000.'],
+  [`Where do you pick up ${faqBrand} equipment?`, 'We pick up in the NYC Tri-State Area (New York, New Jersey and Connecticut), Palm Beach Florida, and select locations in Colorado including Denver, Boulder and the Front Range. Outside those areas we can send pre-paid shipping labels so you can ship your equipment to us.'],
+  ['How and when do I get paid?', 'We pay on the spot when we pick up your equipment. StereoBuyers is not a pawn shop.'],
+  ['How quickly will I hear back after requesting a quote?', 'We reply to quote requests within 24 to 48 hours. You can also call (718) 260-8948 or email info@stereobuyers.com.'],
+];
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+});
+---
+<section class="brand-faq container xxnarrow margin-center autospacing-next">
+  <h2 class="text-align-center as-h4">{faqBrand} questions, answered</h2>
+  <dl>
+    {faqs.map(([q, a]) => (<><dt>{q}</dt><dd>{a}</dd></>))}
+  </dl>
+</section>
+<script type="application/ld+json" set:html={jsonLd} />
