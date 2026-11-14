@@ -33,10 +33,14 @@ function canon($, node, out, depth = 0) {
   for (const n of node.children ?? []) {
     if (n.type === 'text') { const t = ws(n.data); if (t) out.push(t); }
     else if (n.type === 'tag' || n.type === 'script' || n.type === 'style') {
-      const attrs = Object.entries(n.attribs).map(([k, v]) => `${k.toLowerCase()}="${ws(v)}"`).sort().join(' ');
+      // data-astro-rerun is an intentional runtime marker for client-side navigation
+      const attrs = Object.entries(n.attribs).filter(([k]) => k !== 'data-astro-rerun').map(([k, v]) => `${k.toLowerCase()}="${ws(v)}"`).sort().join(' ');
       out.push(`<${n.name}${attrs ? ' ' + attrs : ''}>`);
       if (n.name === 'script' || n.name === 'style') {
-        const t = $(n).text();
+        // The footer year script is wrapped in an IIFE for client-side navigation; compare its body unwrapped
+        const t = $(n).text().includes('copyright-year')
+          ? $(n).text().replace(/^\s*\/\/[^\n]*\n/, '').replace(/^\s*\(function\(\) \{/, '').replace(/\}\)\(\)\s*$/, '')
+          : $(n).text();
         if (t.trim()) out.push(ws(t));
       } else canon($, n, out, depth + 1);
     }
@@ -52,6 +56,7 @@ function describe(file) {
   $('meta').each((_, m) => {
     const key = m.attribs.name ?? m.attribs.property ?? m.attribs.itemprop ?? m.attribs.charset ?? '';
     if (/^og:url$/i.test(key)) return; // intentionally corrected to match canonical
+    if (/^astro-view-transitions-/i.test(key)) return; // client-side navigation runtime flags
     head.push(`meta ${key.toLowerCase()}: ${ws(m.attribs.content ?? '')}`);
   });
   $('link').each((_, l) => head.push(`link ${l.attribs.rel} ${l.attribs.sizes ?? ''}: ${l.attribs.href}`));

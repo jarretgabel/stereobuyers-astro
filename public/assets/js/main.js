@@ -1,3 +1,13 @@
+// Page swaps replace the body, so everything bound to document is undone before the next page binds again
+var teardowns = [];
+var onTeardown = function(fn) {
+  teardowns.push(fn);
+};
+var runTeardowns = function() {
+  teardowns.forEach(function(fn) { fn(); });
+  teardowns = [];
+};
+
 var initNav = function() {
   var header = document.querySelector(".header");
   var toggle = document.querySelector(".nav-toggle");
@@ -9,20 +19,53 @@ var initNav = function() {
     toggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
   }
 
-  toggle.addEventListener("click", function() {
+  var onToggle = function() {
     setOpen(!header.classList.contains("nav-open"));
-  });
-
-  document.addEventListener("keydown", function(event) {
+  };
+  var onKeydown = function(event) {
     if(event.key === "Escape" && header.classList.contains("nav-open")) {
       setOpen(false);
       toggle.focus();
     }
+  };
+
+  toggle.addEventListener("click", onToggle);
+  document.addEventListener("keydown", onKeydown);
+  onTeardown(function() {
+    toggle.removeEventListener("click", onToggle);
+    document.removeEventListener("keydown", onKeydown);
   });
 }
-initNav();
 
-var animateIntro = function() {
+var introRun = 0;
+var tickerAttached = false;
+var gsapCallbacks = [];
+var gsapRequested = false;
+
+// TweenMax is loaded once and kept, so later pages reuse it
+var whenGsapReady = function(callback) {
+  if(window.TweenMax) return callback();
+  gsapCallbacks.push(callback);
+  if(gsapRequested) return;
+  gsapRequested = true;
+
+  var gsap = document.createElement("script");
+  gsap.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js";
+  gsap.onload = function() {
+    gsapCallbacks.forEach(function(fn) { fn(); });
+    gsapCallbacks = [];
+  };
+  document.head.appendChild(gsap);
+}
+
+var startIntro = function() {
+  var run = introRun;
+  whenGsapReady(function() {
+    if(run === introRun) animateIntro(run);
+  });
+}
+
+var animateIntro = function(run) {
   var background = document.querySelector(".background");
   var identity = document.querySelector(".identity");
 
@@ -31,11 +74,11 @@ var animateIntro = function() {
   }});
   TweenMax.to(identity, 0.75, { y: 0, ease: Power4.easeInOut, delay: 0.2 });
   TweenMax.delayedCall(0.25, () => {
-    phaseTwo();
+    if(run === introRun) phaseTwo(run);
   });
 }
 
-var phaseTwo = function() {
+var phaseTwo = function(run) {
   var scale = document.querySelectorAll(".scale");
   var slide = document.querySelectorAll(".autoAlpha0:not(.scale)");
   var contact = document.querySelector(".sticky-contact");
@@ -59,13 +102,20 @@ var phaseTwo = function() {
     var time =(scroll > window.innerHeight ? 0 : 1.2);
 
     TweenMax.delayedCall(time, () => {
-      TweenMax.ticker.addEventListener("tick", () => onTick());
+      if(run !== introRun || tickerAttached) return;
+      tickerAttached = true;
+      TweenMax.ticker.addEventListener("tick", onTick);
+      onTeardown(function() {
+        TweenMax.ticker.removeEventListener("tick", onTick);
+        tickerAttached = false;
+      });
     });
   });
 }
 
 var data = [];
 var cache = function() {
+  data = [];
   var images = document.querySelectorAll("[data-src]");
   images.forEach((image, index) => {
     data.push({
@@ -79,7 +129,6 @@ var cache = function() {
     });
   })
 }
-cache();
 totalLoaded = 0;
 
 var loadItem = function(item) {
@@ -126,15 +175,16 @@ var onTick = function() {
   }
 }
 
-// GSAP is only needed for the intro animations on these pages
-var index = document.querySelector(".index-body, .free-pick-up-in-our-service-area");
-if(index) {
-  var gsap = document.createElement("script");
-  gsap.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js";
-  gsap.onload = animateIntro;
-  document.head.appendChild(gsap);
+var trackedPath = location.pathname + location.search;
+var trackNavigation = function() {
+  var path = location.pathname + location.search;
+  if(path === trackedPath) return;
+  trackedPath = path;
+  if(window.fbq) window.fbq("track", "PageView");
+  if(window.uetq && window.uetq.push) window.uetq.push("pageLoad");
 }
-(function() {
+
+var initReveal = function() {
   var items = document.querySelectorAll(".reveal-up, .reveal-left, .reveal-right");
   if(!items.length || !("IntersectionObserver" in window)) return;
 
@@ -151,4 +201,22 @@ if(index) {
     item.classList.add("js-reveal");
     observer.observe(item);
   });
-})();
+  onTeardown(function() {
+    observer.disconnect();
+  });
+}
+
+var init = function() {
+  introRun++;
+  runTeardowns();
+  initNav();
+  initReveal();
+  cache();
+  if(document.querySelector(".index-body, .free-pick-up-in-our-service-area")) startIntro();
+}
+
+init();
+document.addEventListener("astro:page-load", function() {
+  init();
+  trackNavigation();
+});

@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import Head from '../components/Head.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -30,6 +31,7 @@ if (/(invite|recovery|confirmation|email_change)_token=/.test(window.location.ha
 <!doctype html>
 <html lang="en">
   <Head page={page} layoutDescription={layoutDescription} />
+  <ClientRouter />
   <body class={`${page.slug ?? ''}-body`}>
     <a class="skip-link" href="#main">Skip to main content</a>
     <Header />
@@ -39,4 +41,18 @@ if (/(invite|recovery|confirmation|email_change)_token=/.test(window.location.ha
     <Footer />
     <script is:inline set:html={identityScript} />
   </body>
+  <style is:global>
+    /* Page-to-page fade. Reduced motion gets a near-zero duration so swaps still complete. */
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation-duration: 0.35s;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      ::view-transition-old(root),
+      ::view-transition-new(root),
+      [data-astro-transition-fallback] {
+        animation-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </html>
