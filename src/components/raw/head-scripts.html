@@ -41,7 +41,7 @@
       var hide = d.createElement('style');
       hide.textContent = 'html.fonts-pending body{visibility:hidden}';
       d.head.appendChild(hide);
-      function reveal() { if (revealed) return; revealed = true; root.classList.remove('fonts-pending'); }
+      function reveal() { if (revealed) return; revealed = true; root.classList.remove('fonts-pending'); root.classList.add('page-enter'); }
       setTimeout(reveal, 3000);
       function waitForFonts() {
         if (!d.body) return d.addEventListener('DOMContentLoaded', waitForFonts);
