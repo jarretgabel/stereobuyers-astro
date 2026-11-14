@@ -29,11 +29,34 @@ var initNav = function() {
     }
   };
 
+  // Slide the menu away first, then let the page transition run
+  var onNavClick = function(event) {
+    var link = event.target.closest && event.target.closest("a[href]");
+    if(!link || link.dataset.navLeaving) return;
+    if(event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button) return;
+    if(link.target && link.target !== "_self") return;
+    if(!header.classList.contains("nav-open")) return;
+    event.preventDefault();
+    event.stopPropagation();
+    header.classList.add("nav-closing");
+    setOpen(false);
+    var delay = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 280;
+    setTimeout(function() {
+      header.classList.remove("nav-closing");
+      link.dataset.navLeaving = "true";
+      link.click();
+      delete link.dataset.navLeaving;
+    }, delay);
+  };
+  var navList = header.querySelector(".nav-list");
+
   toggle.addEventListener("click", onToggle);
   document.addEventListener("keydown", onKeydown);
+  if(navList) navList.addEventListener("click", onNavClick);
   onTeardown(function() {
     toggle.removeEventListener("click", onToggle);
     document.removeEventListener("keydown", onKeydown);
+    if(navList) navList.removeEventListener("click", onNavClick);
   });
 }
 
