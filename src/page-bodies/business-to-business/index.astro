@@ -18,7 +18,7 @@ ${faq.map((f) => `    { "@type": "Question", "name": ${JSON.stringify(f.q)}, "ac
 
 {page.groups.map((g: any) => (
 <section class='container narrow margin-center b2b-section'>
-  <h2 class="sb-title">{g.heading}</h2>
+  <h2 class="sb-heading">{g.heading}</h2>
   {g.intro && <p class="text-align-center">{g.intro}</p>}
   <ul class="b2b-cards">
     {g.cards.map((c: any) => (
@@ -32,7 +32,7 @@ ${faq.map((f) => `    { "@type": "Question", "name": ${JSON.stringify(f.q)}, "ac
 ))}
 
 <section class='brand-faq container xxnarrow margin-center autospacing-next'>
-  <h2 class="sb-title">{page.faqHeading}</h2>
+  <h2 class="sb-heading">{page.faqHeading}</h2>
   <dl>
     {faq.map((f) => (<><dt>{f.q}</dt><dd>{f.a}</dd></>))}
   </dl>
