@@ -1,0 +1,10 @@
+---
+// Renders CMS-edited markdown. With `sections`, each `---`-separated chunk becomes its own element.
+import { renderMd, splitSections } from '../lib/markdown';
+
+interface Props { text: unknown; sections?: boolean; class?: string; tag?: 'section' | 'div' }
+const { text, sections = false, class: cls, tag: Tag = 'section' } = Astro.props;
+---
+{sections
+  ? splitSections(text).map((chunk) => <Tag class={cls} set:html={renderMd(chunk)} />)
+  : <Fragment set:html={renderMd(text)} />}

@@ -13,7 +13,7 @@ const { page } = Astro.props;
     <li class='home-post leadspace homepage'>
       <div class="container text-align-center half-autospacing flex-vcenter">
         <h1 class="title" set:html={page.subtitle} />
-        <p class="copy xnarrow margin-center" set:html={page.body} />
+        <p class="copy xnarrow margin-center" set:html={page.lead} />
 
         <div class='actions margin-top-4'>
           <a class='button' href='/get-a-quote/'>

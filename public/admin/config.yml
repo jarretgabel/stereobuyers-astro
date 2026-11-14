@@ -120,6 +120,754 @@ collections:
         widget: hidden
         default: history
   - divider: true
+  - name: pages
+    label: Pages
+    files:
+      - name: home
+        label: Home page
+        file: src/content/pages/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: heading
+            label: Main heading
+            required: false
+          - name: description
+            label: Search result description
+            required: false
+            widget: text
+          - name: seo_title
+            label: Search result title (SEO)
+            required: false
+          - name: title
+            label: Page title
+            required: false
+          - name: layout
+            widget: hidden
+          - name: slug
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+          - name: snippet
+            widget: hidden
+      - name: about
+        label: About us
+        file: src/content/pages/about/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: intro
+            label: Introduction
+            widget: markdown
+            required: false
+            hint: "Use ### for a heading."
+            editor_components: []
+          - name: story
+            label: Our story
+            widget: markdown
+            required: false
+            hint: "Use ### for a heading."
+            editor_components: []
+          - name: title
+            label: Page title
+            required: false
+          - name: description
+            label: Search result description
+            required: false
+            widget: text
+          - name: layout
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: position
+            widget: hidden
+          - name: navTitle
+            widget: hidden
+          - name: navOrder
+            widget: hidden
+          - name: page_class
+            widget: hidden
+      - name: get-a-quote
+        label: Get a quote
+        file: src/content/pages/get-a-quote/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: intro
+            label: Text above the form
+            widget: markdown
+            required: false
+            hint: "Use ### for a heading."
+            editor_components: []
+          - &a1
+            name: seo_title
+            label: Search result title (SEO)
+            required: false
+          - &a2
+            name: seo_description
+            label: Search result description (SEO)
+            required: false
+            widget: text
+          - name: layout
+            widget: hidden
+          - name: title
+            widget: hidden
+          - name: slug
+            widget: hidden
+          - name: description
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: page_class
+            widget: hidden
+      - name: how-it-works
+        label: How to sell
+        file: src/content/pages/how-to-sell-your-high-end-audio-equipment-and-components-with-StereoBuyers/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: intro
+            label: Introduction
+            widget: markdown
+            required: false
+            editor_components: []
+          - name: outro
+            label: Closing text
+            widget: markdown
+            required: false
+            editor_components: []
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: title
+            widget: hidden
+          - name: description
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+          - name: navTitle
+            widget: hidden
+          - name: navOrder
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: page_class
+            widget: hidden
+          - name: snippet
+            widget: hidden
+      - name: privacy
+        label: Privacy policy
+        file: src/content/pages/privacy-policy/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: content
+            label: Policy text
+            widget: markdown
+            required: false
+            hint: "Use ##### for each heading. A horizontal line (---) starts a new section."
+            editor_components: []
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: title
+            widget: hidden
+          - name: slug
+            widget: hidden
+          - name: description
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: page_class
+            widget: hidden
+      - name: terms
+        label: Terms and conditions
+        file: src/content/pages/terms-and-conditions/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: content
+            label: Terms text
+            widget: markdown
+            required: false
+            hint: "Use ##### for each heading. A horizontal line (---) starts a new section."
+            editor_components: []
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: title
+            widget: hidden
+          - name: description
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: page_class
+            widget: hidden
+  - name: landing-pages
+    label: Brand landing pages
+    files:
+      - name: landing-audio-research
+        label: "Landing page: Audio Research"
+        file: src/content/pages/audio-research/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: subtitle
+            label: Headline
+            required: false
+            hint: 'Wrap the highlighted word like this: <span class="turq">krell</span>'
+          - name: lead
+            label: Intro text
+            required: false
+            widget: text
+          - name: title
+            label: Page title
+            required: false
+          - name: description
+            label: Search result description
+            required: false
+            widget: text
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: slug
+            widget: hidden
+          - name: cta
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+      - name: landing-bw-loudspeakers
+        label: "Landing page: Bw Loudspeakers"
+        file: src/content/pages/bw-loudspeakers/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: subtitle
+            label: Headline
+            required: false
+            hint: 'Wrap the highlighted word like this: <span class="turq">krell</span>'
+          - name: lead
+            label: Intro text
+            required: false
+            widget: text
+          - name: title
+            label: Page title
+            required: false
+          - name: description
+            label: Search result description
+            required: false
+            widget: text
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: slug
+            widget: hidden
+          - name: cta
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+      - name: landing-conrad-johnson
+        label: "Landing page: Conrad Johnson"
+        file: src/content/pages/conrad-johnson/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: subtitle
+            label: Headline
+            required: false
+            hint: 'Wrap the highlighted word like this: <span class="turq">krell</span>'
+          - name: lead
+            label: Intro text
+            required: false
+            widget: text
+          - name: title
+            label: Page title
+            required: false
+          - name: description
+            label: Search result description
+            required: false
+            widget: text
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: slug
+            widget: hidden
+          - name: cta
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+      - name: landing-garrard-301-401-turntables
+        label: "Landing page: Garrard 301 401 Turntables"
+        file: src/content/pages/garrard-301-401-turntables/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: subtitle
+            label: Headline
+            required: false
+            hint: 'Wrap the highlighted word like this: <span class="turq">krell</span>'
+          - name: lead
+            label: Intro text
+            required: false
+            widget: text
+          - name: title
+            label: Page title
+            required: false
+          - name: description
+            label: Search result description
+            required: false
+            widget: text
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: slug
+            widget: hidden
+          - name: cta
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+      - name: landing-garrard-turntables
+        label: "Landing page: Garrard Turntables"
+        file: src/content/pages/garrard-turntables/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: subtitle
+            label: Headline
+            required: false
+            hint: 'Wrap the highlighted word like this: <span class="turq">krell</span>'
+          - name: lead
+            label: Intro text
+            required: false
+            widget: text
+          - name: title
+            label: Page title
+            required: false
+          - name: description
+            label: Search result description
+            required: false
+            widget: text
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: slug
+            widget: hidden
+          - name: cta
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+      - name: landing-krell
+        label: "Landing page: Krell"
+        file: src/content/pages/krell/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: subtitle
+            label: Headline
+            required: false
+            hint: 'Wrap the highlighted word like this: <span class="turq">krell</span>'
+          - name: lead
+            label: Intro text
+            required: false
+            widget: text
+          - name: title
+            label: Page title
+            required: false
+          - name: description
+            label: Search result description
+            required: false
+            widget: text
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: slug
+            widget: hidden
+          - name: cta
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+      - name: landing-mark-levinson
+        label: "Landing page: Mark Levinson"
+        file: src/content/pages/mark-levinson/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: subtitle
+            label: Headline
+            required: false
+            hint: 'Wrap the highlighted word like this: <span class="turq">krell</span>'
+          - name: lead
+            label: Intro text
+            required: false
+            widget: text
+          - name: title
+            label: Page title
+            required: false
+          - name: description
+            label: Search result description
+            required: false
+            widget: text
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: slug
+            widget: hidden
+          - name: cta
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+      - name: landing-mcintosh
+        label: "Landing page: Mcintosh"
+        file: src/content/pages/mcintosh/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: subtitle
+            label: Headline
+            required: false
+            hint: 'Wrap the highlighted word like this: <span class="turq">krell</span>'
+          - name: lead
+            label: Intro text
+            required: false
+            widget: text
+          - name: title
+            label: Page title
+            required: false
+          - name: description
+            label: Search result description
+            required: false
+            widget: text
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: slug
+            widget: hidden
+          - name: cta
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+      - name: landing-nakamichi
+        label: "Landing page: Nakamichi"
+        file: src/content/pages/nakamichi/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: subtitle
+            label: Headline
+            required: false
+            hint: 'Wrap the highlighted word like this: <span class="turq">krell</span>'
+          - name: lead
+            label: Intro text
+            required: false
+            widget: text
+          - name: title
+            label: Page title
+            required: false
+          - name: description
+            label: Search result description
+            required: false
+            widget: text
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: slug
+            widget: hidden
+          - name: cta
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+      - name: landing-shindo-labs
+        label: "Landing page: Shindo Labs"
+        file: src/content/pages/shindo-labs/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: subtitle
+            label: Headline
+            required: false
+            hint: 'Wrap the highlighted word like this: <span class="turq">krell</span>'
+          - name: lead
+            label: Intro text
+            required: false
+            widget: text
+          - name: title
+            label: Page title
+            required: false
+          - name: description
+            label: Search result description
+            required: false
+            widget: text
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: slug
+            widget: hidden
+          - name: cta
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+      - name: landing-vintage-altec-speakers
+        label: "Landing page: Vintage Altec Speakers"
+        file: src/content/pages/vintage-altec-speakers/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: subtitle
+            label: Headline
+            required: false
+            hint: 'Wrap the highlighted word like this: <span class="turq">krell</span>'
+          - name: lead
+            label: Intro text
+            required: false
+            widget: text
+          - name: title
+            label: Page title
+            required: false
+          - name: description
+            label: Search result description
+            required: false
+            widget: text
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: slug
+            widget: hidden
+          - name: cta
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+      - name: landing-vintage-jbl-speakers
+        label: "Landing page: Vintage Jbl Speakers"
+        file: src/content/pages/vintage-jbl-speakers/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: subtitle
+            label: Headline
+            required: false
+            hint: 'Wrap the highlighted word like this: <span class="turq">krell</span>'
+          - name: lead
+            label: Intro text
+            required: false
+            widget: text
+          - name: title
+            label: Page title
+            required: false
+          - name: description
+            label: Search result description
+            required: false
+            widget: text
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: slug
+            widget: hidden
+          - name: cta
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+      - name: landing-vintage-marantz
+        label: "Landing page: Vintage Marantz"
+        file: src/content/pages/vintage-marantz/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: subtitle
+            label: Headline
+            required: false
+            hint: 'Wrap the highlighted word like this: <span class="turq">krell</span>'
+          - name: lead
+            label: Intro text
+            required: false
+            widget: text
+          - name: title
+            label: Page title
+            required: false
+          - name: description
+            label: Search result description
+            required: false
+            widget: text
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: slug
+            widget: hidden
+          - name: cta
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+      - name: landing-wadia
+        label: "Landing page: Wadia"
+        file: src/content/pages/wadia/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: subtitle
+            label: Headline
+            required: false
+            hint: 'Wrap the highlighted word like this: <span class="turq">krell</span>'
+          - name: lead
+            label: Intro text
+            required: false
+            widget: text
+          - name: title
+            label: Page title
+            required: false
+          - name: description
+            label: Search result description
+            required: false
+            widget: text
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: slug
+            widget: hidden
+          - name: cta
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+      - name: landing-western-electric
+        label: "Landing page: Western Electric"
+        file: src/content/pages/western-electric/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: subtitle
+            label: Headline
+            required: false
+            hint: 'Wrap the highlighted word like this: <span class="turq">krell</span>'
+          - name: lead
+            label: Intro text
+            required: false
+            widget: text
+          - name: title
+            label: Page title
+            required: false
+          - name: description
+            label: Search result description
+            required: false
+            widget: text
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: slug
+            widget: hidden
+          - name: cta
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+      - name: landing-wilson-audio-loudspeakers
+        label: "Landing page: Wilson Audio Loudspeakers"
+        file: src/content/pages/wilson-audio-loudspeakers/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: subtitle
+            label: Headline
+            required: false
+            hint: 'Wrap the highlighted word like this: <span class="turq">krell</span>'
+          - name: lead
+            label: Intro text
+            required: false
+            widget: text
+          - name: title
+            label: Page title
+            required: false
+          - name: description
+            label: Search result description
+            required: false
+            widget: text
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: slug
+            widget: hidden
+          - name: cta
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+  - divider: true
   - name: products-accuphase
     label: Accuphase
     label_singular: product

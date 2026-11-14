@@ -16,10 +16,12 @@ Content is edited at **`/admin/`** on the site (for example `https://www.stereob
 | Blog posts | Title, date, image, text |
 | Service areas | Area pages (Denver, NYC, …) |
 | Brand histories | The history text shown on brand pages |
+| Pages | Home, About us, Get a quote, How to sell, Privacy policy, Terms |
+| Brand landing pages | The headline and intro on pages such as /krell/ |
 | Each brand (Krell, McIntosh, …) | Products: name, type, image, description, specifications, SEO title and description |
 | FAQ & press | Questions and answers, press articles |
 
-Page layout and the text of fixed pages (About, Home, Get a Quote, …) are not editable here yet; ask a developer.
+Page layout, and the text of the Contact, Business to Business, Why Use StereoBuyers and Buying Hi-Fi pages, are not editable here yet; ask a developer. In the Pages text boxes, `###` makes a heading, and a line with `---` starts a new section on the Privacy and Terms pages.
 
 ## Making a change
 1. Pick a section on the left, then an entry (or **New …** to add one).

@@ -85,6 +85,56 @@ const preserve = (folder, fields) => {
   return [...fields, ...[...keys].sort().filter((k) => !GENERATED.has(k) && !named.has(k)).map((k) => hidden(k))];
 };
 
+// Standalone pages: front matter fields only (the body text lives in front matter fields, never in the Markdown body).
+const seoFields = [
+  str('seo_title', 'Search result title (SEO)'),
+  str('seo_description', 'Search result description (SEO)', { widget: 'text' }),
+];
+const pageFile = (name, label, rel, fields) => {
+  const named = new Set(fields.map((f) => f.name));
+  const keys = Object.keys(read(`${CONTENT}/${rel}`));
+  return {
+    name, label, file: `${CONTENT}/${rel}`, format: 'yaml-frontmatter',
+    fields: [...fields, ...keys.filter((k) => !GENERATED.has(k) && !named.has(k)).map((k) => hidden(k))],
+  };
+};
+const mdField = (name, label, hint) => ({ name, label, widget: 'markdown', required: false, ...(hint ? { hint } : {}), editor_components: [] });
+const textPages = [
+  pageFile('home', 'Home page', 'index.md', [
+    str('heading', 'Main heading'),
+    str('description', 'Search result description', { widget: 'text' }),
+    str('seo_title', 'Search result title (SEO)'),
+    str('title', 'Page title'),
+  ]),
+  pageFile('about', 'About us', 'about/index.md', [
+    mdField('intro', 'Introduction', 'Use ### for a heading.'),
+    mdField('story', 'Our story', 'Use ### for a heading.'),
+    str('title', 'Page title'), str('description', 'Search result description', { widget: 'text' }),
+  ]),
+  pageFile('get-a-quote', 'Get a quote', 'get-a-quote/index.md', [
+    mdField('intro', 'Text above the form', 'Use ### for a heading.'),
+    ...seoFields,
+  ]),
+  pageFile('how-it-works', 'How to sell', 'how-to-sell-your-high-end-audio-equipment-and-components-with-StereoBuyers/index.md', [
+    mdField('intro', 'Introduction'), mdField('outro', 'Closing text'), ...seoFields,
+  ]),
+  pageFile('privacy', 'Privacy policy', 'privacy-policy/index.md', [
+    mdField('content', 'Policy text', 'Use ##### for each heading. A horizontal line (---) starts a new section.'), ...seoFields,
+  ]),
+  pageFile('terms', 'Terms and conditions', 'terms-and-conditions/index.md', [
+    mdField('content', 'Terms text', 'Use ##### for each heading. A horizontal line (---) starts a new section.'), ...seoFields,
+  ]),
+];
+const landingPages = fs.readdirSync(CONTENT, { withFileTypes: true })
+  .filter((e) => e.isDirectory() && fs.existsSync(`${CONTENT}/${e.name}/index.md`) && read(`${CONTENT}/${e.name}/index.md`).lead)
+  .map((e) => pageFile(`landing-${e.name}`, `Landing page: ${titleCase(e.name)}`, `${e.name}/index.md`, [
+    str('subtitle', 'Headline', { hint: 'Wrap the highlighted word like this: <span class="turq">krell</span>' }),
+    str('lead', 'Intro text', { widget: 'text' }),
+    str('title', 'Page title'),
+    str('description', 'Search result description', { widget: 'text' }),
+    ...seoFields,
+  ]));
+
 const collections = [
   {
     name: 'blog',
@@ -138,6 +188,9 @@ const collections = [
       hidden('type', 'history'),
     ]),
   },
+  { divider: true },
+  { name: 'pages', label: 'Pages', files: textPages },
+  { name: 'landing-pages', label: 'Brand landing pages', files: landingPages },
   { divider: true },
   ...productCollections,
   { divider: true },
