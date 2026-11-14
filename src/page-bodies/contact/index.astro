@@ -1,11 +1,7 @@
 ---
 import QuickFacts from '../../components/QuickFacts.astro';
-const faq = [
-  { q: "How do I sell my high-end audio equipment to StereoBuyers?", a: "Fill out our free quote form and tell us what you have. We will get back to you with an offer. If we agree on terms, we pick it up and pay you on the spot." },
-  { q: "How can I reach StereoBuyers?", a: "Call (718) 260-8948 or email info@stereobuyers.com. StereoBuyers is based in Brooklyn, NY." },
-  { q: "How quickly will I hear back?", a: "We reply to quote requests within 24 to 48 hours." },
-  { q: "Where does StereoBuyers pick up equipment?", a: "We pick up in the NYC Tri-State Area (New York, New Jersey and Connecticut), Palm Beach Florida, and select locations in Colorado including Denver, Boulder and the Front Range. Outside those areas we can send pre-paid shipping labels." },
-];
+const { page } = Astro.props;
+const faq: { q: string; a: string }[] = page.faq ?? [];
 const jsonLd = `{
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -15,52 +11,32 @@ ${faq.map((f) => `    { "@type": "Question", "name": ${JSON.stringify(f.q)}, "ac
 }`;
 ---
 <section class='container narrow margin-center'>
-  <p class="b2b-intro">Questions about selling your high-end audio or home theater equipment? Reach us by phone or email, or skip straight to a free quote. We reply to quote requests within 24 to 48 hours.</p>
+  <p class="b2b-intro">{page.intro}</p>
   <ul class="contact-cards">
+    {page.cards.map((c: any) => (
     <li>
-      <h2 class="as-h4">Get a free quote</h2>
-      <p>The fastest way to an offer. Tell us what you have and we will get back to you.</p>
-      <a class="button" href="/get-a-quote/">Get a quote</a>
+      <h2 class="as-h4">{c.title}</h2>
+      <p>{c.text}</p>
+      <a class="button" href={c.url}>{c.button}</a>
     </li>
-    <li>
-      <h2 class="as-h4">Call us</h2>
-      <p>Talk to a person about your equipment or the selling process.</p>
-      <a class="button" href="tel:+17182608948">(718) 260-8948</a>
-    </li>
-    <li>
-      <h2 class="as-h4">Email us</h2>
-      <p>Send photos, model numbers or any questions.</p>
-      <a class="button" href="mailto:info@stereobuyers.com">info@stereobuyers.com</a>
-    </li>
+    ))}
   </ul>
-  <p class="text-align-center contact-meta">StereoBuyers is based in Brooklyn, NY and is open during business hours. We pick up in the NYC Tri-State Area, Palm Beach Florida, and Denver, Boulder and the Front Range in Colorado.</p>
+  <p class="text-align-center contact-meta">{page.meta}</p>
 </section>
 
 <section class='container narrow margin-center margin-top-4'>
-  <h2 class="text-align-center as-h3">Looking for something else?</h2>
+  <h2 class="text-align-center as-h3">{page.linksHeading}</h2>
   <ul class="contact-links">
-    <li><a href="/how-to-sell-your-high-end-audio-equipment-and-components-with-StereoBuyers/"><strong>How selling works</strong><span>See the process from quote to payment.</span></a></li>
-    <li><a href="/stereo-equipment-and-components-we-buy/"><strong>Brands we buy</strong><span>Check whether we buy your brand.</span></a></li>
-    <li><a href="/service-area/"><strong>Service area</strong><span>See where we pick up.</span></a></li>
-    <li><a href="/business-to-business/"><strong>Business inquiries</strong><span>Trade-ins, estates and liquidations.</span></a></li>
+    {page.links.map((l: any) => (
+    <li><a href={l.url}><strong>{l.title}</strong><span>{l.text}</span></a></li>
+    ))}
   </ul>
 </section>
 
-
-
-
-
-
-
-
-
 <section class='brand-faq container xxnarrow margin-center autospacing-next'>
-  <h2 class="text-align-center as-h4">Contact questions, answered</h2>
+  <h2 class="text-align-center as-h4">{page.faqHeading}</h2>
   <dl>
-    <dt>{faq[0].q}</dt><dd>{faq[0].a}</dd>
-    <dt>{faq[1].q}</dt><dd>{faq[1].a}</dd>
-    <dt>{faq[2].q}</dt><dd>{faq[2].a}</dd>
-    <dt>{faq[3].q}</dt><dd>{faq[3].a}</dd>
+    {faq.map((f) => (<><dt>{f.q}</dt><dd>{f.a}</dd></>))}
   </dl>
 </section>
 <script type="application/ld+json" set:html={jsonLd} />

@@ -264,6 +264,332 @@ collections:
             widget: hidden
           - name: snippet
             widget: hidden
+      - name: contact
+        label: Contact
+        file: src/content/pages/contact/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: intro
+            label: Introduction
+            required: false
+            widget: text
+          - name: cards
+            label: Contact options
+            widget: list
+            required: false
+            label_singular: option
+            summary: "{{fields.title}}"
+            fields:
+              - name: title
+                label: Title
+              - name: text
+                label: Text
+                widget: text
+              - name: button
+                label: Button text
+              - name: url
+                label: Button link
+                hint: A page, tel:+1..., or mailto:...
+          - name: meta
+            label: Note under the options
+            required: false
+            widget: text
+          - name: linksHeading
+            label: Links heading
+            required: false
+          - name: links
+            label: Links
+            widget: list
+            required: false
+            label_singular: link
+            summary: "{{fields.title}}"
+            fields:
+              - name: title
+                label: Title
+              - name: text
+                label: Text
+              - name: url
+                label: Link
+          - name: faqHeading
+            label: Questions heading
+            required: false
+          - name: faq
+            label: Questions and answers
+            widget: list
+            required: false
+            label_singular: question
+            summary: "{{fields.q}}"
+            hint: These also feed the search-engine FAQ markup for this page.
+            fields:
+              - name: q
+                label: Question
+              - name: a
+                label: Answer
+                widget: text
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: title
+            widget: hidden
+          - name: slug
+            widget: hidden
+          - name: description
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: position
+            widget: hidden
+          - name: navTitle
+            widget: hidden
+          - name: navOrder
+            widget: hidden
+          - name: page_class
+            widget: hidden
+          - name: mainNav
+            widget: hidden
+      - name: business-to-business
+        label: Business to business
+        file: src/content/pages/business-to-business/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: intro
+            label: Introduction
+            required: false
+            widget: text
+            hint: "Links: [link text](/contact/)"
+          - name: groups
+            label: Sections
+            widget: list
+            required: false
+            label_singular: section
+            summary: "{{fields.heading}}"
+            fields:
+              - name: heading
+                label: Heading
+              - name: intro
+                label: Intro text
+                required: false
+                widget: text
+              - name: cards
+                label: Cards
+                widget: list
+                required: false
+                label_singular: card
+                summary: "{{fields.title}}"
+                fields:
+                  - name: title
+                    label: Title
+                  - name: text
+                    label: Text
+                    widget: text
+          - name: faqHeading
+            label: Questions heading
+            required: false
+          - name: faq
+            label: Questions and answers
+            widget: list
+            required: false
+            label_singular: question
+            summary: "{{fields.q}}"
+            hint: These also feed the search-engine FAQ markup for this page.
+            fields:
+              - name: q
+                label: Question
+              - name: a
+                label: Answer
+                widget: text
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: title
+            widget: hidden
+          - name: description
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: navTitle
+            widget: hidden
+          - name: page_class
+            widget: hidden
+          - name: navOrder
+            widget: hidden
+      - name: why-use
+        label: Why use StereoBuyers
+        file: src/content/pages/why-use-stereobuyers-to-sell-your-preowned-stereo-equipment/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: intro
+            label: Introduction
+            required: false
+            widget: text
+          - name: heading
+            label: Heading
+            required: false
+          - name: cards
+            label: Reasons
+            widget: list
+            required: false
+            label_singular: reason
+            summary: "{{fields.title}}"
+            fields:
+              - name: title
+                label: Title
+              - name: text
+                label: Text
+                widget: text
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: title
+            widget: hidden
+          - name: description
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+          - name: navTitle
+            widget: hidden
+          - name: navOrder
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: page_class
+            widget: hidden
+      - name: buying-hifi
+        label: Buying hi-fi from us
+        file: src/content/pages/buying-hifi-from-us/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: intro
+            label: Text
+            widget: markdown
+            required: false
+            editor_components: []
+          - name: companies
+            label: Companies
+            widget: list
+            required: false
+            label_singular: company
+            summary: "{{fields.name}}"
+            fields:
+              - name: name
+                label: Name
+              - name: text
+                label: Description
+                widget: text
+              - name: url
+                label: Website
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: title
+            widget: hidden
+          - name: description
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: navTitle
+            widget: hidden
+          - name: navOrder
+            widget: hidden
+          - name: page_class
+            widget: hidden
+      - name: brands-we-buy
+        label: Brands we buy (page text)
+        file: src/content/pages/stereo-equipment-and-components-we-buy/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: intro
+            label: Introduction and questions
+            widget: markdown
+            required: false
+            hint: "Use ### for a heading."
+            editor_components: []
+          - name: topBrands
+            label: Brands we buy most often
+            widget: list
+            required: false
+            label_singular: brand
+            summary: "{{fields.name}}"
+            fields:
+              - name: name
+                label: Name
+              - name: url
+                label: Link
+          - name: brandsIntro
+            label: Text above the A–Z list
+            widget: markdown
+            required: false
+            hint: "Use ### for a heading."
+            editor_components: []
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: title
+            widget: hidden
+          - name: description
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+          - name: navTitle
+            widget: hidden
+          - name: navOrder
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: page_class
+            widget: hidden
+      - name: brands-we-dont-buy
+        label: Brands we do not buy (page text)
+        file: src/content/pages/stereo-equipment-we-do-not-buy/index.md
+        format: yaml-frontmatter
+        fields:
+          - name: intro
+            label: Text above the list
+            widget: markdown
+            required: false
+            hint: "Use ### for a heading."
+            editor_components: []
+          - *a1
+          - *a2
+          - name: layout
+            widget: hidden
+          - name: title
+            widget: hidden
+          - name: description
+            widget: hidden
+          - name: fb_image
+            widget: hidden
+          - name: tw_image
+            widget: hidden
+          - name: permalink
+            widget: hidden
+          - name: page_class
+            widget: hidden
+          - name: navTitle
+            widget: hidden
+          - name: navOrder
+            widget: hidden
       - name: privacy
         label: Privacy policy
         file: src/content/pages/privacy-policy/index.md
@@ -2407,7 +2733,7 @@ collections:
         widget: hidden
   - divider: true
   - name: site-content
-    label: FAQ & press
+    label: FAQ, brand lists & press
     files:
       - name: faq
         label: FAQ
@@ -2436,6 +2762,23 @@ collections:
                   - name: a
                     label: Answer
                     widget: text
+      - name: brands
+        label: Brand lists
+        file: src/data/equipment.json
+        fields:
+          - name: brands
+            label: Brands we buy (A–Z list)
+            widget: list
+            field:
+              name: brand
+              label: Brand
+            hint: Brands that have their own page are linked automatically.
+          - name: brands_dont_buy
+            label: Brands we do not buy
+            widget: list
+            field:
+              name: brand
+              label: Brand
       - name: press
         label: Press articles
         file: src/data/press.json

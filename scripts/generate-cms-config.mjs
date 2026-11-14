@@ -99,6 +99,15 @@ const pageFile = (name, label, rel, fields) => {
   };
 };
 const mdField = (name, label, hint) => ({ name, label, widget: 'markdown', required: false, ...(hint ? { hint } : {}), editor_components: [] });
+const cardList = (name, label, singular) => ({
+  name, label, widget: 'list', required: false, label_singular: singular, summary: '{{fields.title}}',
+  fields: [{ name: 'title', label: 'Title' }, { name: 'text', label: 'Text', widget: 'text' }],
+});
+const faqList = (hint) => ({
+  name: 'faq', label: 'Questions and answers', widget: 'list', required: false, label_singular: 'question', summary: '{{fields.q}}', hint,
+  fields: [{ name: 'q', label: 'Question' }, { name: 'a', label: 'Answer', widget: 'text' }],
+});
+const faqNote = 'These also feed the search-engine FAQ markup for this page.';
 const textPages = [
   pageFile('home', 'Home page', 'index.md', [
     str('heading', 'Main heading'),
@@ -117,6 +126,66 @@ const textPages = [
   ]),
   pageFile('how-it-works', 'How to sell', 'how-to-sell-your-high-end-audio-equipment-and-components-with-StereoBuyers/index.md', [
     mdField('intro', 'Introduction'), mdField('outro', 'Closing text'), ...seoFields,
+  ]),
+  pageFile('contact', 'Contact', 'contact/index.md', [
+    str('intro', 'Introduction', { widget: 'text' }),
+    {
+      name: 'cards', label: 'Contact options', widget: 'list', required: false, label_singular: 'option', summary: '{{fields.title}}',
+      fields: [
+        { name: 'title', label: 'Title' }, { name: 'text', label: 'Text', widget: 'text' },
+        { name: 'button', label: 'Button text' }, { name: 'url', label: 'Button link', hint: 'A page, tel:+1..., or mailto:...' },
+      ],
+    },
+    str('meta', 'Note under the options', { widget: 'text' }),
+    str('linksHeading', 'Links heading'),
+    {
+      name: 'links', label: 'Links', widget: 'list', required: false, label_singular: 'link', summary: '{{fields.title}}',
+      fields: [{ name: 'title', label: 'Title' }, { name: 'text', label: 'Text' }, { name: 'url', label: 'Link' }],
+    },
+    str('faqHeading', 'Questions heading'),
+    faqList(faqNote),
+    ...seoFields,
+  ]),
+  pageFile('business-to-business', 'Business to business', 'business-to-business/index.md', [
+    str('intro', 'Introduction', { widget: 'text', hint: 'Links: [link text](/contact/)' }),
+    {
+      name: 'groups', label: 'Sections', widget: 'list', required: false, label_singular: 'section', summary: '{{fields.heading}}',
+      fields: [
+        { name: 'heading', label: 'Heading' },
+        str('intro', 'Intro text', { widget: 'text' }),
+        cardList('cards', 'Cards', 'card'),
+      ],
+    },
+    str('faqHeading', 'Questions heading'),
+    faqList(faqNote),
+    ...seoFields,
+  ]),
+  pageFile('why-use', 'Why use StereoBuyers', 'why-use-stereobuyers-to-sell-your-preowned-stereo-equipment/index.md', [
+    str('intro', 'Introduction', { widget: 'text' }),
+    str('heading', 'Heading'),
+    cardList('cards', 'Reasons', 'reason'),
+    ...seoFields,
+  ]),
+  pageFile('buying-hifi', 'Buying hi-fi from us', 'buying-hifi-from-us/index.md', [
+    mdField('intro', 'Text'),
+    {
+      name: 'companies', label: 'Companies', widget: 'list', required: false, label_singular: 'company', summary: '{{fields.name}}',
+      fields: [{ name: 'name', label: 'Name' }, { name: 'text', label: 'Description', widget: 'text' }, { name: 'url', label: 'Website' }],
+    },
+    ...seoFields,
+  ]),
+  pageFile('brands-we-buy', 'Brands we buy (page text)', 'stereo-equipment-and-components-we-buy/index.md', [
+    mdField('intro', 'Introduction and questions', 'Use ### for a heading.'),
+    {
+      name: 'topBrands', label: 'Brands we buy most often', widget: 'list', required: false, label_singular: 'brand', summary: '{{fields.name}}',
+      fields: [{ name: 'name', label: 'Name' }, { name: 'url', label: 'Link' }],
+    },
+    mdField('brandsIntro', 'Text above the A–Z list', 'Use ### for a heading.'),
+    ...seoFields,
+  ]),
+  pageFile('brands-we-dont-buy', 'Brands we do not buy (page text)', 'stereo-equipment-we-do-not-buy/index.md', [
+    mdField('intro', 'Text above the list', 'Use ### for a heading.'),
+    ...seoFields,
   ]),
   pageFile('privacy', 'Privacy policy', 'privacy-policy/index.md', [
     mdField('content', 'Policy text', 'Use ##### for each heading. A horizontal line (---) starts a new section.'), ...seoFields,
@@ -196,7 +265,7 @@ const collections = [
   { divider: true },
   {
     name: 'site-content',
-    label: 'FAQ & press',
+    label: 'FAQ, brand lists & press',
     files: [
       {
         name: 'faq',
@@ -213,6 +282,15 @@ const collections = [
             },
           ],
         }],
+      },
+      {
+        name: 'brands',
+        label: 'Brand lists',
+        file: 'src/data/equipment.json',
+        fields: [
+          { name: 'brands', label: 'Brands we buy (A–Z list)', widget: 'list', field: { name: 'brand', label: 'Brand' }, hint: 'Brands that have their own page are linked automatically.' },
+          { name: 'brands_dont_buy', label: 'Brands we do not buy', widget: 'list', field: { name: 'brand', label: 'Brand' } },
+        ],
       },
       {
         name: 'press',

@@ -12,3 +12,6 @@ export function renderMd(text: unknown): string {
 /** Splits text on horizontal rules into independent chunks (one page section each). */
 export const splitSections = (text: unknown) =>
   String(text ?? '').split(/^\s*---\s*$/m).map((s) => s.trim()).filter(Boolean);
+
+/** Like renderMd but for a single line of text (no wrapping paragraph). */
+export const renderInline = (text: unknown) => marked.parseInline(String(text ?? ''), { breaks: true, gfm: false, async: false }) as string;
