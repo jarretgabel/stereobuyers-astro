@@ -40,12 +40,12 @@ test('file pages and assets pass through', async () => {
 test('extension-less directory URL redirects to trailing slash', async () => {
   const r = await run('/about');
   assert.equal(r.statusCode, 301);
-  assert.equal(loc(r), 'https://www.stereobuyers.com/about/');
+  assert.equal(loc(r), '/about/');
 });
 
 test('extension-less file URL redirects to .html', async () => {
   const r = await run('/stereo-equipment-and-components-we-buy/devore-fidelity/devore-fidelity-gibbon-3');
-  assert.equal(loc(r), 'https://www.stereobuyers.com/stereo-equipment-and-components-we-buy/devore-fidelity/devore-fidelity-gibbon-3.html');
+  assert.equal(loc(r), '/stereo-equipment-and-components-we-buy/devore-fidelity/devore-fidelity-gibbon-3.html');
 });
 
 test('unknown extension-less URL is passed through (origin 404)', async () => {
@@ -53,7 +53,7 @@ test('unknown extension-less URL is passed through (origin 404)', async () => {
 });
 
 test('.html URL for a directory-only page redirects to the directory', async () => {
-  assert.equal(loc(await run('/get-a-quote.html')), 'https://www.stereobuyers.com/get-a-quote/');
+  assert.equal(loc(await run('/get-a-quote.html')), '/get-a-quote/');
 });
 
 test('apex redirects to www, preserving path and query', async () => {
@@ -66,11 +66,11 @@ test('apex redirects to www, preserving path and query', async () => {
 test('legacy redirects', async () => {
   assert.equal(loc(await run('/feedback/')), 'https://g.page/r/Cc3QI0XLBTnOEAg/review');
   assert.equal(loc(await run('/feedback')), 'https://g.page/r/Cc3QI0XLBTnOEAg/review');
-  assert.equal(loc(await run('/meet-the-stereo-buyers/')), 'https://www.stereobuyers.com/about/');
-  const how = 'https://www.stereobuyers.com/how-to-sell-your-high-end-audio-equipment-and-components-with-StereoBuyers/';
+  assert.equal(loc(await run('/meet-the-stereo-buyers/')), '/about/');
+  const how = '/how-to-sell-your-high-end-audio-equipment-and-components-with-StereoBuyers/';
   assert.equal(loc(await run('/m/how-to-sell-your-high-end-audio-equipment-and-components-with-StereoBuyers/')), how);
   assert.equal(loc(await run('/mobile/how-to-sell-your-high-end-audio-equipment-and-components-with-StereoBuyers/')), how);
-  const b = 'https://www.stereobuyers.com/stereo-equipment-and-components-we-buy/devore-fidelity/';
+  const b = '/stereo-equipment-and-components-we-buy/devore-fidelity/';
   assert.equal(loc(await run('/stereo-equipment-and-components-we-buy/davore-fidelity/')), b);
   assert.equal(loc(await run('/stereo-equipment-and-components-we-buy/davore-fidelity/x.html')), b + 'x.html');
 });

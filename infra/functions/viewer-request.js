@@ -21,8 +21,8 @@ function queryString(querystring) {
   const parts = [];
   for (const k in querystring) {
     const q = querystring[k];
-    const values = q.multiValue ? q.multiValue.map((m) => m.value) : [q.value];
-    for (const v of values) parts.push(v === '' ? k : k + '=' + v);
+    const values = q.multiValue ? q.multiValue.map(function (m) { return m.value; }) : [q.value];
+    for (let i = 0; i < values.length; i++) parts.push(values[i] === '' ? k : k + '=' + values[i]);
   }
   return parts.length ? '?' + parts.join('&') : '';
 }
@@ -39,7 +39,9 @@ async function lookup(key) {
 async function resolvePath(uri) {
   const bare = uri.length > 1 && uri.endsWith('/') ? uri.slice(0, -1) : uri;
   if (EXACT[bare]) return EXACT[bare];
-  for (const [from, to] of PREFIX) {
+  for (let i = 0; i < PREFIX.length; i++) {
+    const from = PREFIX[i][0];
+    const to = PREFIX[i][1];
     if (bare === from || bare.startsWith(from + '/')) return to + uri.slice(from.length);
   }
   const last = uri.slice(uri.lastIndexOf('/') + 1);
@@ -66,7 +68,8 @@ async function handler(event) {
     return { statusCode: 301, statusDescription: 'Moved Permanently', headers: { location: { value: target } } };
   }
   if (target || host === APEX_HOST) {
-    const location = 'https://' + CANONICAL_HOST + (target || request.uri) + qs;
+    // Relative redirects keep non-production hosts (e.g. *.cloudfront.net) on their own origin.
+    const location = (host === APEX_HOST ? 'https://' + CANONICAL_HOST : '') + (target || request.uri) + qs;
     return { statusCode: 301, statusDescription: 'Moved Permanently', headers: { location: { value: location } } };
   }
   if (request.uri.endsWith('/')) request.uri += 'index.html';
