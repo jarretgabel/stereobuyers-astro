@@ -11,22 +11,6 @@ interface Props {
   layoutDescription?: string;
 }
 const { page, layoutDescription } = Astro.props;
-const identityScript = `// Netlify Identity is only needed for CMS invite/recovery links that land on any page
-if (/(invite|recovery|confirmation|email_change)_token=/.test(window.location.hash)) {
-  var identity = document.createElement("script");
-  identity.src = "https://identity.netlify.com/v1/netlify-identity-widget.js";
-  identity.onload = function() {
-    window.netlifyIdentity.on("init", function(user) {
-      if (!user) {
-        window.netlifyIdentity.on("login", function() {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-    window.netlifyIdentity.init();
-  };
-  document.head.appendChild(identity);
-}`;
 ---
 <!doctype html>
 <html lang="en">
@@ -39,7 +23,6 @@ if (/(invite|recovery|confirmation|email_change)_token=/.test(window.location.ha
       <slot><Content page={page} /></slot>
     </main>
     <Footer />
-    <script is:inline set:html={identityScript} />
   </body>
   <style is:global>
     /* Only the page content transitions: it eases out, then rises gently into place. Header, call-to-action bar and footer are identical on every page, so they stay put. */

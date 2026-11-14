@@ -70,24 +70,23 @@ var initNav = function() {
 }
 
 var introRun = 0;
-var tickerAttached = false;
-var gsapCallbacks = [];
-var gsapRequested = false;
 
-// TweenMax is loaded once and kept, so later pages reuse it
-var whenGsapReady = function(callback) {
-  if(window.TweenMax) return callback();
-  gsapCallbacks.push(callback);
-  if(gsapRequested) return;
-  gsapRequested = true;
+var EASE = {
+  power2Out: "cubic-bezier(0.5, 1, 0.89, 1)",
+  power4Out: "cubic-bezier(0.16, 1, 0.3, 1)",
+  power4InOut: "cubic-bezier(0.76, 0, 0.24, 1)"
+};
+var reducedMotion = function() {
+  return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
 
-  var gsap = document.createElement("script");
-  gsap.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js";
-  gsap.onload = function() {
-    gsapCallbacks.forEach(function(fn) { fn(); });
-    gsapCallbacks = [];
-  };
-  document.head.appendChild(gsap);
+// Animates from -> to, then commits the end state inline so it outlasts the animation
+var play = function(el, from, to, duration, delay, easing) {
+  if(!el) return;
+  var commit = function() { Object.assign(el.style, to); };
+  if(reducedMotion() || !el.animate) return commit();
+  var animation = el.animate([from, to], { duration: duration, delay: delay || 0, easing: easing, fill: "both" });
+  animation.onfinish = function() { commit(); animation.cancel(); };
 }
 
 var whenFontsReady = function(callback) {
@@ -105,127 +104,47 @@ var whenFontsReady = function(callback) {
 var startIntro = function() {
   var run = introRun;
   whenFontsReady(function() {
-    whenGsapReady(function() {
-      if(run === introRun) animateIntro(run);
-    });
+    if(run === introRun) animateIntro();
   });
 }
 
-var animateIntro = function(run) {
+var animateIntro = function() {
   var background = document.querySelector(".background");
   var identity = document.querySelector(".identity");
+  var visible = { opacity: 1, visibility: "visible" };
 
   // Arriving by client-side navigation: the header is already on screen, so skip its entrance
-  var navigated = document.documentElement.classList.contains("sb-nav");
-
-  if(navigated) {
-    TweenMax.set([background, identity], { y: 0 });
+  if(document.documentElement.classList.contains("sb-nav")) {
+    [background, identity].forEach(function(el) { if(el) el.style.transform = "none"; });
   } else {
-    TweenMax.to(background, 0.75, { y: 0, ease: Power4.easeInOut });
-    TweenMax.to(identity, 0.75, { y: 0, ease: Power4.easeInOut, delay: 0.2 });
+    play(background, { transform: "translateY(-100%)" }, { transform: "none" }, 750, 0, EASE.power4InOut);
+    play(identity, { transform: "translateY(-100px)" }, { transform: "none" }, 750, 200, EASE.power4InOut);
   }
-  TweenMax.delayedCall(0.25, () => {
-    if(run === introRun) phaseTwo(run);
-  });
-}
 
-var phaseTwo = function(run) {
   var scale = document.querySelectorAll(".scale");
   var slide = document.querySelectorAll(".autoAlpha0:not(.scale)");
-  var contact = document.querySelector(".sticky-contact");
 
-  if(scale && slide) {
-    TweenMax.staggerTo(scale, 0.75, { autoAlpha: 1, ease: Power2.easeOut, delay: 0.2 }, 0.1);
-    TweenMax.staggerTo(scale, 1, { scale: 1, ease: Power2.easeOut, delay: 0.2 }, 0.1);
-    TweenMax.staggerTo(slide, 0.75, { autoAlpha: 1, ease: Power2.easeOut, delay: 0.7 }, 0.2);
-    TweenMax.staggerTo(slide, 1, { y: 0, ease: Power2.easeOut, delay: 0.7 }, 0.2);
-  }
-
-  if(contact && document.documentElement.classList.contains("sb-nav")) {
-    contact.classList.remove("transY100");
-  } else if(contact) {
-    // GSAP drops an identity transform, which would let the CSS translateY(100%) hide the bar again
-    TweenMax.set(contact, { y: contact.offsetHeight });
-    contact.classList.remove("transY100");
-    TweenMax.to(contact, 0.5, { y: 0, ease: Power4.easeOut, delay: 1.7 });
-  }
-
-  TweenMax.delayedCall(0.1, () => {
-    var scroll = window.scrollY;
-    var time =(scroll > window.innerHeight ? 0 : 1.2);
-
-    TweenMax.delayedCall(time, () => {
-      if(run !== introRun || tickerAttached) return;
-      tickerAttached = true;
-      TweenMax.ticker.addEventListener("tick", onTick);
-      onTeardown(function() {
-        TweenMax.ticker.removeEventListener("tick", onTick);
-        tickerAttached = false;
-      });
-    });
+  scale.forEach(function(el, i) {
+    var delay = 450 + i * 100;
+    play(el, { opacity: 0, visibility: "visible", transform: "scale(0.85)" }, { opacity: 1, visibility: "visible", transform: "none" }, 1000, delay, EASE.power2Out);
   });
+  slide.forEach(function(el, i) {
+    play(el, { opacity: 0, visibility: "visible" }, visible, 750, 950 + i * 200, EASE.power2Out);
+  });
+
+  showContactBar(1950);
 }
 
-var data = [];
-var cache = function() {
-  data = [];
-  var images = document.querySelectorAll("[data-src]");
-  images.forEach((image, index) => {
-    data.push({
-      image: image,
-      top: image.offsetTop,
-      src: image.dataset.src,
-      direction: image.dataset.direction,
-      cover: image.parentNode.querySelector(".image-cover"),
-      loaded: 0,
-      index: index
-    });
-  })
-}
-totalLoaded = 0;
-
-var loadItem = function(item) {
-  item.loaded = 1;
-  totalLoaded++;
-
-  var image = new Image();
-  image.onload = () => {
-    var from = { autoAlpha: 0, y: 50 };
-    var to = { autoAlpha: 1, x: 0, y: 0, ease: Power4.easeOut };
-
-    if(item.direction === "right") {
-      from = { autoAlpha: 0, x: 100 };
-    } else if(item.direction === "left") {
-      from = { autoAlpha: 0, x: -100 };
-    } if(item.direction === "bottom") {
-      from = { y: "0%" };
-      to = { y: "101%", ease: Power4.easeInOut };
-    }
-
-    var animateItem = item.direction === 'bottom' ? item.cover : item.image;
-
-    TweenMax.set(animateItem, from);
-    item.image.src = item.src;
-
-    TweenMax.to(animateItem, 1.5, to);
+// The bar starts below the viewport (transY100); slide it up after a delay
+var showContactBar = function(delay) {
+  var contact = document.querySelector(".sticky-contact");
+  if(!contact) return;
+  if(document.documentElement.classList.contains("sb-nav")) {
+    contact.classList.remove("transY100");
+    return;
   }
-  image.src = item.src;
-}
-
-var onTick = function() {
-
-  var scroll = window.scrollY;
-  var winHeight = window.innerHeight;
-  var position = scroll + winHeight;
-
-  if(data) {
-    data.forEach(item => {
-      var bounds = item.image.getBoundingClientRect();
-      if(!item.loaded && ((bounds.top > 0 && bounds.top < winHeight) || (bounds.bottom > 0 && bounds.bottom < winHeight))) {
-        loadItem(item);
-      }
-    });
-  }
+  play(contact, { transform: "translateY(100%)" }, { transform: "none" }, 500, delay, EASE.power4Out);
+  contact.classList.remove("transY100");
 }
 
 var trackedPath = location.pathname + location.search;
@@ -264,7 +183,6 @@ var init = function() {
   runTeardowns();
   initNav();
   initReveal();
-  cache();
   if(document.querySelector(".index-body, .free-pick-up-in-our-service-area")) startIntro();
   else startContactBar();
 }
@@ -273,17 +191,7 @@ var init = function() {
 var startContactBar = function() {
   var run = introRun;
   whenFontsReady(function() {
-    whenGsapReady(function() {
-      var contact = document.querySelector(".sticky-contact");
-      if(run !== introRun || !contact) return;
-      if(document.documentElement.classList.contains("sb-nav")) {
-        contact.classList.remove("transY100");
-        return;
-      }
-      TweenMax.set(contact, { y: contact.offsetHeight });
-      contact.classList.remove("transY100");
-      TweenMax.to(contact, 0.5, { y: 0, ease: Power4.easeOut, delay: 0.6 });
-    });
+    if(run === introRun) showContactBar(600);
   });
 }
 
