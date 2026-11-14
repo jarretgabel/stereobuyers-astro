@@ -1,6 +1,5 @@
 ---
 import Default from './default.astro';
-import Actions from '../components/Actions.astro';
 import ResponsiveImg from '../components/ResponsiveImg.astro';
 import { marked } from 'marked';
 import { dateLong, dateToXmlschema } from '../lib/liquid';
@@ -51,6 +50,5 @@ for (const n of ['1', '3', '4']) {
     <Fragment set:html={copyHtml} />
   </section>
   </article>
-  <Actions />
 </div>
 </Default>

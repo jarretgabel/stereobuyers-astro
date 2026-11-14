@@ -144,7 +144,8 @@ collections:
             label: Last menu item (quote link)
           - name: stickyIntro
             label: Bar text shown when scrolling
-            hint: "For example: Ready to get Started?"
+            required: false
+            hint: "Optional. For example: Ready to get started? Leave blank to start the bar with the button."
           - name: stickyButton
             label: Bar button text
           - name: footer

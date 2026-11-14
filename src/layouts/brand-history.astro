@@ -1,6 +1,5 @@
 ---
 import Default from './default.astro';
-import Actions from '../components/Actions.astro';
 import brandPages from '../data/brand_pages.json';
 import type { Page } from '../lib/site';
 
@@ -19,6 +18,5 @@ const sellUrl = Object.entries(brandPages as Record<string, string>).find(([name
         {sellUrl && <p>Have {page.brand} equipment to sell? <a href={sellUrl}>See how StereoBuyers buys used {page.brand} gear</a>.</p>}
       </section>
     </article>
-    <Actions />
   </div>
 </Default>

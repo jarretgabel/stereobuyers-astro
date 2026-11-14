@@ -1,14 +1,12 @@
 ---
 import Default from './default.astro';
 import Content from '../components/Content.astro';
-import Actions from '../components/Actions.astro';
 import BrandFaq from '../components/BrandFaq.astro';
 import BrandsRow from '../components/BrandsRow.astro';
 import type { Page } from '../lib/site';
 
 interface Props { page: Page }
 const { page } = Astro.props;
-const showActions = !['quote', 'request-thanks', 'contact'].includes(page.slug ?? '');
 const mainBrand = String(page.page_class ?? '').includes('main-brand-page');
 ---
 <Default page={page}>
@@ -23,6 +21,5 @@ const mainBrand = String(page.page_class ?? '').includes('main-brand-page');
       {mainBrand && <BrandFaq page={page} />}
       {mainBrand && <BrandsRow page={page} />}
     </article>
-    {showActions && <Actions />}
   </div>
 </Default>

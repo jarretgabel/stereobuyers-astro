@@ -209,3 +209,5 @@ html body .model-list ul{list-style:none;margin:0;padding:0;columns:2;column-gap
 html body .model-list li{break-inside:avoid;padding:.3rem 0;font-size:.95rem}
 html body .model-list li span{color:#8a837d}
 @media (max-width:640px){html body .model-list ul{columns:1}}
+
+html body .sticky-contact .sep{margin:0 .6em;opacity:.6;font-size:.8em;vertical-align:.1em}

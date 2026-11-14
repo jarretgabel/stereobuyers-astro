@@ -1,7 +1,6 @@
 ---
 import Default from './default.astro';
 import Content from '../components/Content.astro';
-import Actions from '../components/Actions.astro';
 import ProductBody from '../components/ProductBody.astro';
 import ProductH1 from '../components/ProductH1.astro';
 import RelatedProducts from '../components/RelatedProducts.astro';
@@ -16,7 +15,6 @@ const layout = {
   page_class: 'brand-page',
 };
 const intro = `Pass Labs is one of the most dependable brand names when it comes to high-end audio systems. For years the brand has been recognized by audiophiles throughout the world as equipment that delivers clear and consistent quality in music.`;
-const showActions = !['quote', 'request-thanks', 'contact'].includes(page.slug ?? '');
 ---
 <Default page={page} layoutDescription={layout.description}>
   <div class={`page page-container double-autospacing-next product-v2 ${layout.page_class}`}>
@@ -31,6 +29,5 @@ const showActions = !['quote', 'request-thanks', 'contact'].includes(page.slug ?
       <RelatedProducts page={page} />
       <PassLabsFooter page={page} />
     </article>
-    {showActions && <Actions />}
   </div>
 </Default>

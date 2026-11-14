@@ -1,7 +1,6 @@
 ---
 // Port of _includes/landing-page.html
 import Content from './Content.astro';
-import Actions from './Actions.astro';
 import { posts, type Page } from '../lib/site';
 import { slugify } from '../lib/liquid';
 
@@ -31,7 +30,6 @@ const { page } = Astro.props;
             </div>
           </li>
         )}
-        {i === 8 && <li class='home-post'><Actions /></li>}
       </>
     ))}
   </ul>
