@@ -181,3 +181,26 @@ html body .sticky-contact a:hover,html body .sticky-contact a:focus-visible{colo
 html body .header .nav-item:hover:not([aria-current="page"]),html body .header .nav-item:focus-visible:not([aria-current="page"]){color:#0F4A5A !important}
 /* Blog cards: show the whole image instead of cropping it */
 html body .blog-cards li>a img{object-fit:contain !important;background:#f6f5f4}
+
+/* Blog post: reading-width column, quiet meta line, rounded hero */
+html body .blog .post-header{text-align:center}
+html body .blog .blog-back{display:inline-block;font-size:15px;margin-bottom:1.25rem;color:#1F7A8F}
+html body .blog .blog-back:hover{color:#0F4A5A}
+html body .blog h1.post-title{max-width:860px;margin:0 auto;line-height:1.2}
+html body .blog .blog-meta{display:flex;justify-content:center;gap:.6rem;margin:1.25rem 0 0;font-size:15px;color:#6b6b6b}
+html body .blog .blog-meta .byline{margin:0;font-size:inherit}
+html body .blog .blog-hero{max-width:900px;margin:0 auto 2.5rem;padding:0 20px}
+html body .blog .blog-hero img{display:block;width:100%;height:auto;border-radius:8px;box-shadow:0 10px 28px rgba(63,57,54,.12)}
+html body .blog .blog-body{max-width:720px;margin:0 auto;padding:0 20px}
+html body .blog .blog-body p,html body .blog .blog-body li{font-size:19px;line-height:1.75;color:#3f3936}
+html body .blog .blog-body p{margin:0 0 1.25rem}
+html body .blog .blog-body h2,html body .blog .blog-body h2.as-h3,html body .blog .blog-body h2.as-h4{font-family:"Times New Roman",serif;font-weight:normal;text-transform:none;letter-spacing:0;text-align:left;display:block;color:#3f3936;font-size:28px;line-height:1.25;margin:2.75rem 0 1rem}
+html body .blog .blog-body>h2:first-child{font-size:32px;margin-top:0}
+html body .blog .blog-body ol,html body .blog .blog-body ul{margin:0 0 1.5rem;padding-left:1.5rem}
+html body .blog .blog-body li{margin:0 0 .75rem}
+html body .blog .blog-body a{color:#1F7A8F;text-decoration:underline}
+@media (max-width:806px){
+  html body .blog .blog-body p,html body .blog .blog-body li{font-size:17px}
+  html body .blog .blog-body h2,html body .blog .blog-body h2.as-h4{font-size:24px}
+  html body .blog .blog-body>h2:first-child{font-size:26px}
+}

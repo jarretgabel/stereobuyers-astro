@@ -77,6 +77,11 @@ export const allPages: Page[] = Object.entries(files).map(([file, raw]) => {
   const entryDir = id.endsWith('/index') ? '' : id.split('/')[0];
   page.collection ??= entryDir === 'blog' ? 'blog' : entryDir === 'service-area' ? 'service-area' : 'pages';
   page.source ??= `${id}.md`;
+  // Pretty URLs: /foo.html becomes /foo/. The old URL is kept as legacyUrl for the redirect stub (and the CloudFront 301).
+  if (page.url.endsWith('.html') && page.url !== '/404.html') {
+    page.legacyUrl = page.url;
+    page.url = `${page.url.slice(0, -'.html'.length)}/`;
+  }
   if (page.date) page.date = toDate(page.date);
   if (page.slug === undefined && (page.collection === 'blog' || page.collection === 'service-area')) page.slug = id.split('/').pop();
   return page;

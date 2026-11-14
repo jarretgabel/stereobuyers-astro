@@ -1,11 +1,11 @@
 import type { APIRoute } from 'astro';
-import { pages, SITE_URL } from '../lib/site';
+import { pages, blogPosts, SITE_URL } from '../lib/site';
 
 const excluded = (url: string) =>
   url === '/stereo-equipment-we-do-not-buy/' || url.includes('/brand-history/') || url.includes('404');
 
 export const GET: APIRoute = () => {
-  const entries = pages
+  const entries = [...pages, ...blogPosts]
     .filter((p) => !p.noindex && !excluded(p.url))
     .sort((a, b) => a.url.localeCompare(b.url))
     .map(

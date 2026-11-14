@@ -21,6 +21,8 @@ function walk(dir, base = '') {
 export function pathsFromDist(distDir) {
   return walk(distDir)
     .filter((p) => p.endsWith('.html'))
+    // Redirect stubs for old .html URLs are not real pages: the path is served by its directory page.
+    .filter((p) => !readFileSync(join(distDir, p), 'utf8').includes('name="sb-legacy-redirect"'))
     .map((p) => (p.endsWith('/index.html') ? p.slice(0, -'index.html'.length) : p))
     .concat(['/']);
 }
