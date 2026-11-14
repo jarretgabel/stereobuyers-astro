@@ -1,7 +1,7 @@
 ---
 seo_title: StereoBuyers Partners With NAPO | StereoBuyers
 seo_description: Learn how StereoBuyers supports NAPO members by providing reliable audio equipment acquisition services. Discover our partnership benefits.
-title: "Stereobuyers Partners With NAPO : National Association of Productivity & Organizing Professionals"
+title: "StereoBuyers Partners With NAPO"
 image: /assets/media/napo-stereobuyers-partnership.png
 date: 2024-05-26 18:22
 copy: |-

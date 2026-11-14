@@ -1,7 +1,7 @@
 ---
 seo_title: Vintage HiFi Systems Find New Homes | StereoBuyers
 seo_description: Discover how vintage HiFi systems are being passed to a new generation of music lovers. Learn more about StereoBuyers' mission.
-title: "Passing the Torch: How Stereobuyers Finds Your Vintage HiFi System a New Home."
+title: "Passing the Torch: How StereoBuyers Finds Your Vintage HiFi a New Home"
 image: /assets/media/vintage-marantz-model-7-tube-preamplifier-vintage-stereo-bought-by-stereobuyers.jpeg
 date: 2024-06-05 18:21
 copy: |-

@@ -5,7 +5,7 @@ layout: default
 title: Audio Research
 slug: index
 description: Want to sell your used stereo, amplifier, receiver or home theater? We buy preowned Krell, McIntosh, Audio Research, B&W and other high-end brands!
-subtitle: We buy pre-owned <span class="turq">audio research</span> and other audiophile equipment.
+subtitle: We buy pre-owned <span class="turq">Audio Research</span> and other audiophile equipment.
 lead: Selling your used audio equipment has never been easier. In just three easy steps, we’ll be at your doorstep, cash in hand, ready to package and pick up your device.
 cta: Get a Quote
 permalink: /audio-research/

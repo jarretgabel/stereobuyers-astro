@@ -1,0 +1,24 @@
+---
+import Default from './default.astro';
+import Actions from '../components/Actions.astro';
+import brandPages from '../data/brand_pages.json';
+import type { Page } from '../lib/site';
+
+interface Props { page: Page }
+const { page } = Astro.props;
+const sellUrl = Object.entries(brandPages as Record<string, string>).find(([name]) => name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').startsWith(String(page.brand)))?.[1];
+---
+<Default page={page}>
+  <div class="page page-container double-autospacing">
+    <header class="post-header container narrow margin-center padding-top-8">
+      <h1 class="post-title text-align-center">{page.brand} History</h1>
+    </header>
+    <article class="post-content margin-top-2 one-point-five-autospacing">
+      <section class="container xxnarrow margin-center autospacing-next">
+        {String(page.history).split(/\n\s*\n|<\/p>\s*<p>/).map((para) => <p set:html={para.replace(/<\/?p>/g, '')} />)}
+        {sellUrl && <p>Have {page.brand} equipment to sell? <a href={sellUrl}>See how StereoBuyers buys used {page.brand} gear</a>.</p>}
+      </section>
+    </article>
+    <Actions />
+  </div>
+</Default>

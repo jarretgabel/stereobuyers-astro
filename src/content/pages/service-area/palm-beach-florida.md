@@ -1,7 +1,7 @@
 ---
 seo_title: Free Audio Equipment Pickup in Palm Beach | StereoBuyers
 seo_description: Sell your used high-end audio gear in Palm Beach. StereoBuyers picks up for free and pays cash on the spot. Contact us today.
-title: Service Area - Palm Beach, Florida
+title: "Service Area: Palm Beach, Florida"
 area: Palm Beach, Florida
 image: /assets/media/broken-mcintosh-stereo-system.jpg
 page_class: free-pick-up-in-our-service-area

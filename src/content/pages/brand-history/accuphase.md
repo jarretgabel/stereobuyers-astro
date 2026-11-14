@@ -1,6 +1,10 @@
 ---
 brand: Accuphase
 type: history
+layout: brand-history
+title: "Accuphase History"
+seo_title: "Accuphase History & Company Background | StereoBuyers"
+seo_description: "The story of Accuphase, the Japanese maker of refined high-end amplifiers. Read the brand's history, then sell your used Accuphase to StereoBuyers."
 history: |-
   Kensonic Laboratory, Inc. had originally been releasing its products under the brand name Accuphase, but on the occasion of its 10th anniversary the company was renamed to Accuphase Laboratory, Inc., thereby unifying the brand and company name. The word Accuphase was adapted by taking the prefix ACCU from the word "accurate" and combining it with PHASE which is an important factor that relates to the innermost essence of audio technology. The unusual and somewhat difficult to pronounce name was a complete unknown in the beginning, and the company was often thought to be foreign rather than Japanese. In June 1973, one year after its formation, Accuphase moved to newly built premises in the Aoba district of Yokohama where the company is still located today. In August of the same year, the long awaited first models went into production: the separate power amplifier/preamplifier combo P-300 and C-200, soon followed by the AM/FM tuner T-100.
 

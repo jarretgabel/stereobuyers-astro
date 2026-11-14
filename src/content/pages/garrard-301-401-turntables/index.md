@@ -1,6 +1,6 @@
 ---
-seo_title: Sell Garrard 301/401 Turntables | StereoBuyers
-seo_description: Sell your used Garrard 301 or 401 turntable to StereoBuyers. We buy vintage audio equipment in Brooklyn and pay on the spot. Get a quote today.
+seo_title: Sell a Garrard 301 or 401 Idler-Drive Turntable
+seo_description: Own a Garrard 301 or 401 idler-drive turntable, with or without a plinth or tonearm? StereoBuyers pays top dollar, picks up in the NYC area and pays on the spot.
 layout: default
 title: Garrard 301/401 Turntables
 slug: index

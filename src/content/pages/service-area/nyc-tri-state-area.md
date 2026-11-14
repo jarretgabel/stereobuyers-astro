@@ -1,7 +1,7 @@
 ---
 seo_title: Free Audio Equipment Pickup | NYC Tri-State | StereoBuyers
 seo_description: We buy used high-end audio equipment throughout NYC and the Tri-State Area. Free local pickup and instant payment. Contact us today.
-title: Service Area - NYC Tri-state Area
+title: "Service Area: NYC Tri-State Area"
 area: NYC Tri-state Area
 image: /assets/media/broken-mcintosh-stereo-system.jpg
 page_class: free-pick-up-in-our-service-area

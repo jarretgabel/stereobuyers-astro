@@ -2,7 +2,7 @@
 seo_title: StereoBuyers in the Press | Articles & News Coverage
 seo_description: Read featured press coverage and media mentions about StereoBuyers, Brooklyn's trusted buyer of used high-end audio equipment. Contact us for inquiries.
 layout: page
-title: Press & News About StereoBuyers
+title: Press & News
 slug: press
 description: See a list of press and social media mentions about our brand and stereo-buying process.
 fb_image: FB-OG-Image-Press-Page.jpg

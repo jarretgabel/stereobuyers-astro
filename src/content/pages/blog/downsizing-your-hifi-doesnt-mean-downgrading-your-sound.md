@@ -1,7 +1,7 @@
 ---
 seo_title: Downsize Your HiFi System Without Losing Sound Quality
 seo_description: Learn how to downsize your high-end audio setup without sacrificing sound quality. StereoBuyers buys used HiFi equipment in Brooklyn. Get an offer today.
-title: Downsizing Your HiFi Doesn't Mean Downgrading Your Sound!
+title: Downsizing Your HiFi Doesn't Mean Downgrading Your Sound
 image: /assets/media/devore-fidelity-micr-o-audiophile-speakers.jpg
 date: 2024-06-26 00:00
 copy: |-

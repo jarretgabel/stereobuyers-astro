@@ -1,7 +1,7 @@
 ---
 seo_title: Sell Your Stereo System Locally | StereoBuyers
 seo_description: Sell your used high-end audio equipment to StereoBuyers. We pick up in NY and Florida, pay on the spot. Skip the shipping hassle.
-title: Why Selling Your Stereo System to Stereobuyers.com May Make More Sense Than Selling Privately & Shipping It Yourself
+title: "Why Selling to StereoBuyers Can Beat Selling Privately"
 image: /assets/media/broken-mcintosh-stereo-system.jpg
 date: 2024-05-29 18:22
 copy: |-

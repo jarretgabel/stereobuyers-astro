@@ -1,6 +1,6 @@
 ---
-seo_title: Sell Garrard 301/401 Turntables | StereoBuyers
-seo_description: Sell your Garrard 301 or 401 turntable to StereoBuyers. We buy used high-end audio equipment in Brooklyn, pick up, and pay on the spot.
+seo_title: Sell Used Garrard Turntables | StereoBuyers
+seo_description: Sell your vintage Garrard turntable, from classic Garrard 301 and 401 models to other Garrard record players. We buy in Brooklyn, pick up and pay on the spot.
 layout: default
 title: Garrard 301/401 Turntables
 slug: index
