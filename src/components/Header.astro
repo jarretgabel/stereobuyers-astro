@@ -36,7 +36,7 @@ const here = norm(Astro.url.pathname);
 
 <div class="sticky-contact transY100">
   <div class="container text-align-center">
-    <p class="text-white display-none-mobile">{settings.stickyIntro} <a class="link item tertiary-font text-white text-uppercase" href="/get-a-quote/">{settings.stickyButton}</a> or call us at <span class="item text-white phone phone-number-for-google-disable tertiary-font">{site.phone}</span></p>
-    <p class="text-white display-none-tablet-desktop"><a class="link item tertiary-font text-white text-uppercase" href="/get-a-quote/">{settings.stickyButton}</a> or <span class="item text-white phone phone-number-for-google tertiary-font">{site.phone}</span></p>
+    <p class="text-white display-none-mobile">{settings.stickyIntro} <a class="link item tertiary-font text-white text-uppercase" href="/get-a-quote/">{settings.stickyButton}</a> or call us at <span class="item text-white phone phone-number-for-google-disable tertiary-font">{site.phone}</span> or <a class="item tertiary-font text-white" href={`mailto:${settings.email}`}>{settings.email}</a></p>
+    <p class="text-white display-none-tablet-desktop"><a class="link item tertiary-font text-white text-uppercase" href="/get-a-quote/">{settings.stickyButton}</a> or <span class="item text-white phone phone-number-for-google tertiary-font">{site.phone}</span><br /><a class="item tertiary-font text-white" href={`mailto:${settings.email}`}>{settings.email}</a></p>
   </div>
 </div>

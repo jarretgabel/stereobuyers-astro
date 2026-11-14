@@ -171,3 +171,11 @@ html body .page h2:not(.sb-heading):not(.how-step-title):first-child{margin-bott
 html body .page section + section,html body .page .faq-group + .faq-group{margin-top:64px!important}
 @media (max-width:806px){.b2b-cta span{display:block;margin:.9rem 0 0}html body .page p:not([class]),html body .page li:not([class]){line-height:1.6!important}}
 @media (max-width:806px){html body .contact-cards li .button{word-break:normal;white-space:nowrap;letter-spacing:0;font-size:14px;padding-left:1rem;padding-right:1rem}}
+
+/* Footer: legal line only, on the page background; bottom padding clears the sticky contact bar */
+html body .footer{background:transparent !important;margin-bottom:0 !important;padding-top:24px !important;padding-bottom:96px !important}
+html body .footer .copyright,html body .footer .copyright a{color:#6b6b6b !important}
+@media (max-width:806px){html body .footer{padding-bottom:110px !important}}
+html body .sticky-contact a:hover,html body .sticky-contact a:focus-visible{color:#fff !important;text-decoration:underline}
+/* Nav: hover is a deeper teal so it reads differently from the current page (grey) */
+html body .header .nav-item:hover:not([aria-current="page"]),html body .header .nav-item:focus-visible:not([aria-current="page"]){color:#0F4A5A !important}

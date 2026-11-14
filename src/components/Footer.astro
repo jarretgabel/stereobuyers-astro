@@ -1,20 +1,9 @@
 ---
 import footerScripts from './raw/footer-scripts.html?raw';
 import { settings } from '../lib/site';
-
-const digits = settings.phone.replace(/\D/g, '');
-const phoneDisplay = `(${digits.slice(-10, -7)}) ${digits.slice(-7, -4)}-${digits.slice(-4)}`;
 ---
 <footer class="footer text-align-center padding-top-2 padding-bottom-2">
   <div class="container half-autospacing">
-    <div class="legal margin-top-1">
-      <a class="tertiary-font text-white" href={`mailto:${settings.email}`}>
-        {settings.email}
-      </a>
-      <a class="tertiary-font text-white phone-number-for-google-disable" href={`tel:+1${digits.slice(-10)}`}>
-        {phoneDisplay}
-      </a>
-    </div>
     <div class="copyright">
       {settings.footer.links.map((l) => <><a href={l.url}>{l.label}</a>{' '}</>)}©<span id="copyright-year"></span> {settings.footer.copyright}
     </div>
