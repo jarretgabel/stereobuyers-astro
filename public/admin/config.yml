@@ -1224,6 +1224,94 @@ collections:
             widget: hidden
           - name: tw_image
             widget: hidden
+  - name: brand-pages
+    label: Brand pages
+    label_singular: brand page
+    folder: src/content/pages/stereo-equipment-and-components-we-buy
+    create: true
+    slug: "{{brand}}"
+    filter:
+      field: layout
+      value: auto-brand
+    nested:
+      depth: 100
+      summary: "{{brand}}"
+    meta:
+      path:
+        index_file: index
+    summary: "{{brand}}"
+    fields:
+      - name: brand
+        label: Brand name
+        hint: "For example: Audio Note. Used for the page address and the A–Z list."
+      - name: title
+        label: Page title (H1)
+        hint: "For example: Audio Note - Used Audio Equipment We Buy"
+      - name: description
+        label: Search result description (SEO)
+        required: false
+        widget: text
+      - name: seo_title
+        label: Search result title (SEO)
+        required: false
+        hint: Leave empty to use the page title.
+      - name: intro
+        label: Introduction
+        required: false
+        widget: markdown
+        hint: Leave empty to use the standard "StereoBuyers buys used and vintage ..." text.
+      - name: history
+        label: About the brand
+        required: false
+        widget: text
+        hint: A short history of the brand. Leave empty to hide the section.
+      - name: history_source
+        label: History source link
+        required: false
+        hint: Where the history came from, for example a Wikipedia address.
+      - name: history_source_title
+        label: History source name
+        required: false
+        hint: Wikipedia article title. Shown as "<name> on Wikipedia".
+      - name: history_source_label
+        label: History source label
+        required: false
+        hint: 'Optional: replaces the "<name> on Wikipedia" text.'
+      - name: faq
+        label: Questions and answers
+        widget: list
+        required: false
+        label_singular: question
+        summary: "{{fields.q}}"
+        hint: Leave empty to use the standard five questions. If you add any, only yours are shown.
+        fields:
+          - name: q
+            label: Question
+          - name: a
+            label: Answer
+            widget: text
+      - name: faq_brand
+        label: Brand name in the questions
+        required: false
+        hint: Only if it differs from the brand name.
+      - name: top_brand
+        label: Show in "brands we buy most often"
+        widget: boolean
+        required: false
+      - name: noindex
+        label: Hide from search engines
+        widget: boolean
+        required: false
+      - name: layout
+        widget: hidden
+        default: auto-brand
+      - name: page_class
+        widget: hidden
+        default: brand-page auto-brand-page
+      - name: permalink
+        widget: hidden
+      - name: sitemap
+        widget: hidden
   - divider: true
   - name: products-accuphase
     label: Accuphase

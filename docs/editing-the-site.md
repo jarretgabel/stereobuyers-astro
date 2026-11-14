@@ -17,6 +17,7 @@ Content is edited at **`/admin/`** on the site (for example `https://www.stereob
 | Service areas | Area pages (Denver, NYC, …) |
 | Brand histories | The history text shown on brand pages |
 | Header, footer & hero | Menu links, phone and email, footer links, the home page headline and intro |
+| Brand pages | One page per brand we buy. Add a brand with **New brand page**: it gets its own page, appears in the A–Z list, and can be added to the "most often" list |
 | Pages | Home, About us, Get a quote, How to sell, Contact, Business to business, Why use StereoBuyers, Buying hi-fi from us, Brands we buy / do not buy (page text), Privacy policy, Terms |
 | Brand landing pages | The headline and intro on pages such as /krell/ |
 | Each brand (Krell, McIntosh, …) | Products: name, type, image, description, specifications, SEO title and description |

@@ -79,9 +79,9 @@ for (const dir of brandDirs) {
 productCollections.sort((a, b) => a.label.localeCompare(b.label));
 
 // Hidden fields keep front matter keys that the editor doesn't expose, so saving an entry never drops them.
-const preserve = (folder, fields) => {
+const preserve = (folder, fields, only = () => true) => {
   const named = new Set(fields.map((f) => f.name));
-  const keys = new Set(walk(folder).flatMap((f) => Object.keys(read(f))));
+  const keys = new Set(walk(folder).map(read).filter(only).flatMap((fm) => Object.keys(fm)));
   return [...fields, ...[...keys].sort().filter((k) => !GENERATED.has(k) && !named.has(k)).map((k) => hidden(k))];
 };
 
@@ -300,6 +300,39 @@ const collections = [
   },
   { name: 'pages', label: 'Pages', files: textPages },
   { name: 'landing-pages', label: 'Brand landing pages', files: landingPages },
+  {
+    name: 'brand-pages',
+    label: 'Brand pages',
+    label_singular: 'brand page',
+    folder: EQUIPMENT,
+    create: true,
+    slug: '{{brand}}',
+    filter: { field: 'layout', value: 'auto-brand' },
+    nested: { depth: 100, summary: '{{brand}}' },
+    meta: { path: { index_file: 'index' } },
+    summary: '{{brand}}',
+    fields: preserve(EQUIPMENT, [
+      { name: 'brand', label: 'Brand name', hint: 'For example: Audio Note. Used for the page address and the A–Z list.' },
+      { name: 'title', label: 'Page title (H1)', hint: 'For example: Audio Note - Used Audio Equipment We Buy' },
+      str('description', 'Search result description (SEO)', { widget: 'text' }),
+      str('seo_title', 'Search result title (SEO)', { hint: 'Leave empty to use the page title.' }),
+      str('intro', 'Introduction', { widget: 'markdown', hint: 'Leave empty to use the standard "StereoBuyers buys used and vintage ..." text.' }),
+      str('history', 'About the brand', { widget: 'text', hint: 'A short history of the brand. Leave empty to hide the section.' }),
+      str('history_source', 'History source link', { hint: 'Where the history came from, for example a Wikipedia address.' }),
+      str('history_source_title', 'History source name', { hint: 'Wikipedia article title. Shown as "<name> on Wikipedia".' }),
+      str('history_source_label', 'History source label', { hint: 'Optional: replaces the "<name> on Wikipedia" text.' }),
+      {
+        name: 'faq', label: 'Questions and answers', widget: 'list', required: false, label_singular: 'question', summary: '{{fields.q}}',
+        hint: 'Leave empty to use the standard five questions. If you add any, only yours are shown.',
+        fields: [{ name: 'q', label: 'Question' }, { name: 'a', label: 'Answer', widget: 'text' }],
+      },
+      str('faq_brand', 'Brand name in the questions', { hint: 'Only if it differs from the brand name.' }),
+      { name: 'top_brand', label: 'Show in "brands we buy most often"', widget: 'boolean', required: false },
+      { name: 'noindex', label: 'Hide from search engines', widget: 'boolean', required: false },
+      hidden('layout', 'auto-brand'),
+      hidden('page_class', 'brand-page auto-brand-page'),
+    ], (fm) => fm.layout === 'auto-brand'),
+  },
   { divider: true },
   ...productCollections,
   { divider: true },

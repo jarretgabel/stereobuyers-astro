@@ -1,16 +1,32 @@
 ---
-import { site, data } from '../../lib/site';
+import { site, data, pages } from '../../lib/site';
 import Md from '../../components/Md.astro';
 import QuickFacts from '../../components/QuickFacts.astro';
 
 const { page } = Astro.props;
 
+// Brand pages added in the CMS are listed (and linked) automatically; links to deleted pages are dropped.
+const pageUrls = new Set(pages.map((p) => p.url));
+const autoBrands = pages.filter((p) => p.layout === 'auto-brand' && p.brand);
+const brandPages: Record<string, string> = {};
+for (const [name, url] of Object.entries<string>(data.brand_pages)) if (pageUrls.has(url)) brandPages[name] = url;
+const linked = new Set(Object.values(brandPages));
+const known = new Set<string>(data.equipment.brands.map((b: string) => b.toLowerCase()));
+const listed: string[] = data.equipment.brands.filter((b: string) => !(data.brand_pages[b] && !brandPages[b]));
+for (const p of autoBrands) {
+  if (linked.has(p.url)) continue;
+  const name = String(p.brand);
+  const existing = data.equipment.brands.find((b: string) => b.toLowerCase() === name.toLowerCase());
+  brandPages[existing ?? name] = p.url;
+  if (!known.has(name.toLowerCase())) listed.push(name);
+}
+const topExtra = autoBrands.filter((p) => p.top_brand).map((p) => ({ name: String(p.brand), url: p.url }));
+
 const ascii = (s: string) => s.replace(/[A-Z]/g, (c) => c.toLowerCase());
-const brands: string[] = [...new Set<string>(data.equipment.brands)].sort((a, b) => {
+const brands: string[] = [...new Set<string>(listed)].sort((a, b) => {
   const x = ascii(a), y = ascii(b);
   return x < y ? -1 : x > y ? 1 : 0;
 });
-const brandPages: Record<string, string> = data.brand_pages;
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 const first = (b: string) => [...b.trim()][0]?.toUpperCase();
 const groups = letters.map((l) => ({ l, items: brands.filter((b) => first(b) === l) })).filter((g) => g.items.length > 0);
@@ -29,7 +45,7 @@ const jsonLd = JSON.stringify({
 <section class='container xxnarrow'>
   <Md text={page.intro} />
   <ul class="top-brands">
-    {page.topBrands.map((b: any) => <li><a href={b.url}>{b.name}</a></li>)}
+    {[...page.topBrands, ...topExtra].map((b: any) => <li><a href={b.url}>{b.name}</a></li>)}
   </ul>
 </section>
 <section class="container margin-top-4">
