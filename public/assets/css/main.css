@@ -54,3 +54,17 @@ p.faq-jump a:not(.button):not(.link):hover,p.faq-jump a:not(.button):not(.link):
 @media (max-width:900px){.how-step-list,.how-perks{grid-template-columns:1fr}.how-step{margin-bottom:2.5rem}.how-perks{gap:2rem;margin-top:3rem}}
 .container.how-perks{padding-left:24px;padding-right:24px;border:0}
 html.sb-nav .index-body .header .background,html.sb-nav .index-body .header .identity,html.sb-nav .transY100{transform:none}
+.how-step .icon{display:flex;align-items:center;justify-content:center;width:84px;height:84px;border:1px solid #d9d4d0;border-radius:50%;margin-bottom:1.75rem}
+.how-step .icon svg{width:auto;height:auto;max-width:44px;max-height:40px}
+.how-step{padding-bottom:1rem}
+.container.how-perks{margin-top:4.5rem;padding:0;gap:0;display:grid;background:#F7F5F5;border-radius:2px}
+.how-perk{padding:2.5rem 2.25rem !important}
+.how-perk+.how-perk{border-left:1px solid #e3ded9}
+.how-perk h3{font-size:22px;margin-bottom:.9rem;padding-bottom:.9rem;position:relative}
+.how-perk h3::after{content:"";position:absolute;left:0;bottom:0;width:28px;height:2px;background:#1F7A8F}
+@media (max-width:900px){.how-perk+.how-perk{border-left:0;border-top:1px solid #e3ded9}}
+.container.how-perks{padding:0 24px;gap:0 2.5rem}
+.how-perk{padding:2.75rem 0 !important;position:relative}
+.how-perk+.how-perk{border-left:0}
+.how-perk+.how-perk::before{content:"";position:absolute;left:-1.25rem;top:2.5rem;bottom:2.5rem;border-left:1px solid #e3ded9}
+@media (max-width:900px){.how-perk+.how-perk::before{display:none}.how-perk+.how-perk{border-top:1px solid #e3ded9}.container.how-perks{gap:0}}
