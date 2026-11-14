@@ -60,10 +60,21 @@ function jekyllOrder(a: Page, b: Page) {
   return sa.length - sb.length;
 }
 
+function derivedUrl(id: string, fm: Record<string, any>) {
+  if (fm.permalink) return String(fm.permalink);
+  if (id === 'index') return '/';
+  return id.endsWith('/index') ? `/${id.slice(0, -5)}` : `/${id}.html`;
+}
+
 export const allPages: Page[] = Object.entries(files).map(([file, raw]) => {
   const fm = matter(raw).data as Record<string, any>;
   const id = file.replace('/src/content/pages/', '').replace(/\.md$/, '');
   const page = { ...fm, id } as Page;
+  // Entries saved through the CMS don't carry the generated fields, so derive them from the file path.
+  page.url ??= derivedUrl(id, fm);
+  const entryDir = id.endsWith('/index') ? '' : id.split('/')[0];
+  page.collection ??= entryDir === 'blog' ? 'blog' : entryDir === 'service-area' ? 'service-area' : 'pages';
+  page.source ??= `${id}.md`;
   if (page.date) page.date = toDate(page.date);
   if (page.slug === undefined && (page.collection === 'blog' || page.collection === 'service-area')) page.slug = id.split('/').pop();
   return page;

@@ -70,3 +70,17 @@ Point DNS back to Netlify (kept untouched until you're confident; low TTL makes 
 - Query strings are not forwarded to S3 or part of the cache key.
 - Deploy role may only be assumed from the configured branch (`workflow_dispatch` on `main` included); the CDK stack itself is deployed manually, not by the workflow.
 - Bucket has `RETAIN`; delete it manually if the stack is destroyed.
+
+## CMS sign-in (`StereobuyersCmsAuth`)
+
+`/admin/` (Sveltia CMS) signs editors in with GitHub through a small Lambda Function URL (`infra/functions/cms-auth`). Deploy it with `npx cdk deploy StereobuyersCmsAuth`, then:
+
+1. Create a GitHub OAuth app (**GitHub → Settings → Developer settings → OAuth Apps → New**). Homepage URL: the site URL. **Authorization callback URL:** the `CallbackUrl` stack output.
+2. Store its credentials (once; the secret never goes in git):
+   ```
+   aws ssm put-parameter --name /stereobuyers/cms/github-client-id --type String --value <CLIENT_ID> --region us-east-1
+   aws ssm put-parameter --name /stereobuyers/cms/github-client-secret --type SecureString --value <CLIENT_SECRET> --region us-east-1
+   ```
+3. `base_url` in `public/admin/config.yml` is the `AuthUrl` output without the trailing slash. Regenerate the config with `node scripts/generate-cms-config.mjs --auth-url <AuthUrl>`.
+
+Allowed sign-in origins default to the CloudFront domain and `stereobuyers.com`/`www`; override with `-c cmsOrigins=https://a,https://b`. Anyone can start the sign-in, but only GitHub users with write access to the repo can save changes. `public/admin/config.yml` is generated from the content by `scripts/generate-cms-config.mjs`; re-run it when a brand directory is added.

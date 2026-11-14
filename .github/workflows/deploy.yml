@@ -31,6 +31,8 @@ jobs:
           node-version-file: package.json
           cache: npm
       - run: npm ci
+      # Generates web-optimised variants of any images uploaded through the CMS.
+      - run: npm run images
       - run: npm run build
 
       - uses: aws-actions/configure-aws-credentials@v4
