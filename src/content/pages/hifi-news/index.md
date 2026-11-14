@@ -4,8 +4,6 @@ seo_description: Stay updated on high-end audio trends and equipment news. Stere
 layout: page
 title: HiFi News
 page_class: blog-index
-navTitle: HiFi News
-navOrder: 9
 permalink: /hifi-news/
 url: /hifi-news/
 collection: pages

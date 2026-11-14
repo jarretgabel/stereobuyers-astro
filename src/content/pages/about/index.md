@@ -6,8 +6,6 @@ fb_image: FB-OG-Image-Meet-The-Buyers.jpg
 tw_image: Twitter-Card-Image-Meet-The-Buyers.jpg
 permalink: /about/
 position: navbar, mainnav
-navTitle: About Us
-navOrder: 2
 page_class: about-us
 url: /about/
 collection: pages

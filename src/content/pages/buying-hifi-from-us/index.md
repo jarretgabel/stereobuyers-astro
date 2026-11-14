@@ -7,8 +7,6 @@ description: Buying HiFi From Us
 fb_image: FB-OG-Image-Our-Partners.jpg
 tw_image: Twitter-Card-Image-Our-Partners.jpg
 permalink: /buying-hifi-from-us/
-navTitle: Buying HiFi From Us
-navOrder: 11
 page_class: our-partners
 url: /buying-hifi-from-us/
 collection: pages

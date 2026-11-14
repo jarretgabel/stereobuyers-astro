@@ -1,19 +1,20 @@
 ---
 // Port of _includes/marquee.html
-import type { Page } from '../lib/site';
+import { settings, type Page } from '../lib/site';
+import { renderInline } from '../lib/markdown';
 
 interface Props { tag?: string; page: Page }
 const { tag = 'h1', page } = Astro.props;
 const Tag = tag as any;
 ---
 <div class="container text-align-center half-autospacing flex-vcenter">
-  <Tag class="title"><span class="block hero-scale">We buy pre-owned,</span><br><span class="block hero-scale">high-end home</span><br><span class="block hero-scale">audio equipment{page.titleAdd && <><br/>{page.titleAdd}</>}</span></Tag>
-  <p class="copy xxnarrow margin-center hero-slide" style="--d:.5s">StereoBuyers makes it easy to sell your high-end audio equipment in just three easy steps. Request a quote, we’ll finalize the details together, and then find a convenient time to pick it up and pay you on the spot. If you’re outside our  <a href='/service-area'>service area</a>, we can help you get it to us safely and pay you once it arrives.</p>
+  <Tag class="title">{settings.hero.lines.map((line, i) => <>{i > 0 && <br />}<span class="block hero-scale">{line}{i === settings.hero.lines.length - 1 && page.titleAdd && <><br/>{page.titleAdd}</>}</span></>)}</Tag>
+  <p class="copy xxnarrow margin-center hero-slide" style="--d:.5s" set:html={renderInline(settings.hero.copy)} />
 
   <div class="margin-top-2 hero-slide" style="--d:.7s">
     <a class="text-align-center no-autospacing" href="/recent-press-articles-and-news/">
       <p>
-        <small>Featured In</small>
+        <small>{settings.hero.featuredLabel}</small>
       </p>
       <img class='width-200px' src='/assets/media/wsj-logo.svg' alt="The Wall Street Journal">
     </a>
@@ -22,7 +23,7 @@ const Tag = tag as any;
   <div class='actions margin-top-4 hero-slide' style='--d:.9s'>
     <p>
       <a class='button' href='/get-a-quote/'>
-        Get a Quote
+        {settings.hero.button}
       </a>
     </p>
   </div>

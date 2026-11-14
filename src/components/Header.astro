@@ -1,7 +1,5 @@
 ---
-import { site, pages } from '../lib/site';
-
-const navPages = pages.filter((p) => p.navTitle).sort((a, b) => a.navOrder - b.navOrder);
+import { site, settings } from '../lib/site';
 ---
 <header class="header active">
   <div class="background"></div>
@@ -21,13 +19,13 @@ const navPages = pages.filter((p) => p.navTitle).sort((a, b) => a.navOrder - b.n
   <nav id="primary-navigation" class="nav-list padding-bottom-2" aria-label="Primary">
     <div class="list text-align-right-desktop text-align-center-mobile">
       <div class="scroll">
-        {navPages.map((p) => (
+        {settings.nav.map((item) => (
           <div class="list-item title-font">
-            <a class="nav-item" href={p.permalink}>{p.navTitle}</a>
+            <a class="nav-item" href={item.url}>{item.label}</a>
           </div>
         ))}
         <div class="list-item tall title-font text-grey">
-          <a class="nav-item text-grey" href="/get-a-quote">Get A Quote</a>
+          <a class="nav-item text-grey" href="/get-a-quote">{settings.navCta}</a>
         </div>
       </div>
     </div>
@@ -36,7 +34,7 @@ const navPages = pages.filter((p) => p.navTitle).sort((a, b) => a.navOrder - b.n
 
 <div class="sticky-contact transY100">
   <div class="container text-align-center">
-    <p class="text-white display-none-mobile">Ready to get Started? <a class="link item tertiary-font text-white text-uppercase" href="/get-a-quote/">Get a Quote</a> or call us at <span class="item text-white phone phone-number-for-google-disable tertiary-font">{site.phone}</span></p>
-    <p class="text-white display-none-tablet-desktop"><a class="link item tertiary-font text-white text-uppercase" href="/get-a-quote/">Get a Quote</a> or <span class="item text-white phone phone-number-for-google tertiary-font">{site.phone}</span></p>
+    <p class="text-white display-none-mobile">{settings.stickyIntro} <a class="link item tertiary-font text-white text-uppercase" href="/get-a-quote/">{settings.stickyButton}</a> or call us at <span class="item text-white phone phone-number-for-google-disable tertiary-font">{site.phone}</span></p>
+    <p class="text-white display-none-tablet-desktop"><a class="link item tertiary-font text-white text-uppercase" href="/get-a-quote/">{settings.stickyButton}</a> or <span class="item text-white phone phone-number-for-google tertiary-font">{site.phone}</span></p>
   </div>
 </div>

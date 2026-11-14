@@ -258,6 +258,46 @@ const collections = [
     ]),
   },
   { divider: true },
+  {
+    name: 'site-settings',
+    label: 'Header, footer & hero',
+    files: [{
+      name: 'settings',
+      label: 'Header, footer & home hero',
+      file: 'src/data/settings.json',
+      fields: [
+        { name: 'phone', label: 'Phone number', hint: 'Format: 718-260-8948. Used in the header bar and the footer.' },
+        { name: 'email', label: 'Email address' },
+        {
+          name: 'nav', label: 'Menu links', widget: 'list', label_singular: 'menu link', summary: '{{fields.label}}',
+          hint: 'Drag to reorder.',
+          fields: [{ name: 'label', label: 'Label' }, { name: 'url', label: 'Link', hint: 'For example: /about/' }],
+        },
+        { name: 'navCta', label: 'Last menu item (quote link)' },
+        { name: 'stickyIntro', label: 'Bar text shown when scrolling', hint: 'For example: Ready to get Started?' },
+        { name: 'stickyButton', label: 'Bar button text' },
+        {
+          name: 'footer', label: 'Footer', widget: 'object',
+          fields: [
+            {
+              name: 'links', label: 'Footer links', widget: 'list', label_singular: 'link', summary: '{{fields.label}}',
+              fields: [{ name: 'label', label: 'Label' }, { name: 'url', label: 'Link' }],
+            },
+            { name: 'copyright', label: 'Copyright text', hint: 'The year is added automatically.' },
+          ],
+        },
+        {
+          name: 'hero', label: 'Home page hero', widget: 'object',
+          fields: [
+            { name: 'lines', label: 'Headline lines', widget: 'list', field: { name: 'line', label: 'Line' }, hint: 'Each line is shown on its own row.' },
+            { name: 'copy', label: 'Paragraph', widget: 'text', hint: 'Links: [link text](/service-area)' },
+            { name: 'featuredLabel', label: 'Label above the press logo' },
+            { name: 'button', label: 'Button text' },
+          ],
+        },
+      ],
+    }],
+  },
   { name: 'pages', label: 'Pages', files: textPages },
   { name: 'landing-pages', label: 'Brand landing pages', files: landingPages },
   { divider: true },

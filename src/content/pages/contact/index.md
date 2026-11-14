@@ -9,8 +9,6 @@ fb_image: FB-OG-Image-Contact-Us.jpg
 tw_image: Twitter-Card-Image-Contact-Us.jpg
 permalink: /contact/
 position: mainnav
-navTitle: Contact Us
-navOrder: 3
 page_class: contact contact-page
 mainNav: true
 url: /contact/

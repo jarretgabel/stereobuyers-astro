@@ -7,8 +7,6 @@ slug: press
 description: See a list of press and social media mentions about our brand and stereo-buying process.
 fb_image: FB-OG-Image-Press-Page.jpg
 tw_image: Twitter-Card-Image-Press-Page.jpg
-navTitle: Press
-navOrder: 10.5
 permalink: /recent-press-articles-and-news/
 page_class: press
 url: /recent-press-articles-and-news/

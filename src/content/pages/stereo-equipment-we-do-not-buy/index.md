@@ -6,8 +6,6 @@ fb_image: FB-OG-Image-Recent-Buys.jpg
 tw_image: Twitter-Card-Image-Recent-Buys.jpg
 permalink: /stereo-equipment-we-do-not-buy/
 page_class: equipment-we-don-t-buy
-navTitle: Equipment We Don't Buy
-navOrder: 7
 url: /stereo-equipment-we-do-not-buy/
 collection: pages
 source: equipment-we-do-not-buy.html

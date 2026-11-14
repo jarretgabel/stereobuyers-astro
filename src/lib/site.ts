@@ -9,6 +9,7 @@ import krell from '../data/krell.json';
 import levinson from '../data/levinson.json';
 import mcintosh from '../data/mcintosh.json';
 import conrad from '../data/conrad.json';
+import settingsData from '../data/settings.json';
 
 export const SITE_URL = 'https://www.stereobuyers.com';
 
@@ -25,7 +26,8 @@ export const data = {
   conrad: conrad as any,
 };
 
-export const site = { url: SITE_URL, baseurl: '', phone: '718-260-8948', data };
+export const settings = settingsData;
+export const site = { url: SITE_URL, baseurl: '', phone: settingsData.phone, data };
 
 /** A Jekyll-style page: all front matter keys plus the generated fields below. */
 export interface Page {

@@ -7,8 +7,6 @@ slug: faq
 description: "Answers to common questions about selling used high-end audio equipment to StereoBuyers: pricing, pickup, shipping and payment."
 fb_image: FB-OG-Image-Press-Page.jpg
 tw_image: Twitter-Card-Image-Press-Page.jpg
-navTitle: FAQ
-navOrder: 10
 permalink: /faq/
 page_class: faq faq-page
 snippet: faq

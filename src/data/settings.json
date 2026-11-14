@@ -1,0 +1,80 @@
+{
+  "phone": "718-260-8948",
+  "email": "info@stereobuyers.com",
+  "nav": [
+    {
+      "label": "About Us",
+      "url": "/about/"
+    },
+    {
+      "label": "Contact Us",
+      "url": "/contact/"
+    },
+    {
+      "label": "How It Works",
+      "url": "/how-to-sell-your-high-end-audio-equipment-and-components-with-StereoBuyers/"
+    },
+    {
+      "label": "Why Stereobuyers",
+      "url": "/why-use-stereobuyers-to-sell-your-preowned-stereo-equipment/"
+    },
+    {
+      "label": "Equipment We Buy",
+      "url": "/stereo-equipment-and-components-we-buy/"
+    },
+    {
+      "label": "Equipment We Don't Buy",
+      "url": "/stereo-equipment-we-do-not-buy/"
+    },
+    {
+      "label": "Service Area",
+      "url": "/service-area/"
+    },
+    {
+      "label": "HiFi News",
+      "url": "/hifi-news/"
+    },
+    {
+      "label": "Business to Business HiFi Services",
+      "url": "/business-to-business/"
+    },
+    {
+      "label": "FAQ",
+      "url": "/faq/"
+    },
+    {
+      "label": "Press",
+      "url": "/recent-press-articles-and-news/"
+    },
+    {
+      "label": "Buying HiFi From Us",
+      "url": "/buying-hifi-from-us/"
+    }
+  ],
+  "navCta": "Get A Quote",
+  "stickyIntro": "Ready to get Started?",
+  "stickyButton": "Get a Quote",
+  "footer": {
+    "links": [
+      {
+        "label": "Terms and Conditions",
+        "url": "/terms-and-conditions"
+      },
+      {
+        "label": "Privacy Policy",
+        "url": "/privacy-policy"
+      }
+    ],
+    "copyright": "StereoBuyers LLC, All Rights Reserved"
+  },
+  "hero": {
+    "lines": [
+      "We buy pre-owned,",
+      "high-end home",
+      "audio equipment"
+    ],
+    "copy": "StereoBuyers makes it easy to sell your high-end audio equipment in just three easy steps. Request a quote, we’ll finalize the details together, and then find a convenient time to pick it up and pay you on the spot. If you’re outside our [service area](/service-area), we can help you get it to us safely and pay you once it arrives.",
+    "featuredLabel": "Featured In",
+    "button": "Get a Quote"
+  }
+}
