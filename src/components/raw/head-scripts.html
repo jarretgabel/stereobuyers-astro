@@ -31,14 +31,35 @@
     })(window);
   </script>
   <script>
-    // Adobe Fonts serves font-display:auto (invisible text until the fonts arrive); load the kit CSS ourselves with swap.
+    // Adobe Fonts serves font-display:auto (invisible text until the fonts arrive). Load the kit CSS ourselves and keep the page hidden until its fonts are ready, so the fallback font never flashes. A timeout reveals the page if Typekit is slow or blocked.
     (function(d) {
+      var root = d.documentElement;
       var url = 'https://use.typekit.net/mbi7opk.css';
-      function fallback() { var l = d.createElement('link'); l.rel = 'stylesheet'; l.href = url; d.head.appendChild(l); }
+      var revealed = false;
+      root.classList.add('fonts-pending');
+      var hide = d.createElement('style');
+      hide.textContent = 'html.fonts-pending body{visibility:hidden}';
+      d.head.appendChild(hide);
+      function reveal() { if (revealed) return; revealed = true; root.classList.remove('fonts-pending'); }
+      setTimeout(reveal, 3000);
+      function waitForFonts() {
+        if (!d.body) return d.addEventListener('DOMContentLoaded', waitForFonts);
+        void d.body.offsetHeight; // start loading the faces the page uses
+        (d.fonts ? d.fonts.ready : Promise.resolve()).then(reveal, reveal);
+      }
+      function fallback() {
+        var l = d.createElement('link');
+        l.rel = 'stylesheet';
+        l.href = url;
+        l.onload = waitForFonts;
+        l.onerror = reveal;
+        d.head.appendChild(l);
+      }
       fetch(url).then(function(r) { return r.text(); }).then(function(css) {
         var st = d.createElement('style');
         st.textContent = css.replace(/font-display:\s*auto/g, 'font-display:swap');
         d.head.appendChild(st);
+        waitForFonts();
       }).catch(fallback);
     })(document);
   </script>

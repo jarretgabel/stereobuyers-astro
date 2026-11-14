@@ -58,10 +58,24 @@ var whenGsapReady = function(callback) {
   document.head.appendChild(gsap);
 }
 
+var whenFontsReady = function(callback) {
+  var root = document.documentElement;
+  if(!root.classList.contains("fonts-pending")) return callback();
+  var observer = new MutationObserver(function() {
+    if(!root.classList.contains("fonts-pending")) {
+      observer.disconnect();
+      callback();
+    }
+  });
+  observer.observe(root, { attributes: true, attributeFilter: ["class"] });
+}
+
 var startIntro = function() {
   var run = introRun;
-  whenGsapReady(function() {
-    if(run === introRun) animateIntro(run);
+  whenFontsReady(function() {
+    whenGsapReady(function() {
+      if(run === introRun) animateIntro(run);
+    });
   });
 }
 
