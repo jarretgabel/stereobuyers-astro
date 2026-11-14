@@ -266,6 +266,25 @@ var init = function() {
   initReveal();
   cache();
   if(document.querySelector(".index-body, .free-pick-up-in-our-service-area")) startIntro();
+  else startContactBar();
+}
+
+// Pages without the homepage intro still bring the sticky call-to-action bar in
+var startContactBar = function() {
+  var run = introRun;
+  whenFontsReady(function() {
+    whenGsapReady(function() {
+      var contact = document.querySelector(".sticky-contact");
+      if(run !== introRun || !contact) return;
+      if(document.documentElement.classList.contains("sb-nav")) {
+        contact.classList.remove("transY100");
+        return;
+      }
+      TweenMax.set(contact, { y: contact.offsetHeight });
+      contact.classList.remove("transY100");
+      TweenMax.to(contact, 0.5, { y: 0, ease: Power4.easeOut, delay: 0.6 });
+    });
+  });
 }
 
 init();
