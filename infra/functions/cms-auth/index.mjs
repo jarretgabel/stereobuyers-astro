@@ -62,10 +62,10 @@ export function createHandler({ getConfig, fetchImpl = fetch, makeState = () => 
       const cookie = (event.cookies || []).find((c) => c.startsWith(`${STATE_COOKIE}=`));
       const expected = cookie ? cookie.slice(STATE_COOKIE.length + 1) : '';
       if (!query.state || !expected || query.state !== expected) {
-        return handoff(origins, 'error', { message: 'Sign-in session expired. Please close this window and try again.' });
+        return handoff(origins, 'error', { provider: 'github', error: 'Sign-in session expired. Please close this window and try again.' });
       }
       if (query.error || !query.code) {
-        return handoff(origins, 'error', { message: query.error_description || 'GitHub sign-in was cancelled.' });
+        return handoff(origins, 'error', { provider: 'github', error: query.error_description || 'GitHub sign-in was cancelled.' });
       }
       const res = await fetchImpl('https://github.com/login/oauth/access_token', {
         method: 'POST',
@@ -73,7 +73,7 @@ export function createHandler({ getConfig, fetchImpl = fetch, makeState = () => 
         body: JSON.stringify({ client_id: clientId, client_secret: clientSecret, code: query.code, redirect_uri: redirectUri }),
       });
       const data = await res.json();
-      if (!data.access_token) return handoff(origins, 'error', { message: data.error_description || 'GitHub did not return a token.' });
+      if (!data.access_token) return handoff(origins, 'error', { provider: 'github', error: data.error_description || 'GitHub did not return a token.' });
       return handoff(origins, 'success', { token: data.access_token, provider: 'github' });
     }
 
@@ -82,8 +82,10 @@ export function createHandler({ getConfig, fetchImpl = fetch, makeState = () => 
 }
 
 let cached;
+let cachedAt = 0;
 async function loadConfig() {
-  if (cached) return cached;
+  // Short cache so a corrected secret takes effect quickly.
+  if (cached && Date.now() - cachedAt < 60_000) return cached;
   const { SSMClient, GetParameterCommand } = await import('@aws-sdk/client-ssm');
   const ssm = new SSMClient({});
   const get = async (name) => (await ssm.send(new GetParameterCommand({ Name: name, WithDecryption: true }))).Parameter.Value;
@@ -92,6 +94,7 @@ async function loadConfig() {
     clientSecret: await get(process.env.CLIENT_SECRET_PARAM),
     origins: process.env.ALLOWED_ORIGINS.split(',').map((o) => o.trim()).filter(Boolean),
   };
+  cachedAt = Date.now();
   return cached;
 }
 
