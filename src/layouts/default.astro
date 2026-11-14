@@ -42,30 +42,30 @@ if (/(invite|recovery|confirmation|email_change)_token=/.test(window.location.ha
     <script is:inline set:html={identityScript} />
   </body>
   <style is:global>
-    /* Page-to-page fade: old page fades out, then the new page fades in. Reduced motion gets a near-zero duration so swaps still complete. */
-    @keyframes sb-fade-out { from { opacity: 1; } to { opacity: 0; } }
-    @keyframes sb-fade-in { from { opacity: 0; } to { opacity: 1; } }
-    ::view-transition-old(root),
-    ::view-transition-new(root) {
-      mix-blend-mode: normal;
-    }
-    ::view-transition-old(root) {
-      animation: 0.15s ease-in both sb-fade-out;
-    }
-    ::view-transition-new(root) {
-      animation: 0.15s ease-out 0.15s both sb-fade-in;
-    }
-    [data-astro-transition-fallback="old"] body {
-      animation: 0.15s ease-in both sb-fade-out;
-    }
-    [data-astro-transition-fallback="new"] body {
-      animation: 0.15s ease-out both sb-fade-in;
-    }
+    /* Only the page content transitions: it eases out, then rises gently into place. Header, call-to-action bar and footer are identical on every page, so they stay put. */
+    @keyframes sb-out { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-10px); } }
+    @keyframes sb-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes sb-show { from { opacity: 0; } to { opacity: 1; } }
+    main#main { view-transition-name: page; }
+    header.header { view-transition-name: site-header; }
+    .sticky-contact { view-transition-name: site-cta; }
+    ::view-transition-group(site-header),
+    ::view-transition-group(site-cta) { z-index: 2; }
+    ::view-transition-group(*) { animation-duration: 0s; }
+    ::view-transition-old(*),
+    ::view-transition-new(*) { mix-blend-mode: normal; animation: none; }
+    ::view-transition-old(page) { animation: 0.25s cubic-bezier(0.4, 0, 1, 1) both sb-out; }
+    ::view-transition-new(page) { animation: 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both sb-in; }
+    /* The new page frame (footer, spacing) appears as the old content finishes leaving. */
+    ::view-transition-new(root) { animation: 0.01s linear 0.25s both sb-show; }
+    [data-astro-transition-fallback="old"] main#main { animation: 0.25s cubic-bezier(0.4, 0, 1, 1) both sb-out; }
+    [data-astro-transition-fallback="new"] main#main { animation: 0.8s cubic-bezier(0.16, 1, 0.3, 1) both sb-in; }
     @media (prefers-reduced-motion: reduce) {
-      ::view-transition-old(root),
-      ::view-transition-new(root),
-      [data-astro-transition-fallback] {
+      ::view-transition-old(*),
+      ::view-transition-new(*),
+      main#main {
         animation-duration: 0.01ms !important;
+        animation-delay: 0s !important;
       }
     }
   </style>
