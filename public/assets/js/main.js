@@ -35,6 +35,8 @@ var initNav = function() {
     if(!link || link.dataset.navLeaving) return;
     if(event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button) return;
     if(link.target && link.target !== "_self") return;
+    if(link.hasAttribute("download") || link.origin !== location.origin) return;
+    if(link.pathname === location.pathname && link.search === location.search) return;
     if(!header.classList.contains("nav-open")) return;
     event.preventDefault();
     event.stopPropagation();
@@ -51,11 +53,11 @@ var initNav = function() {
 
   toggle.addEventListener("click", onToggle);
   document.addEventListener("keydown", onKeydown);
-  header.addEventListener("click", onNavClick);
+  document.addEventListener("click", onNavClick, true);
   onTeardown(function() {
     toggle.removeEventListener("click", onToggle);
     document.removeEventListener("keydown", onKeydown);
-    header.removeEventListener("click", onNavClick);
+    document.removeEventListener("click", onNavClick, true);
   });
 }
 
