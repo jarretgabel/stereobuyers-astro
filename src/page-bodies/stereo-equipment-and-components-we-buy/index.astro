@@ -45,7 +45,7 @@ const jsonLd = JSON.stringify({
 <section class='container xxnarrow'>
   <Md text={page.intro} />
   <ul class="top-brands">
-    {[...page.topBrands, ...topExtra].map((b: any) => <li><a href={b.url}>{b.name}</a></li>)}
+    {[...page.topBrands, ...topExtra].map((b: any) => <li><a href={b.url.replace(/\/?$/, '/')}>{b.name}</a></li>)}
   </ul>
 </section>
 <section class="container margin-top-4">

@@ -58,11 +58,11 @@
     "links": [
       {
         "label": "Terms and Conditions",
-        "url": "/terms-and-conditions"
+        "url": "/terms-and-conditions/"
       },
       {
         "label": "Privacy Policy",
-        "url": "/privacy-policy"
+        "url": "/privacy-policy/"
       }
     ],
     "copyright": "StereoBuyers LLC, All Rights Reserved"
@@ -73,7 +73,7 @@
       "high-end home",
       "audio equipment"
     ],
-    "copy": "StereoBuyers makes it easy to sell your high-end audio equipment in just three easy steps. Request a quote, we’ll finalize the details together, and then find a convenient time to pick it up and pay you on the spot. If you’re outside our [service area](/service-area), we can help you get it to us safely and pay you once it arrives.",
+    "copy": "StereoBuyers makes it easy to sell your high-end audio equipment in just three easy steps. Request a quote, we’ll finalize the details together, and then find a convenient time to pick it up and pay you on the spot. If you’re outside our [service area](/service-area/), we can help you get it to us safely and pay you once it arrives.",
     "featuredLabel": "Featured In",
     "button": "Get a Quote"
   }
