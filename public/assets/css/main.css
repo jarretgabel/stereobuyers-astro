@@ -204,3 +204,8 @@ html body .blog .blog-body a{color:#1F7A8F;text-decoration:underline}
   html body .blog .blog-body h2,html body .blog .blog-body h2.as-h4{font-size:24px}
   html body .blog .blog-body>h2:first-child{font-size:26px}
 }
+
+html body .model-list ul{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+html body .model-list li{break-inside:avoid;padding:.3rem 0;font-size:.95rem}
+html body .model-list li span{color:#8a837d}
+@media (max-width:640px){html body .model-list ul{columns:1}}

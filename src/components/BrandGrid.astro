@@ -1,23 +1,44 @@
 ---
 import ResponsiveImg from './ResponsiveImg.astro';
 import { typeLabel } from '../lib/product';
+import { isBlank } from '../lib/liquid';
 import type { Page } from '../lib/site';
 
-interface Props { items: Page[] }
-const { items } = Astro.props;
+interface Props { items: Page[]; page?: Page; brand?: string }
+const { items, page, brand: brandProp } = Astro.props;
+// Product pages get a compact text list (the current model excluded); brand hub pages keep the photo grid.
+const compact = !!page && !isBlank(page.component);
+const list = compact ? items.filter((p) => p.url !== page.url) : items;
+const layoutNames: Record<string, string> = { 'devore-fidelity': 'DeVore Fidelity', 'sonus-faber': 'Sonus Faber' };
+const brand = brandProp || page?.brand || layoutNames[page?.layout ?? ''] || '';
+const label = (p: Page) => {
+  const name = String(p.component ?? p.title ?? '');
+  return p.brand && !name.toLowerCase().startsWith(String(p.brand).toLowerCase()) ? `${p.brand} ${name}` : name;
+};
 ---
-<section class="container xnarrow margin-center">
-  <ul class="columns double-autospacing flex-row-col flex-wrap flex-hcenter margin-top-0 text-align-center">
-    {items.map((p) => (
-      <li class="column quarter-autospacing">
-        <a href={p.url}>
-          <ResponsiveImg class="image" src={p.image} alt="" sizes="(min-width: 800px) 25vw, 50vw" />
-          <div class="caption">
-            <h3 class="padding-top-0 padding-bottom-0">{p.brand} {p.component}</h3>
-            <div>{typeLabel(p.type)}</div>
-          </div>
-        </a>
-      </li>
-    ))}
-  </ul>
-</section>
+{compact ? (
+  <section class="container xxnarrow margin-center autospacing-next model-list">
+    <h2 class="text-align-center as-h4">All {brand} models we buy</h2>
+    <ul>
+      {list.map((p) => (
+        <li><a href={p.url}>{label(p)}</a>{!isBlank(p.type) && <span> · {typeLabel(p.type)}</span>}</li>
+      ))}
+    </ul>
+  </section>
+) : (
+  <section class="container xnarrow margin-center">
+    <ul class="columns double-autospacing flex-row-col flex-wrap flex-hcenter margin-top-0 text-align-center">
+      {list.map((p) => (
+        <li class="column quarter-autospacing">
+          <a href={p.url}>
+            <ResponsiveImg class="image" src={p.image} alt="" sizes="(min-width: 800px) 25vw, 50vw" />
+            <div class="caption">
+              <h3 class="padding-top-0 padding-bottom-0">{label(p)}</h3>
+              <div>{typeLabel(p.type)}</div>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}

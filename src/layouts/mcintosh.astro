@@ -29,7 +29,7 @@ const showActions = !['quote', 'request-thanks', 'contact'].includes(page.slug ?
       <ProductBody page={page} intro={intro} />
       <Content page={page} />
       <RelatedProducts page={page} />
-      <McintoshFooter />
+      <McintoshFooter page={page} />
     </article>
     {showActions && <Actions />}
   </div>

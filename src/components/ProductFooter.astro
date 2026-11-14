@@ -9,6 +9,7 @@ import { isBlank } from '../lib/liquid';
 interface Props { page: Page; alwaysQuickFacts?: boolean }
 const { page, alwaysQuickFacts = false } = Astro.props;
 const history = pages.filter((p) => p.brand === page.brand && p.type === 'history');
+const brandName = page.brand || ({ 'devore-fidelity': 'DeVore Fidelity', 'sonus-faber': 'Sonus Faber' } as Record<string, string>)[page.layout ?? ''] || '';
 const brandSlug = brandLayoutSlug(page.brand);
 const items = pages.filter((p) => p.layout === brandSlug);
 ---
@@ -32,22 +33,22 @@ const items = pages.filter((p) => p.layout === brandSlug);
 
 {history.length > 0 && (
   <section class="container xxnarrow margin-center autospacing-next">
-    <h2 class="text-align-center as-h4">Brief History of {page.brand}</h2>
+    <h2 class="text-align-center as-h4">Brief History of {brandName}</h2>
     {history.map((h) => <p set:html={h.history} />)}
   </section>
 )}
 
 <section class="container xxnarrow margin-center autospacing-next">
-  <h2 class="text-align-center as-h4">Other {page.brand} Products We Often Buy</h2>
+  <h2 class="text-align-center as-h4">Selling Your {brandName} to StereoBuyers</h2>
   {!isBlank(page.brand_buy)
     ? <p set:html={page.brand_buy} />
-    : <p>Typically, StereoBuyers purchases mostly used amplifiers, especially the vintage amps and high-end {page.brand} models.</p>}
-  <p>StereoBuyers has purchased <em>tens of thousands</em> worth {page.brand} brand equipment since 2014, with individual buys ranging from $100 to well over $50,000. If you are moving, ready to upgrade, or have {page.brand} equipment you do not or will not be using, why not contact us today to find out if it is worth good money?</p>
-  <p>If you are interested in selling your used {page.brand} equipment to us in the greater NYC area or Colorado, please <a href="/get-a-quote/">click here to fill out a Free Quote Form</a> and we will get back to you. If we agree on terms, we come to meet you where you want, and pay cash.</p>
+    : <p>Typically, StereoBuyers purchases mostly used amplifiers, especially the vintage amps and high-end {brandName} models.</p>}
+  <p>StereoBuyers has purchased <em>tens of thousands</em> worth {brandName} brand equipment since 2014, with individual buys ranging from $100 to well over $50,000. If you are moving, ready to upgrade, or have {brandName} equipment you do not or will not be using, why not contact us today to find out if it is worth good money?</p>
+  <p>If you are interested in selling your used {brandName} equipment to us in the greater NYC area or Colorado, please <a href="/get-a-quote/">click here to fill out a Free Quote Form</a> and we will get back to you. If we agree on terms, we come to meet you where you want, and pay cash.</p>
   <p>Not sure we pick up near you? See our <a href="/service-area/">service area</a> or learn <a href="/how-to-sell-your-high-end-audio-equipment-and-components-with-StereoBuyers/">how selling to StereoBuyers works</a>.</p>
-  <p>The following images show actual {page.brand} equipment purchased by StereoBuyers.</p>
+  <p>Every {brandName} model we buy is listed below.</p>
 </section>
 
-<BrandGrid items={items} />
+<BrandGrid items={items} page={page} brand={brandName} />
 
 {(alwaysQuickFacts || page.snippet !== 'product') && <QuickFacts />}
