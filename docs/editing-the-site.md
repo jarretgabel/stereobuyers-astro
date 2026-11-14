@@ -19,7 +19,7 @@ Content is edited at **`/admin/`** on the site (for example `https://www.stereob
 | Pages | Home, About us, Get a quote, How to sell, Contact, Business to business, Why use StereoBuyers, Buying hi-fi from us, Brands we buy / do not buy (page text), Privacy policy, Terms |
 | Brand landing pages | The headline and intro on pages such as /krell/ |
 | Each brand (Krell, McIntosh, …) | Products: name, type, image, description, specifications, SEO title and description |
-| FAQ, brand lists & press | Questions and answers, press articles |
+| FAQ, brand lists & press | Questions and answers, the brands-we-buy and brands-we-do-not-buy lists, press articles |
 
 Page layout, the Home page hero text and the sitewide header and footer are not editable here yet; ask a developer. In the Pages text boxes, `###` makes a heading, and a line with `---` starts a new section on the Privacy and Terms pages.
 
