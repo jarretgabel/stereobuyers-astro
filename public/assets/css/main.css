@@ -179,3 +179,5 @@ html body .footer .copyright,html body .footer .copyright a{color:#6b6b6b !impor
 html body .sticky-contact a:hover,html body .sticky-contact a:focus-visible{color:#fff !important;text-decoration:underline}
 /* Nav: hover is a deeper teal so it reads differently from the current page (grey) */
 html body .header .nav-item:hover:not([aria-current="page"]),html body .header .nav-item:focus-visible:not([aria-current="page"]){color:#0F4A5A !important}
+/* Blog cards: show the whole image instead of cropping it */
+html body .blog-cards li>a img{object-fit:contain !important;background:#f6f5f4}
