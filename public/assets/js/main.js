@@ -36,8 +36,16 @@ var initNav = function() {
     if(event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button) return;
     if(link.target && link.target !== "_self") return;
     if(link.hasAttribute("download") || link.origin !== location.origin) return;
-    if(link.pathname === location.pathname && link.search === location.search) return;
+    var samePage = link.pathname === location.pathname && link.search === location.search;
+    if(samePage && link.hash) return;
     if(!header.classList.contains("nav-open")) return;
+    if(samePage) {
+      // Already here: just slide the menu away instead of reloading
+      event.preventDefault();
+      event.stopPropagation();
+      setOpen(false);
+      return;
+    }
     event.preventDefault();
     event.stopPropagation();
     header.classList.add("nav-closing");
