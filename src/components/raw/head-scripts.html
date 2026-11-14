@@ -36,6 +36,7 @@
       var root = d.documentElement;
       var url = 'https://use.typekit.net/mbi7opk.css';
       var revealed = false;
+      var kit = [];
       root.classList.add('fonts-pending');
       var hide = d.createElement('style');
       hide.textContent = 'html.fonts-pending body{visibility:hidden}';
@@ -47,17 +48,23 @@
         void d.body.offsetHeight; // start loading the faces the page uses
         (d.fonts ? d.fonts.ready : Promise.resolve()).then(reveal, reveal);
       }
+      // Astro's view transitions drop head elements the next page doesn't have, so carry the font CSS over to the incoming head.
+      d.addEventListener('astro:before-swap', function(e) {
+        kit.forEach(function(node) { e.newDocument.head.appendChild(node.cloneNode(true)); });
+      });
       function fallback() {
         var l = d.createElement('link');
         l.rel = 'stylesheet';
         l.href = url;
         l.onload = waitForFonts;
         l.onerror = reveal;
+        kit.push(l);
         d.head.appendChild(l);
       }
       fetch(url).then(function(r) { return r.text(); }).then(function(css) {
         var st = d.createElement('style');
         st.textContent = css.replace(/font-display:\s*auto/g, 'font-display:swap');
+        kit.push(st);
         d.head.appendChild(st);
         waitForFonts();
       }).catch(fallback);
