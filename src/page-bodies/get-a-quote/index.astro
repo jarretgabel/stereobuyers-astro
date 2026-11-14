@@ -4,20 +4,26 @@ import Md from '../../components/Md.astro';
 import PressStrip from '../../components/PressStrip.astro';
 import QuickFacts from '../../components/QuickFacts.astro';
 const { page } = Astro.props;
+const cut = page.intro.indexOf('### What happens');
+const first = page.intro.slice(0, cut);
+const rest = page.intro.slice(cut);
 ---
-<section class="container narrow1 quote-layout">
-  <aside class="quote-aside sb-prose">
-    <Md text={page.intro} />
-    <ul class="quote-assurances">
-      <li><strong>Paid on the spot</strong><span>We pay when we pick up your equipment.</span></li>
-      <li><strong>Free pickup</strong><span>NYC Tri-State, Palm Beach and Denver / Boulder.</span></li>
-      <li><strong>Family-run since 1999</strong><span>Based in Brooklyn, NY.</span></li>
-    </ul>
-    <p class="quote-phone">Prefer to talk? Call <a href="tel:+17182608948">(718) 260-8948</a></p>
-  </aside>
+<section class="container narrow1 quote-top sb-prose">
+  <Md text={first} />
+  <ul class="quote-assurances">
+    <li><strong>Paid on the spot</strong><span>We pay when we pick up your equipment.</span></li>
+    <li><strong>Free pickup</strong><span>NYC Tri-State, Palm Beach and Denver / Boulder.</span></li>
+    <li><strong>Family-run since 1999</strong><span>Based in Brooklyn, NY.</span></li>
+  </ul>
+</section>
+<section class="container quote-form-wrap">
   <div class="quote-form quote-page-content jotform-quote-page-content">
     <JotformEmbed />
   </div>
+  <p class="quote-phone">Prefer to talk? Call <a href="tel:+17182608948">(718) 260-8948</a></p>
+</section>
+<section class="container narrow1 quote-more sb-prose">
+  <Md text={rest} />
 </section>
 <PressStrip />
 

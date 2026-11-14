@@ -123,7 +123,7 @@ html body .contact-cards li h2{font-family:"Times New Roman",serif;font-weight:n
 
 /* Get a quote */
 .quote-layout{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:4rem;align-items:start;margin-top:4rem}
-.quote-aside{position:sticky;top:110px}
+.quote-aside{position:static}
 .quote-aside p,.quote-aside li{font-size:17px}
 .quote-assurances{list-style:none;margin:2rem 0 1.5rem;padding:0;border-top:1px solid #e3ded9}
 .quote-assurances li{margin:0;padding:1.1rem 0 1.1rem 1.5rem;border-bottom:1px solid #e3ded9;position:relative}
@@ -137,3 +137,13 @@ html body .contact-cards li h2{font-family:"Times New Roman",serif;font-weight:n
 .press-featured{margin-top:4rem}
 html body .page h1.sb-title,html body .page h2.sb-title,html body .page h3.sb-title{font-family:"azo-sans-uber","azo-fallback","Helvetica"!important;font-weight:normal!important;font-size:14px!important;letter-spacing:.28em!important;text-transform:uppercase!important;text-align:center!important;display:block;width:100%;margin:0 0 2rem!important;padding:0 0 1.1rem!important}
 html body .header .nav-item[aria-current="page"]{color:#514A46}
+html body .quote-top{margin-top:3rem}
+.quote-assurances{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;border-top:0;margin:2rem 0 0}
+.quote-assurances li{border-bottom:0;border-top:2px solid #1F7A8F;padding:1rem 0 0}
+.quote-assurances li::before{display:none}
+.quote-form-wrap{max-width:860px;margin:2.5rem auto 0}
+.quote-form-wrap .quote-phone{text-align:center;margin-top:1.5rem}
+html body .quote-more{margin-top:4rem}
+@media (max-width:700px){.quote-assurances{grid-template-columns:1fr;gap:1rem}}
+html body .quote-top,html body .quote-more{max-width:860px;margin-left:auto;margin-right:auto}
+html body .quote-top{padding-top:3rem}
