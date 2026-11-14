@@ -2,49 +2,47 @@
 import Arrow from '../../components/Arrow.astro';
 import { data } from '../../lib/site';
 
-const logos: Record<string, { alt: string; cls: string; src: string }> = {
-  'star-revue': { alt: 'star revue', cls: 'press-logo star-revue', src: '/assets/media/star-revue-sb.jpg' },
-  nyt: { alt: 'NYT', cls: 'press-logo nyt', src: '/assets/media/NewYorkTimes.svg' },
-  'architectural-digest': { alt: 'Architectural Digest', cls: 'press-logo architectural-digest', src: '/assets/media/architectural-digest.png' },
-  eagle: { alt: 'YouTube', cls: 'press-logo eagle', src: '/assets/media/eagle.png' },
-  yt: { alt: 'YouTube', cls: 'press-logo youtube', src: '/assets/media/youtube.svg' },
-  wsj: { alt: 'Wall Street Journal', cls: 'press-logo wsj', src: '/assets/media/wsj.svg' },
-  stereophile: { alt: 'Stereophile', cls: 'press-logo stereophile', src: '/assets/media/stereophile.svg' },
-  'absolute-sound': { alt: 'Absolute Sound', cls: 'press-logo absolute-sound', src: '/assets/media/absolute-sound.svg' },
-};
+const strip = [
+  { alt: 'The New York Times', src: '/assets/media/NewYorkTimes.svg', cls: 'nyt' },
+  { alt: 'The Wall Street Journal', src: '/assets/media/wsj.svg', cls: 'wsj' },
+  { alt: 'Architectural Digest', src: '/assets/media/architectural-digest.png', cls: 'ad' },
+  { alt: 'Stereophile', src: '/assets/media/stereophile.svg', cls: 'stereophile' },
+  { alt: 'The Absolute Sound', src: '/assets/media/absolute-sound.svg', cls: 'absolute-sound' },
+];
+const articles = data.press.articles as any[];
 ---
-<section class="container xxnarrow">
+<section class="container xxnarrow press-intro">
   <p>We love a good stereo article – especially when it’s about us! Below is a sampling of our favorite StereoBuyers press stories and blog mentions. For any media inquiries, please <a href="/contact/">contact us</a>.</p>
 </section>
-<br>
-<section class="container xxnarrow">
+
+<section class="press-featured" aria-label="Publications that have featured StereoBuyers">
+  <p class="press-featured-label">As featured in</p>
+  <ul class="press-featured-logos">
+    {strip.map((logo) => (
+      <li><img class={logo.cls} src={logo.src} alt={logo.alt} loading="lazy"></li>
+    ))}
+  </ul>
+</section>
+
+<section class="container xnarrow press-list">
   <h2 class="text-align-center as-h3">Where has StereoBuyers been?</h2>
   <ul>
-    {data.press.articles.map((article: any) => (
-    <li class="press-article margin-top-4">
-      {logos[article.type] && <img alt={logos[article.type].alt} class={logos[article.type].cls} src={logos[article.type].src}>}
-      {article.source === 'C-NET' && <img alt="CNET" class="press-logo" src="/assets/media/cnet.svg">}
-      <div class="cite-text">
-        From <a href={article.url} set:html={article.source}></a>, <Fragment set:html={article.date} />
-      </div>
-      <h3 class="as-h4" set:html={article.title}></h3>
-      <p set:html={article.body}></p>
-      {article.readmore && (
-        <p>
-          <a class="text-turq text-uppercase tertiary-font" href={article.url} target="_blank">
-            Read&nbsp;More&nbsp;<span class="arrow"><Arrow /></span>
-          </a>
-        </p>
-      )}
-      {article.view && (
-        <p>
-          <a class="text-turq text-uppercase tertiary-font" href={article.url}>
-            View<span class="arrow"><Arrow /></span>
-          </a>
-        </p>
-      )}
-      <hr>
-    </li>
+    {articles.map((article) => (
+      <li class="press-entry">
+        <div class="press-meta">
+          <span class="press-source" set:html={article.source}></span>
+          <span class="press-date" set:html={article.date}></span>
+        </div>
+        <div class="press-body">
+          <h3><a href={article.url} target={article.view || article.readmore ? '_blank' : undefined} rel={article.view || article.readmore ? 'noopener' : undefined} set:html={article.title}></a></h3>
+          {article.body && <p set:html={article.body}></p>}
+          {(article.readmore === true || article.view) && (
+            <a class="press-link" href={article.url} target="_blank" rel="noopener">
+              {article.view ? 'Watch' : 'Read article'}<span class="arrow"><Arrow /></span>
+            </a>
+          )}
+        </div>
+      </li>
     ))}
   </ul>
 </section>
