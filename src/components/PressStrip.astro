@@ -1,0 +1,17 @@
+---
+const strip = [
+  { alt: 'The New York Times', src: '/assets/media/NewYorkTimes.svg', cls: 'nyt' },
+  { alt: 'The Wall Street Journal', src: '/assets/media/wsj.svg', cls: 'wsj' },
+  { alt: 'Architectural Digest', src: '/assets/media/architectural-digest.png', cls: 'ad' },
+  { alt: 'Stereophile', src: '/assets/media/stereophile.svg', cls: 'stereophile' },
+  { alt: 'The Absolute Sound', src: '/assets/media/absolute-sound.svg', cls: 'absolute-sound' },
+];
+---
+<section class="press-featured" aria-label="Publications that have featured StereoBuyers">
+  <p class="press-featured-label">As featured in</p>
+  <ul class="press-featured-logos">
+    {strip.map((logo) => (
+      <li><img class={logo.cls} src={logo.src} alt={logo.alt} loading="lazy"></li>
+    ))}
+  </ul>
+</section>

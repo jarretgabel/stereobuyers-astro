@@ -1,5 +1,7 @@
 ---
 import { site, settings } from '../lib/site';
+const norm = (u: string) => u.replace(/\/+$/, '') || '/';
+const here = norm(Astro.url.pathname);
 ---
 <header class="header active">
   <div class="background"></div>
@@ -21,11 +23,11 @@ import { site, settings } from '../lib/site';
       <div class="scroll">
         {settings.nav.map((item) => (
           <div class="list-item title-font">
-            <a class="nav-item" href={item.url}>{item.label}</a>
+            <a class="nav-item" href={item.url} aria-current={norm(item.url) === here ? 'page' : undefined}>{item.label}</a>
           </div>
         ))}
         <div class="list-item tall title-font text-grey">
-          <a class="nav-item text-grey" href="/get-a-quote">{settings.navCta}</a>
+          <a class="nav-item text-grey" href="/get-a-quote" aria-current={here === '/get-a-quote' ? 'page' : undefined}>{settings.navCta}</a>
         </div>
       </div>
     </div>

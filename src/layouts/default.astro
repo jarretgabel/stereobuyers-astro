@@ -61,6 +61,7 @@ if (/(invite|recovery|confirmation|email_change)_token=/.test(window.location.ha
     ::view-transition-new(*) { mix-blend-mode: normal; animation: none; }
     ::view-transition-old(page) { animation: 0.25s cubic-bezier(0.4, 0, 1, 1) both sb-out; }
     ::view-transition-new(page) { animation: 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both sb-in; }
+    html.sb-cut::view-transition-old(page) { animation: none; opacity: 0; }
     /* The new page frame (footer, spacing) appears as the old content finishes leaving. */
     ::view-transition-new(root) { animation: 0.01s linear 0.25s both sb-show; }
     [data-astro-transition-fallback="old"] main#main { animation: 0.25s cubic-bezier(0.4, 0, 1, 1) both sb-out; }

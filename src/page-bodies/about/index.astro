@@ -1,10 +1,11 @@
 ---
 import Md from '../../components/Md.astro';
+import PressStrip from '../../components/PressStrip.astro';
 import QuickFacts from '../../components/QuickFacts.astro';
 import ResponsiveImg from '../../components/ResponsiveImg.astro';
 const { page } = Astro.props;
 ---
-<Md sections class="container xxnarrow margin-center" text={page.intro} />
+<Md sections class="container xxnarrow margin-center sb-prose" text={page.intro} />
 <section class='about-bios container xnarrow margin-top-4'>
   <div class='col-1'>
     <ResponsiveImg class="image" src="/assets/media/about-1.jpg" alt="Adam Wexler, owner of StereoBuyers, in front of a high-end audio system" sizes="(min-width: 800px) 50vw, 100vw" />
@@ -13,6 +14,15 @@ const { page } = Astro.props;
     </div>
   </div>
 </section>
-<Md sections class="container xxnarrow margin-center margin-top-4" text={page.story} />
+<section class="container narrow1 sb-stats" aria-label="StereoBuyers at a glance">
+  <ul>
+    <li><strong>1999</strong><span>Founded in Brooklyn, NY</span></li>
+    <li><strong>20+</strong><span>Years buying high-end audio</span></li>
+    <li><strong>3</strong><span>Regions with free pickup</span></li>
+    <li><strong>On the spot</strong><span>Payment at pickup</span></li>
+  </ul>
+</section>
+<Md sections class="container xxnarrow margin-center margin-top-4 sb-prose" text={page.story} />
+<PressStrip />
 
 <QuickFacts />

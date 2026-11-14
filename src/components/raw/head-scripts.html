@@ -51,6 +51,8 @@
       // Astro's view transitions drop head elements the next page doesn't have, so carry the font CSS over to the incoming head.
       d.addEventListener('astro:before-swap', function(e) {
         e.newDocument.documentElement.classList.add('sb-nav');
+        // The router scrolls to the top on swap, which would flash the old page's top while it fades out.
+        if (window.scrollY > 20) e.newDocument.documentElement.classList.add('sb-cut');
         kit.forEach(function(node) { e.newDocument.head.appendChild(node.cloneNode(true)); });
       });
       function fallback() {

@@ -1,28 +1,15 @@
 ---
 import Arrow from '../../components/Arrow.astro';
+import PressStrip from '../../components/PressStrip.astro';
 import { data } from '../../lib/site';
 
-const strip = [
-  { alt: 'The New York Times', src: '/assets/media/NewYorkTimes.svg', cls: 'nyt' },
-  { alt: 'The Wall Street Journal', src: '/assets/media/wsj.svg', cls: 'wsj' },
-  { alt: 'Architectural Digest', src: '/assets/media/architectural-digest.png', cls: 'ad' },
-  { alt: 'Stereophile', src: '/assets/media/stereophile.svg', cls: 'stereophile' },
-  { alt: 'The Absolute Sound', src: '/assets/media/absolute-sound.svg', cls: 'absolute-sound' },
-];
 const articles = data.press.articles as any[];
 ---
 <section class="container xxnarrow press-intro">
   <p>We love a good stereo article – especially when it’s about us! Below is a sampling of our favorite StereoBuyers press stories and blog mentions. For any media inquiries, please <a href="/contact/">contact us</a>.</p>
 </section>
 
-<section class="press-featured" aria-label="Publications that have featured StereoBuyers">
-  <p class="press-featured-label">As featured in</p>
-  <ul class="press-featured-logos">
-    {strip.map((logo) => (
-      <li><img class={logo.cls} src={logo.src} alt={logo.alt} loading="lazy"></li>
-    ))}
-  </ul>
-</section>
+<PressStrip />
 
 <section class="container xnarrow press-list">
   <h2 class="text-align-center as-h3">Where has StereoBuyers been?</h2>

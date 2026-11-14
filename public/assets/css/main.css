@@ -68,3 +68,72 @@ html.sb-nav .index-body .header .background,html.sb-nav .index-body .header .ide
 .how-perk+.how-perk{border-left:0}
 .how-perk+.how-perk::before{content:"";position:absolute;left:-1.25rem;top:2.5rem;bottom:2.5rem;border-left:1px solid #e3ded9}
 @media (max-width:900px){.how-perk+.how-perk::before{display:none}.how-perk+.how-perk{border-top:1px solid #e3ded9}.container.how-perks{gap:0}}
+
+/* Shared design system: section titles, cards, Q&A, facts */
+html body .sb-title{font-family:"azo-sans-uber","azo-fallback","Helvetica";font-weight:normal;font-size:14px;line-height:1.4;letter-spacing:.28em;text-transform:uppercase;color:#514A46;text-align:center;margin:0 0 2rem;padding:0 0 1.1rem;position:relative;display:block}
+html body .sb-title::after{content:"";position:absolute;left:50%;bottom:0;width:28px;height:2px;margin-left:-14px;background:#1F7A8F}
+html body .sb-prose h2,html body .sb-prose h2.as-h3,html body .sb-prose h2.as-h4{font-family:"Times New Roman",serif;font-weight:normal;font-size:28px;line-height:1.25;letter-spacing:0;text-transform:none;color:#3f3936;text-align:left;margin:2.5rem 0 .9rem;padding:0;display:block}
+html body .sb-prose h2:first-child{margin-top:0}
+html body .sb-prose p{font-size:18px;line-height:1.7}
+html body .sb-prose.about-intro p,html body .sb-prose p:first-of-type{color:#3f3936}
+
+/* Cards */
+.b2b-cards{gap:1.75rem}
+.b2b-cards li,.contact-cards li,.pickup-areas li a,.contact-links a{background:#fff;border:1px solid #e3ded9;border-top:1px solid #e3ded9;border-left:1px solid #e3ded9;border-radius:2px;box-shadow:none;transition:border-color .3s ease,transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s ease}
+.b2b-cards li{padding:2rem 2rem 1.75rem;position:relative}
+.b2b-cards li::before{content:"";position:absolute;left:2rem;top:0;width:28px;height:2px;background:#1F7A8F}
+html body .b2b-cards li h3,html body .b2b-section .b2b-cards li h3{font-family:"Times New Roman",serif;font-weight:normal;font-size:22px;line-height:1.25;letter-spacing:0;text-transform:none;color:#3f3936;text-align:left;margin:0 0 .75rem;padding:0}
+.b2b-cards li p{font-size:16px;line-height:1.65;color:#6b645f;text-align:left;margin:0}
+.b2b-cards li:hover,.contact-cards li:hover,.pickup-areas li a:hover,.contact-links a:hover{border-color:#1F7A8F;transform:translateY(-2px);box-shadow:0 10px 28px rgba(63,57,54,.08)}
+.contact-cards li{padding:2rem 1.5rem;border-top:1px solid #e3ded9}
+html body .contact-cards li h2{font-family:"Times New Roman",serif;font-weight:normal;font-size:24px;letter-spacing:0;text-transform:none;color:#3f3936;margin:0 0 .75rem;padding:0}
+.contact-cards li p{color:#6b645f}
+.contact-meta{font-size:14px;color:#6b645f;margin-top:1.5rem}
+.contact-links a{padding:1.2rem 1.4rem;border-left:1px solid #e3ded9}
+.contact-links strong{font-family:"Times New Roman",serif;font-weight:normal;font-size:19px;color:#3f3936;margin-bottom:.2rem}
+.contact-links span{font-size:15px;color:#6b645f}
+.pickup-areas ul{gap:1.5rem}
+.pickup-areas li a{height:auto;min-height:110px;border-radius:2px;border:1px solid #e3ded9;font-family:"azo-sans-uber","azo-fallback","Helvetica";font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:#514A46;position:relative}
+.pickup-areas li a::before{content:"";position:absolute;left:50%;top:1.4rem;width:28px;height:2px;margin-left:-14px;background:#1F7A8F}
+.pickup-areas li a:hover{color:#1F7A8F}
+
+/* Q&A */
+.brand-faq{margin-top:4rem}
+.brand-faq dl{margin:0;border-top:1px solid #e3ded9}
+.brand-faq dt{font-family:"Times New Roman",serif;font-weight:normal;font-size:21px;line-height:1.35;color:#3f3936;margin:0;padding:1.5rem 0 .5rem}
+.brand-faq dd{margin:0;padding:0 0 1.5rem;border-bottom:1px solid #e3ded9;font-size:17px;line-height:1.7;color:#6b645f}
+
+/* At a glance */
+.quick-facts{margin-top:4rem}
+.quick-facts-panel{background:#F7F5F5;padding:2.75rem 2.5rem 2.25rem}
+.quick-facts ul{list-style:none;padding:0;margin:0 0 1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.25rem 2.5rem}
+.quick-facts ul li{list-style:none;margin:0;padding-left:1.25rem;position:relative;font-size:15.5px;line-height:1.6;color:#514A46}
+.quick-facts ul li::before{content:"";position:absolute;left:0;top:.7em;width:6px;height:6px;background:#1F7A8F}
+.quick-facts-panel>p{margin:0;text-align:center;font-size:15px;color:#6b645f}
+@media (max-width:700px){.quick-facts ul{grid-template-columns:1fr}.quick-facts-panel{padding:2rem 1.5rem}}
+
+/* About stats */
+.sb-stats{margin-top:3.5rem}
+.sb-stats ul{list-style:none;margin:0;padding:2rem 0;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #e3ded9;border-bottom:1px solid #e3ded9;text-align:center}
+.sb-stats li{margin:0;padding:0 1rem}
+.sb-stats li+li{border-left:1px solid #e3ded9}
+.sb-stats strong{display:block;font-family:"azo-sans-uber","azo-fallback","Helvetica";font-weight:normal;font-size:30px;line-height:1.1;color:#514A46;margin-bottom:.6rem}
+.sb-stats span{font-size:14px;line-height:1.4;color:#6b645f;letter-spacing:.04em}
+@media (max-width:700px){.sb-stats ul{grid-template-columns:1fr 1fr;gap:1.5rem 0}.sb-stats li:nth-child(3){border-left:0}}
+
+/* Get a quote */
+.quote-layout{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:4rem;align-items:start;margin-top:4rem}
+.quote-aside{position:sticky;top:110px}
+.quote-aside p,.quote-aside li{font-size:17px}
+.quote-assurances{list-style:none;margin:2rem 0 1.5rem;padding:0;border-top:1px solid #e3ded9}
+.quote-assurances li{margin:0;padding:1.1rem 0 1.1rem 1.5rem;border-bottom:1px solid #e3ded9;position:relative}
+.quote-assurances li::before{content:"";position:absolute;left:0;top:1.75rem;width:7px;height:7px;background:#1F7A8F}
+.quote-assurances strong{display:block;font-family:"Times New Roman",serif;font-weight:normal;font-size:20px;color:#3f3936}
+.quote-assurances span{font-size:15px;color:#6b645f}
+.quote-phone{font-size:16px !important;color:#6b645f}
+.quote-form{box-shadow:0 20px 50px rgba(63,57,54,.1);border:1px solid #e3ded9;background:#fff}
+@media (max-width:900px){.quote-layout{grid-template-columns:1fr;gap:2.5rem}.quote-aside{position:static}}
+
+.press-featured{margin-top:4rem}
+html body .page h1.sb-title,html body .page h2.sb-title,html body .page h3.sb-title{font-family:"azo-sans-uber","azo-fallback","Helvetica"!important;font-weight:normal!important;font-size:14px!important;letter-spacing:.28em!important;text-transform:uppercase!important;text-align:center!important;display:block;width:100%;margin:0 0 2rem!important;padding:0 0 1.1rem!important}
+html body .header .nav-item[aria-current="page"]{color:#514A46}
