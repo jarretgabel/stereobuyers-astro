@@ -48,15 +48,14 @@ var initNav = function() {
       delete link.dataset.navLeaving;
     }, delay);
   };
-  var navList = header.querySelector(".nav-list");
 
   toggle.addEventListener("click", onToggle);
   document.addEventListener("keydown", onKeydown);
-  if(navList) navList.addEventListener("click", onNavClick);
+  header.addEventListener("click", onNavClick);
   onTeardown(function() {
     toggle.removeEventListener("click", onToggle);
     document.removeEventListener("keydown", onKeydown);
-    if(navList) navList.removeEventListener("click", onNavClick);
+    header.removeEventListener("click", onNavClick);
   });
 }
 
