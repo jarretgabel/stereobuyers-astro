@@ -115,10 +115,15 @@ var animateIntro = function(run) {
   var background = document.querySelector(".background");
   var identity = document.querySelector(".identity");
 
-  TweenMax.to(background, 0.75, { y: 0, ease: Power4.easeInOut, onComplete: () => {
+  // Arriving by client-side navigation: the header is already on screen, so skip its entrance
+  var navigated = document.documentElement.classList.contains("sb-nav");
 
-  }});
-  TweenMax.to(identity, 0.75, { y: 0, ease: Power4.easeInOut, delay: 0.2 });
+  if(navigated) {
+    TweenMax.set([background, identity], { y: 0 });
+  } else {
+    TweenMax.to(background, 0.75, { y: 0, ease: Power4.easeInOut });
+    TweenMax.to(identity, 0.75, { y: 0, ease: Power4.easeInOut, delay: 0.2 });
+  }
   TweenMax.delayedCall(0.25, () => {
     if(run === introRun) phaseTwo(run);
   });
@@ -136,7 +141,9 @@ var phaseTwo = function(run) {
     TweenMax.staggerTo(slide, 1, { y: 0, ease: Power2.easeOut, delay: 0.7 }, 0.2);
   }
 
-  if(contact) {
+  if(contact && document.documentElement.classList.contains("sb-nav")) {
+    contact.classList.remove("transY100");
+  } else if(contact) {
     // GSAP drops an identity transform, which would let the CSS translateY(100%) hide the bar again
     TweenMax.set(contact, { y: contact.offsetHeight });
     contact.classList.remove("transY100");

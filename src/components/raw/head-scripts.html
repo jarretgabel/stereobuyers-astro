@@ -50,6 +50,7 @@
       }
       // Astro's view transitions drop head elements the next page doesn't have, so carry the font CSS over to the incoming head.
       d.addEventListener('astro:before-swap', function(e) {
+        e.newDocument.documentElement.classList.add('sb-nav');
         kit.forEach(function(node) { e.newDocument.head.appendChild(node.cloneNode(true)); });
       });
       function fallback() {

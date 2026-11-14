@@ -36,3 +36,21 @@ p.faq-jump a:not(.button):not(.link):hover,p.faq-jump a:not(.button):not(.link):
 .press-link .arrow polygon{fill:currentColor}
 .press-link:hover .arrow{transform:translateX(4px)}
 @media (max-width:806px){.press-entry{grid-template-columns:1fr;gap:0.75rem;padding:1.75rem 0}.press-meta{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:0.25rem 1rem}.press-body h3{font-size:22px}.press-featured-logos{gap:1.25rem 2rem}.press-featured-logos img{height:22px}.press-featured-logos img.nyt{height:24px}}
+
+/* How it works page */
+.how-steps{margin-top:4rem}
+.how-step-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0 2.5rem}
+.how-step{position:relative;margin:0 !important;padding:1.75rem 0 0;border-top:2px solid #514A46;text-align:left}
+.how-step .how-num{display:block;font-family:"azo-sans-uber","azo-fallback","Helvetica";font-size:13px;letter-spacing:.3em;color:#1F7A8F;margin-bottom:1.75rem}
+.how-step .icon{display:block;height:64px;width:96px;margin-bottom:1.5rem}
+.how-step .icon svg{height:64px;width:96px}
+.how-step .how-step-title{font-size:22px;letter-spacing:.04em;margin:0 0 .9rem;padding:0}
+.how-step p{margin:0;font-size:17px;line-height:1.65}
+.how-perks{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;margin-top:5rem;padding-top:3rem;padding-bottom:3rem;border-top:1px solid #d9d4d0;border-bottom:1px solid #d9d4d0}
+.how-perk{margin:0 !important}.how-perk h3{font-family:"Times New Roman",serif;font-weight:normal;font-size:24px;line-height:1.25;margin:0 0 .75rem;padding:0;text-transform:none;letter-spacing:0}
+.how-perk p{margin:0;font-size:16px;line-height:1.65;color:#6b645f}
+.how-about{margin-top:3rem}
+.how-about p{font-size:15px;line-height:1.7;color:#6b645f;text-align:center}
+@media (max-width:900px){.how-step-list,.how-perks{grid-template-columns:1fr}.how-step{margin-bottom:2.5rem}.how-perks{gap:2rem;margin-top:3rem}}
+.container.how-perks{padding-left:24px;padding-right:24px;border:0}
+html.sb-nav .index-body .header .background,html.sb-nav .index-body .header .identity,html.sb-nav .transY100{transform:none}
