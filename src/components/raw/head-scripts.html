@@ -49,6 +49,16 @@
         (d.fonts ? d.fonts.ready : Promise.resolve()).then(reveal, reveal);
       }
       // Astro's view transitions drop head elements the next page doesn't have, so carry the font CSS over to the incoming head.
+      // Back/forward and swipe gestures already animate in the browser; layering a view transition on top makes the header jump. Swap straight away for those.
+      d.addEventListener('astro:before-preparation', function(e) {
+        if (e.navigationType !== 'traverse' || !d.startViewTransition) return;
+        var native = d.startViewTransition;
+        d.startViewTransition = function(cb) {
+          d.startViewTransition = native;
+          var done = Promise.resolve(typeof cb === 'function' ? cb() : undefined);
+          return { ready: done, finished: done, updateCallbackDone: done, skipTransition: function() {} };
+        };
+      });
       d.addEventListener('astro:before-swap', function(e) {
         e.newDocument.documentElement.classList.add('sb-nav');
         // The router scrolls on swap, which would move the fading old page. Links scroll to the top, so hold the old page where it was; back/forward restore an unknown position, so cut it.
