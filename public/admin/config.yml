@@ -1310,8 +1310,6 @@ collections:
         default: brand-page auto-brand-page
       - name: permalink
         widget: hidden
-      - name: sitemap
-        widget: hidden
   - divider: true
   - name: products-accuphase
     label: Accuphase
@@ -2842,13 +2840,9 @@ collections:
       - name: brand
         widget: hidden
         default: VTL
-      - name: noindex
-        widget: hidden
       - name: page_class
         widget: hidden
       - name: permalink
-        widget: hidden
-      - name: sitemap
         widget: hidden
   - divider: true
   - name: site-content
